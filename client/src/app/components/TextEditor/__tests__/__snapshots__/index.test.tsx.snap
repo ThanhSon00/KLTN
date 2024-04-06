@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextEditor  /> should match snapshot 1`] = `
+<textarea
+  id="tiny-react_89735591611710829088234"
+  style="visibility: hidden;"
+/>
+`;
