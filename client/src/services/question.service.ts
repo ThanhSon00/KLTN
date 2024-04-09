@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch } from 'store/configureStore';
-import { origin } from 'env';
 import { Question } from 'app/components/QuestionDetails/slice/types';
 
 export const createQuestion = createAsyncThunk<
@@ -15,7 +14,7 @@ export const createQuestion = createAsyncThunk<
     dispatch: AppDispatch;
   }
 >('createQuestion', async (questionBody, thunkApi) => {
-  const response = await fetch(`${origin}/v1/questions`, {
+  const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v1/questions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -30,7 +29,7 @@ export const createQuestion = createAsyncThunk<
 });
 
 export const getQuestion = async id => {
-  const response = await fetch(`${origin}/v1/questions/${id}`, {
+  const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v1/questions/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

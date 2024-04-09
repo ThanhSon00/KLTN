@@ -19,7 +19,7 @@ export function LogOutButton(props: Props) {
   ) => {
     e.preventDefault();
     await dispatch(logout(''));
-    navigate('/landing');
+    navigate('/');
   };
   return (
     <li className="menu-item wpqa-logout">

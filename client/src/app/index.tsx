@@ -11,7 +11,6 @@ import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getAuth } from './components/SignInPanel/slice/selectors';
-import { origin } from 'env';
 import { authActions } from './components/SignInPanel/slice';
 import { CheckResetPasswordToken } from './components/CheckResetPasswordToken';
 import { CheckVerifyEmailToken } from './components/CheckVerifyEmailToken';
@@ -40,7 +39,7 @@ export function App() {
   }, [user, dispatch]);
 
   return (
-    <HashRouter> {/* không được đổi basename*/}
+    <HashRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/reset-password" element={<CheckResetPasswordToken />} />
@@ -55,7 +54,7 @@ export function App() {
 }
 
 async function verifyUser(): Promise<User> {
-  const response = await fetch(`${origin}/v1/auth/who-am-i`, {
+  const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v1/auth/who-am-i`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
