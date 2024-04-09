@@ -20,7 +20,7 @@ function LandingPage() {
 
   useEffect(() => {
     if (user) {
-      navigate('/');
+      navigate('/home');
     } else dispatch(panelActions.openPanel(panelName.SIGN_IN));
   }, [dispatch, navigate, user]);
 

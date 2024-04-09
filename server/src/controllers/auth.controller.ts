@@ -14,14 +14,12 @@ const setCookies = (res: Response, { access, refresh }: { access: { token: strin
     httpOnly: true,
     secure: true,
     maxAge: jwt.accessExpirationMinutes * minute,
-    domain: 'localhost',
   });
 
   res.cookie('refresh_token', refresh.token, {
     httpOnly: true,
     secure: true,
     maxAge: jwt.refreshExpirationDays * day,
-    domain: 'localhost',
   });
 };
 
