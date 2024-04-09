@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { User } from 'app/components/SignInPanel/slice/types';
 import { AppDispatch } from 'store/configureStore';
 import { ResponseError } from 'utils/request';
-import { origin } from 'env';
 
 export const verifyEmail = createAsyncThunk<
   any,
@@ -14,7 +13,7 @@ export const verifyEmail = createAsyncThunk<
     dispatch: AppDispatch;
   }
 >('verifyEmail', async ({ token }, thunkApi) => {
-  const response = await fetch(`${origin}/v1/auth/verify-email`, {
+  const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v1/auth/verify-email`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -40,7 +39,7 @@ export const forgotPassword = createAsyncThunk<
     rejectValue: string;
   }
 >('forgotPassword', async ({ email }, thunkApi) => {
-  const response = await fetch(`${origin}/v1/auth/forgot-password`, {
+  const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v1/auth/forgot-password`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -63,7 +62,7 @@ export const getNewPassword = createAsyncThunk<
   { token: string },
   { dispatch: AppDispatch }
 >('getNewPassword', async ({ token }, thunkApi) => {
-  const response = await fetch(`${origin}/v1/auth/new-password`, {
+  const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v1/auth/new-password`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -85,7 +84,7 @@ export const logout = createAsyncThunk<
     dispatch: AppDispatch;
   }
 >('logout', async (_, thunkApi) => {
-  await fetch(`${origin}/v1/auth/logout`, {
+  await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v1/auth/logout`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -103,7 +102,7 @@ export const login = createAsyncThunk<
     rejectValue: string;
   }
 >('login', async ({ email, password }, thunkApi) => {
-  const response = await fetch(`${origin}/v1/auth/login`, {
+  const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v1/auth/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -138,7 +137,7 @@ export const register = createAsyncThunk<
     dispatch: AppDispatch;
   }
 >('register', async ({ email, password, name, confirmPassword }, thunkApi) => {
-  const response = await fetch(`${origin}/v1/auth/register`, {
+  const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v1/auth/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

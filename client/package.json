@@ -8,9 +8,6 @@
     "url": "https://github.com/react-boilerplate/react-boilerplate-cra-template.git"
   },
   "license": "MIT",
-  "engines": {
-    "node": ">=14.x"
-  },
   "bugs": {
     "url": "https://github.com/react-boilerplate/react-boilerplate-cra-template/issues"
   },

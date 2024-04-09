@@ -10,7 +10,7 @@
     "dev:client": "cd client && yarn start",
     "dev": "concurrently --kill-others-on-fail \"yarn dev:server\" \"yarn dev:client\"",
     "build:client": "cd client && yarn build",
-    "prod:client": "cd client && yarn publish:github",
+    "prod:client": "cd client && yarn start:prod",
     "prod:server": "cd server && npm start",
     "test:server": "cd server && npm run test",
     "test:prod:server": "cd server && npm run test:prod" 
