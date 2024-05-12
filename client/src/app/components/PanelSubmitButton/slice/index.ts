@@ -3,7 +3,9 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { Saga } from './saga';
 import { LoadingIndicatorState } from './types';
 import { forgotPassword, login, register } from 'services/auth.service';
-import { createQuestion } from 'services/question.service';
+import { createQuestion, getQuestions } from 'services/question.service';
+import { createAnswer, updateAnswerDetail } from 'services/answer.service';
+import { fullTextSearch } from 'services/searching.service';
 
 export const initialState: LoadingIndicatorState = {
   display: false,
@@ -14,7 +16,10 @@ const slice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    const serviceList = [login, forgotPassword, register, createQuestion];
+    const serviceList = [
+      login, forgotPassword, register, createQuestion, 
+      createAnswer, updateAnswerDetail, getQuestions, fullTextSearch
+    ];
     for (const thunk of serviceList) {
       builder.addCase(thunk.pending, state => {
         state.display = true;

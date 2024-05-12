@@ -4,10 +4,25 @@
  *
  */
 import * as React from 'react';
+import { User } from '../SignInPanel/slice/types';
+import { useAppSelector } from 'store/hooks';
+import { getAuth } from '../SignInPanel/slice/selectors';
+import { useNavigate, useParams } from 'react-router-dom';
 
-interface Props {}
+interface Props {
+  author: User;
+}
 
 export function QuestionBottom(props: Props) {
+  const { user } = useAppSelector(getAuth);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const editQuestionClick = (e) => {
+    e.preventDefault();
+    navigate(`/home/edit-question/${id}`);
+  }
+
   return (
     <div className="question-bottom">
       <div className="post-share">
@@ -61,35 +76,40 @@ export function QuestionBottom(props: Props) {
         </ul>
       </div>
       <ul className="question-link-list">
-        <li>
-          <a
-            className="dropdown-item"
-            href="https://2code.info/demo/themes/Discy/Main/edit-question/41015/"
-          >
-            <i className="icon-pencil" />
-            Edit
-          </a>
-        </li>
-        <li>
-          <a
-            className="dropdown-item question-delete"
-            href="https://2code.info/demo/themes/Discy/Main/question/testing-title/?activate_delete=1&delete=41015&wpqa_delete_nonce=b1b5776790"
-          >
-            <i className="icon-trash" />
-            Delete
-          </a>
-        </li>
-        <li>
-          <a
-            className="dropdown-item question-close"
-            href="/"
-            data-nonce="343b890e13"
-            title="Close the question"
-          >
-            <i className="icon-lock" />
-            Close
-          </a>
-        </li>
+        {user && user.id === props.author.id && 
+          <>
+            <li>
+              <a
+                className="dropdown-item"
+                href="/"
+                onClick={editQuestionClick}
+              >
+                <i className="icon-pencil" />
+                Edit
+              </a>
+            </li>
+            <li>
+              <a
+                className="dropdown-item question-delete"
+                href="/"
+              >
+                <i className="icon-trash" />
+                Delete
+              </a>
+            </li>
+            <li>
+              <a
+                className="dropdown-item question-close"
+                href="/"
+                data-nonce="343b890e13"
+                title="Close the question"
+              >
+                <i className="icon-lock" />
+                Close
+              </a>
+            </li>
+          </>
+        }
         <li className="report_activated">
           <a className="dropdown-item report_q" href="/">
             <i className="icon-attention" />

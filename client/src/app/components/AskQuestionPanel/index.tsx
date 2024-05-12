@@ -16,7 +16,6 @@ import { getAuth } from '../SignInPanel/slice/selectors';
 import { PanelSubmitButton } from '../PanelSubmitButton';
 import { useNavigate } from 'react-router-dom';
 import { AuthMessage } from '../AuthMessage';
-import { authActions } from '../SignInPanel/slice';
 import { AlertActions } from '../AuthMessage/slice';
 interface Props {}
 
@@ -51,7 +50,7 @@ export function AskQuestionPanel(props: Props) {
     }
 
     const result = await dispatch(
-      createQuestion({ title, details, authorId: user.id }),
+      createQuestion({ title, details, author: user.id }),
     );
 
     if (result.type.includes('rejected')) console.log('rejected');
@@ -60,7 +59,7 @@ export function AskQuestionPanel(props: Props) {
       dispatch(panelActions.closePanel());
       if (result.payload && typeof result.payload !== 'string') {
         const questionId = result.payload.id;
-        navigate(`/questions/${questionId}`);
+        navigate(`questions/${questionId}`);
       }
     }
   };
@@ -343,7 +342,7 @@ export function AskQuestionPanel(props: Props) {
                     srcSet="https://secure.gravatar.com/avatar/932c851fc3fada8a085a55a30ba2a385?s=96&d=mm&r=g 1x, https://secure.gravatar.com/avatar/932c851fc3fada8a085a55a30ba2a385?s=96&d=mm&r=g 2x"
                     src="https://secure.gravatar.com/avatar/932c851fc3fada8a085a55a30ba2a385?s=96&d=mm&r=g"
                   />
-                  <span>son689 asks</span>
+                  <span>{user?.name} asks</span>
                 </span>
                 <span
                   className="anonymously_span ask_none"
@@ -439,38 +438,6 @@ export function AskQuestionPanel(props: Props) {
                 </span>
                 <span className="wpqa_checkbox_span">
                   Get notified by email when someone answers this question.
-                </span>
-              </label>
-            </p>
-            <p className="wpqa_checkbox_p">
-              <label htmlFor="terms_active-931">
-                <span className="wpqa_checkbox">
-                  <input
-                    type="checkbox"
-                    id="terms_active-931"
-                    name="terms_active"
-                    defaultValue="on"
-                    defaultChecked={true}
-                  />
-                </span>
-                <span className="wpqa_checkbox_span">
-                  By asking your question, you agree to the
-                  <a
-                    target="_blank"
-                    href="https://2code.info/demo/themes/Discy/Main/faqs/"
-                    rel="noreferrer"
-                  >
-                    Terms of Service
-                  </a>
-                  and
-                  <a
-                    target="_blank"
-                    href="https://2code.info/demo/themes/Discy/Main/faqs/"
-                    rel="noreferrer"
-                  >
-                    Privacy Policy
-                  </a>
-                  .<span className="required">*</span>
                 </span>
               </label>
             </p>

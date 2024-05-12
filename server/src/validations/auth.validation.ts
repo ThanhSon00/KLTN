@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { password } from './custom.validation';
-import { IUser } from '../models/mongodb/user.model';
+import { IUser } from '../models/mongodb/documents/user.model';
 
 const register = {
   body: Joi.object()

@@ -1,9 +1,9 @@
 import httpStatus from 'http-status';
-import { User } from '../models/mongodb';
+import { User } from '../models/mongodb/documents';
 import ApiError from '../utils/ApiError';
 import { userRepository } from '../repositories';
 import { ObjectId } from 'mongoose';
-import { IUser, UserDocument } from '../models/mongodb/user.model';
+import { IUser, UserDocument } from '../models/mongodb/documents/user.model';
 /**
  * Create a user
  * @param {Object} userBody

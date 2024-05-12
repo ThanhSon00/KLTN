@@ -7,7 +7,7 @@ export const createQuestion = createAsyncThunk<
   {
     title: string;
     details: string;
-    authorId: string;
+    author: string;
   },
   {
     rejectValue: string;
@@ -22,11 +22,39 @@ export const createQuestion = createAsyncThunk<
     body: JSON.stringify(questionBody),
   });
   if (!response.ok) {
-    return thunkApi.rejectWithValue('Something went wrong');
+    return thunkApi.rejectWithValue('POST /v1/questions went wrong');
   }
   const question = await response.json();
   return question as Question;
 });
+
+export const updateQuestion = createAsyncThunk<
+  Question,
+  {
+    id: string;
+    title?: string;
+    details?: string;
+  },
+  {
+    rejectValue: string;
+    dispatch: AppDispatch;
+  }
+>('createQuestion', async (questionBody, thunkApi) => {
+  const { id } = questionBody;
+  const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v1/questions/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ title: questionBody.title, details: questionBody.details }),
+  });
+  if (!response.ok) {
+    return thunkApi.rejectWithValue('PATCH /v1/questions/:id went wrong');
+  }
+  const question = await response.json();
+  return question as Question;
+});
+
 
 export const getQuestion = async id => {
   const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v1/questions/${id}`, {
@@ -36,8 +64,31 @@ export const getQuestion = async id => {
     },
   });
   if (!response.ok) {
-    throw Error('Something went wrong');
+    throw Error('GET /v1/questions/:id went wrong');
   }
   const question = await response.json();
   return question as Question;
 };
+
+export const getQuestions = createAsyncThunk<
+  Array<Question>,
+  {
+    amount: number;
+  },
+  {
+    rejectValue: string;
+    dispatch: AppDispatch;
+  }
+  >('getQuestions', async ({ amount }, thunkApi) => {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v1/questions?amount=${amount}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (!response.ok) {
+      return thunkApi.rejectWithValue('GET /v1/questions went wrong');
+    }
+    const questions = await response.json();
+    return questions as Array<Question>;
+  });

@@ -1,19 +1,25 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { AlertMessage } from '../AlertMessage';
-import { useAppSelector } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getAuth } from '../SignInPanel/slice/selectors';
 import { useDispatch } from 'react-redux';
 import { panelActions } from '../SignUpPanel/slice';
 import { panelName } from '../SignUpPanel/slice/types';
 import { AlertActions } from '../AuthMessage/slice';
 import { Outlet, useOutlet } from 'react-router-dom';
+import { Question } from '../QuestionDetails/slice/types';
+import { getQuestions as getQuestions } from 'services/question.service';
+import { Article } from '../Article';
+import { PanelSubmitButton } from '../PanelSubmitButton';
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
 function MainContent() {
   const outlet = useOutlet();
+  const [questions, setQuestions] = useState<Question[]>([])
   const { user } = useAppSelector(getAuth);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+
   const handleAskQuestionClick = e => {
     e.preventDefault();
     if (user) {
@@ -27,6 +33,25 @@ function MainContent() {
       dispatch(panelActions.openPanel(panelName.SIGN_IN));
     }
   };
+
+  const loadQuestions = async (amount: number) => {
+    const result = await dispatch(getQuestions({ amount }));
+
+    if (result.meta.requestStatus == "fulfilled") {
+      if (result.payload && typeof result.payload !== "string")
+        setQuestions([...questions,...result.payload]);    
+    }
+  }
+
+  const loadMoreQuestionClick = async e => {
+    e.preventDefault();
+    await loadQuestions(5)
+  }
+
+  useEffect(() => {
+    loadQuestions(5);
+  }, []);
+
   return (
     <div
       className="main-content"
@@ -57,1560 +82,113 @@ function MainContent() {
                 position: 'static',
               }}
             >
+                <div className="the-main-inner float_l">
+
               {outlet ? (
                 <Outlet />
               ) : (
-                <div className="the-main-inner float_l">
-                  <AlertMessage />
-                  <div className="clearfix" />
-                  <div id="row-tabs-home" className="row row-boot row-tabs">
-                    <div className="col col12 col-boot-sm-12">
-                      <div className="wrap-tabs">
-                        <div className="menu-tabs active-menu">
-                          <ul className="menu flex menu-tabs-desktop navbar-nav navbar-secondary">
-                            <li className="menu-item active-tab">
-                              <a href="index5cfe.html?show=recent-questions">
-                                Recent Questions
-                              </a>
-                            </li>
-                            <li className="menu-item">
-                              <a href="index11ec.html?show=most-answered">
-                                Most Answered
-                              </a>
-                            </li>
-                            <li className="menu-item">
-                              <a href="index4c8e.html?show=question-bump">
-                                Bump Question
-                              </a>
-                            </li>
-                            <li className="menu-item">
-                              <a href="index836b.html?show=answers">Answers</a>
-                            </li>
-                            <li className="menu-item">
-                              <a href="indexe6b0.html?show=most-visited">
-                                Most Visited
-                              </a>
-                            </li>
-                            <li className="flexMenu-viewMore">
-                              <a href="#">
-                                <i className="icon-dot-3" />
-                              </a>
-                              <ul
-                                className="flexMenu-popup"
-                                style={{
-                                  display: 'none',
-                                  position: 'absolute',
-                                }}
-                              >
-                                <li className="menu-item">
-                                  <a href="indexdaa9.html?show=most-voted">
-                                    Most Voted
-                                  </a>
-                                </li>
-                                <li className="menu-item">
-                                  <a href="indexc0b3.html?show=no-answers">
-                                    No Answers
-                                  </a>
-                                </li>
-                              </ul>
-                            </li>
-                          </ul>
-                          <div className="wpqa_hide mobile-tabs">
-                            <span className="styled-select">
-                              <select className="form-control home_categories">
-                                <option value="index5cfe.html?show=recent-questions">
-                                  Recent Recent Recent Questions
-                                </option>
-                                <option value="index11ec.html?show=most-answered">
+                  <>
+                    <AlertMessage />
+                    <div className="clearfix" />
+                    <div id="row-tabs-home" className="row row-boot row-tabs">
+                      <div className="col col12 col-boot-sm-12">
+                        <div className="wrap-tabs">
+                          <div className="menu-tabs active-menu">
+                            <ul className="menu flex menu-tabs-desktop navbar-nav navbar-secondary">
+                              <li className="menu-item active-tab">
+                                <a href="index5cfe.html?show=recent-questions">
+                                  Recent Questions
+                                </a>
+                              </li>
+                              <li className="menu-item">
+                                <a href="index11ec.html?show=most-answered">
                                   Most Answered
-                                </option>
-                                <option value="index4c8e.html?show=question-bump">
+                                </a>
+                              </li>
+                              <li className="menu-item">
+                                <a href="index4c8e.html?show=question-bump">
                                   Bump Question
-                                </option>
-                                <option value="index836b.html?show=answers">
-                                  Answers
-                                </option>
-                                <option value="indexe6b0.html?show=most-visited">
+                                </a>
+                              </li>
+                              <li className="menu-item">
+                                <a href="index836b.html?show=answers">Answers</a>
+                              </li>
+                              <li className="menu-item">
+                                <a href="indexe6b0.html?show=most-visited">
                                   Most Visited
-                                </option>
-                                <option value="indexdaa9.html?show=most-voted">
-                                  Most Voted
-                                </option>
-                                <option value="indexc0b3.html?show=no-answers">
-                                  No Answers
-                                </option>
-                              </select>
-                            </span>
+                                </a>
+                              </li>
+                              <li className="flexMenu-viewMore">
+                                <a href="#">
+                                  <i className="icon-dot-3" />
+                                </a>
+                                <ul
+                                  className="flexMenu-popup"
+                                  style={{
+                                    display: 'none',
+                                    position: 'absolute',
+                                  }}
+                                >
+                                  <li className="menu-item">
+                                    <a href="indexdaa9.html?show=most-voted">
+                                      Most Voted
+                                    </a>
+                                  </li>
+                                  <li className="menu-item">
+                                    <a href="indexc0b3.html?show=no-answers">
+                                      No Answers
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                            <div className="wpqa_hide mobile-tabs">
+                              <span className="styled-select">
+                                <select className="form-control home_categories">
+                                  <option value="index5cfe.html?show=recent-questions">
+                                    Recent Recent Recent Questions
+                                  </option>
+                                  <option value="index11ec.html?show=most-answered">
+                                    Most Answered
+                                  </option>
+                                  <option value="index4c8e.html?show=question-bump">
+                                    Bump Question
+                                  </option>
+                                  <option value="index836b.html?show=answers">
+                                    Answers
+                                  </option>
+                                  <option value="indexe6b0.html?show=most-visited">
+                                    Most Visited
+                                  </option>
+                                  <option value="indexdaa9.html?show=most-voted">
+                                    Most Voted
+                                  </option>
+                                  <option value="indexc0b3.html?show=no-answers">
+                                    No Answers
+                                  </option>
+                                </select>
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <section className="loop-section">
-                      <h2 className="screen-reader-text">
-                        Discy Latest Questions
-                      </h2>
-                      <div className="post-articles question-articles">
-                        <article
-                          id="post-118"
-                          className="article-question article-post question clearfix question-answer-before question-vote-inside question-with-comments answer-question-not-jquery question-vote-image discoura-not-credential question-type-normal post-118 type-question status-publish hentry question-category-language question_tags-english question_tags-language"
-                        >
-                          <div className="question-sticky-ribbon">
-                            <div>Pinned</div>
-                          </div>
-                          <div className="single-inner-content">
-                            <div className="question-inner">
-                              <div className="question-image-vote">
-                                <div className="author-image author__avatar author-image-42 author_image_mouseover">
-                                  <a href="profile/martin/index.html">
-                                    <span className="author-image-span">
-                                      <img
-                                        className="avatar avatar-42 photo"
-                                        alt="Martin Hope"
-                                        title="Martin Hope"
-                                        width={42}
-                                        height={42}
-                                        srcSet="https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-2-42x42.jpg 1x, https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-2-84x84.jpg 2x"
-                                        src="../../../../../cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-2-42x42.jpg"
-                                      />
-                                    </span>
-                                  </a>
-                                  <div
-                                    className="author-image-pop-2 member-card"
-                                    data-user={6}
-                                  >
-                                    <div className="post-section user-area user-area-columns_pop him-user widget-not-icon-user">
-                                      <div className="post-inner member__info community__info">
-                                        <div className="author-image author__avatar author-image-70">
-                                          <a href="https://2code.info/demo/themes/Discy/Main/profile/martin/">
-                                            <span className="author-image-span">
-                                              <img
-                                                className="avatar avatar-70 rounded-circle photo"
-                                                alt="Martin Hope"
-                                                title="Martin Hope"
-                                                width={70}
-                                                height={70}
-                                                srcSet="https://2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-2-70x70.jpg 1x, https://2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-2-140x140.jpg 2x"
-                                                src="https://2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-2-70x70.jpg"
-                                              />
-                                            </span>
-                                          </a>
-                                        </div>
-                                        <div className="user-content">
-                                          <div className="user-inner">
-                                            <div className="user-data-columns">
-                                              <h4 className="member__name mb-1">
-                                                <a href="https://2code.info/demo/themes/Discy/Main/profile/martin/">
-                                                  Martin Hope
-                                                </a>
-                                              </h4>
-                                              <div className="user-data">
-                                                <ul>
-                                                  <li className="city-country">
-                                                    <i className="icon-location" />
-                                                    Damita, Egypt
-                                                  </li>
-                                                </ul>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        {/* End user-content */}
-                                        <div className="user-columns-data">
-                                          <ul className="member__stats list-unstyled mb-0 d-flex">
-                                            <li className="user-columns-questions stats__item">
-                                              <a href="https://2code.info/demo/themes/Discy/Main/profile/martin/questions/">
-                                                <i className="icon-book-open" />
-                                                <span className="stats__count">
-                                                  7
-                                                </span>
-                                                <span className="stats__text">
-                                                  Questions
-                                                </span>
-                                              </a>
-                                            </li>
-                                            <li className="user-columns-answers stats__item">
-                                              <a href="https://2code.info/demo/themes/Discy/Main/profile/martin/answers/">
-                                                <i className="icon-comment" />
-                                                <span className="stats__count">
-                                                  0
-                                                </span>
-                                                <span className="stats__text">
-                                                  Answers
-                                                </span>
-                                              </a>
-                                            </li>
-                                            <li className="user-columns-best-answers stats__item">
-                                              <a href="https://2code.info/demo/themes/Discy/Main/profile/martin/best-answers/">
-                                                <i className="icon-graduation-cap" />
-                                                <span className="stats__count">
-                                                  0
-                                                </span>
-                                                <span className="stats__text">
-                                                  Best Answers
-                                                </span>
-                                              </a>
-                                            </li>
-                                            <li className="user-columns-points stats__item">
-                                              <a href="https://2code.info/demo/themes/Discy/Main/profile/martin/points/">
-                                                <i className="icon-bucket" />
-                                                <span className="stats__count">
-                                                  1k
-                                                </span>
-                                                <span className="stats__text">
-                                                  Points
-                                                </span>
-                                              </a>
-                                            </li>
-                                          </ul>
-                                        </div>
-                                        {/* End user-columns-data */}
-                                        <div className="user-follow-profile">
-                                          <div className="member__actions d-flex justify-content-between">
-                                            <a
-                                              className="btn btn__semi__height btn__primary"
-                                              href="https://2code.info/demo/themes/Discy/Main/profile/martin/"
-                                            >
-                                              View Profile
-                                            </a>
-                                          </div>
-                                        </div>
-                                        {/* End user-follow-profile */}
-                                        <div className="clearfix" />
-                                      </div>
-                                      {/* End post-inner */}
-                                    </div>
-                                    {/* End post */}
-                                  </div>
-                                </div>
-                                <ul className="question-vote question-mobile">
-                                  <li className="question-vote-up">
-                                    <a
-                                      href="#"
-                                      data-id={118}
-                                      data-type="question"
-                                      data-vote-type="up"
-                                      className="wpqa_vote question_vote_up vote_allow"
-                                      title="Like"
-                                    >
-                                      <i className="icon-up-dir" />
-                                    </a>
-                                  </li>
-                                  <li className="vote_result">1k</li>
-                                  <li className="li_loader">
-                                    <span className="loader_3 fa-spin" />
-                                  </li>
-                                  <li className="question-vote-down">
-                                    <a
-                                      href="#"
-                                      data-id={118}
-                                      data-type="question"
-                                      data-vote-type="down"
-                                      className="wpqa_vote question_vote_down vote_allow"
-                                      title="Dislike"
-                                    >
-                                      <i className="icon-down-dir" />
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="question-content question-content-first">
-                                <header className="article-header">
-                                  <div className="question-header">
-                                    <a
-                                      className="post-author"
-                                      href="profile/martin/index.html"
-                                    >
-                                      Martin Hope
-                                    </a>
-                                    <span
-                                      className="badge-span"
-                                      style={{ backgroundColor: '#d9a34a' }}
-                                    >
-                                      Enlightened
-                                    </span>
-                                    <div className="post-meta">
-                                      <span className="post-date">
-                                        Asked:
-                                        <span className="date-separator" />
-                                        <a href="question/is-this-statement-i-see-him-last-night-can-be-understood-as-i-saw-him-last-night/index.html">
-                                          <span className="entry-date published">
-                                            April 19, 2023
-                                          </span>
-                                        </a>
-                                      </span>
-                                      <span className="byline">
-                                        <span className="post-cat">
-                                          In:
-                                          <a
-                                            href="question-category/language/index.html"
-                                            rel="tag"
-                                          >
-                                            Language
-                                          </a>
-                                        </span>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </header>
-                                <div>
-                                  <h2 className="post-title">
-                                    <a
-                                      className="post-title"
-                                      href="question/is-this-statement-i-see-him-last-night-can-be-understood-as-i-saw-him-last-night/index.html"
-                                      rel="bookmark"
-                                    >
-                                      Is this statement, “i see him last night”
-                                      can be understood as “I saw him last
-                                      night”?
-                                    </a>
-                                  </h2>
-                                </div>
-                              </div>
-                              <div className="question-not-mobile question-image-vote question-vote-sticky">
-                                <div className="question-sticky-stop">
-                                  <ul className="question-vote">
-                                    <li className="question-vote-up">
-                                      <a
-                                        href="#"
-                                        data-id={118}
-                                        data-type="question"
-                                        data-vote-type="up"
-                                        className="wpqa_vote question_vote_up vote_allow"
-                                        title="Like"
-                                      >
-                                        <i className="icon-up-dir" />
-                                      </a>
-                                    </li>
-                                    <li className="vote_result">1k</li>
-                                    <li className="li_loader">
-                                      <span className="loader_3 fa-spin" />
-                                    </li>
-                                    <li className="question-vote-down">
-                                      <a
-                                        href="#"
-                                        data-id={118}
-                                        data-type="question"
-                                        data-vote-type="down"
-                                        className="wpqa_vote question_vote_down vote_allow"
-                                        title="Dislike"
-                                      >
-                                        <i className="icon-down-dir" />
-                                      </a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <div className="question-content question-content-second">
-                                <div className="post-wrap-content">
-                                  <div className="question-content-text">
-                                    <div className="all_not_single_post_content">
-                                      <p className="excerpt-question">
-                                        In my local language (Bahasa Indonesia)
-                                        there are no verb-2 or past tense form
-                                        as time tracker. So, I often forget to
-                                        use the past form of verb when speaking
-                                        english. I saw him last night (correct)
-                                        I see him last night ...
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="tagcloud">
-                                    <div className="question-tags">
-                                      <i className="icon-tags" />
-                                      <a href="question-tag/english/index.html">
-                                        english
-                                      </a>
-                                      <a href="question-tag/language/index.html">
-                                        language
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="wpqa_error" />
-                                <div className="wpqa_success" />
-                                <footer className="question-footer">
-                                  <ul className="footer-meta">
-                                    <li className="best-answer-meta">
-                                      <a href="question/is-this-statement-i-see-him-last-night-can-be-understood-as-i-saw-him-last-night/index.html#comments">
-                                        <i className="icon-comment" />
-                                        <span className="question-span">
-                                          5 Answers
-                                        </span>
-                                      </a>
-                                    </li>
-                                    <li className="view-stats-meta">
-                                      <i className="icon-eye" />
-                                      26k
-                                      <span className="question-span">
-                                        Views
-                                      </span>
-                                    </li>
-                                  </ul>
-                                  <a
-                                    className="meta-answer meta-answer-a"
-                                    href="question/is-this-statement-i-see-him-last-night-can-be-understood-as-i-saw-him-last-night/index.html#respond"
-                                  >
-                                    Answer
-                                  </a>
-                                </footer>
-                              </div>
-                              <div className="clearfix" />
-                            </div>
-                          </div>
-                        </article>
-                        <article
-                          id="post-120"
-                          className="article-question article-post question clearfix question-answer-before question-vote-inside question-with-comments answer-question-not-jquery question-vote-image discoura-not-credential question-type-normal post-120 type-question status-publish hentry question-category-language question_tags-english"
-                        >
-                          <div className="single-inner-content">
-                            <div className="question-inner">
-                              <div className="question-image-vote">
-                                <div className="author-image author__avatar author-image-42 author_image_mouseover">
-                                  <a href="profile/ahmed/index.html">
-                                    <span className="author-image-span">
-                                      <img
-                                        className="avatar avatar-42 photo"
-                                        alt="Ahmed Hassan"
-                                        title="Ahmed Hassan"
-                                        width={42}
-                                        height={42}
-                                        srcSet="https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-7-42x42.jpg 1x, https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-7-84x84.jpg 2x"
-                                        src="../../../../../cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-7-42x42.jpg"
-                                      />
-                                    </span>
-                                  </a>
-                                  <div
-                                    className="author-image-pop-2 member-card"
-                                    data-user={1}
-                                  >
-                                    <div className="post-section user-area user-area-columns_pop him-user widget-not-icon-user">
-                                      <div className="post-inner member__info community__info">
-                                        <div className="author-image author__avatar author-image-70">
-                                          <a href="https://2code.info/demo/themes/Discy/Main/profile/ahmed/">
-                                            <span className="author-image-span">
-                                              <img
-                                                className="avatar avatar-70 rounded-circle photo"
-                                                alt="Ahmed Hassan"
-                                                title="Ahmed Hassan"
-                                                width={70}
-                                                height={70}
-                                                srcSet="https://2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-7-70x70.jpg 1x, https://2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-7-140x140.jpg 2x"
-                                                src="https://2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-7-70x70.jpg"
-                                              />
-                                            </span>
-                                          </a>
-                                        </div>
-                                        <div className="user-content">
-                                          <div className="user-inner">
-                                            <div className="user-data-columns">
-                                              <h4 className="member__name mb-1">
-                                                <a href="https://2code.info/demo/themes/Discy/Main/profile/ahmed/">
-                                                  Ahmed Hassan
-                                                </a>
-                                                <span
-                                                  className="verified_user tooltip-n"
-                                                  title="Verified"
-                                                >
-                                                  <i className="icon-check" />
-                                                </span>
-                                              </h4>
-                                              <div className="user-data">
-                                                <ul>
-                                                  <li className="profile-credential">
-                                                    Software Developer at HCL
-                                                    Technologies
-                                                  </li>
-                                                </ul>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        {/* End user-content */}
-                                        <div className="user-columns-data">
-                                          <ul className="member__stats list-unstyled mb-0 d-flex">
-                                            <li className="user-columns-questions stats__item">
-                                              <a href="https://2code.info/demo/themes/Discy/Main/profile/ahmed/questions/">
-                                                <i className="icon-book-open" />
-                                                <span className="stats__count">
-                                                  3
-                                                </span>
-                                                <span className="stats__text">
-                                                  Questions
-                                                </span>
-                                              </a>
-                                            </li>
-                                            <li className="user-columns-answers stats__item">
-                                              <a href="https://2code.info/demo/themes/Discy/Main/profile/ahmed/answers/">
-                                                <i className="icon-comment" />
-                                                <span className="stats__count">
-                                                  9
-                                                </span>
-                                                <span className="stats__text">
-                                                  Answers
-                                                </span>
-                                              </a>
-                                            </li>
-                                            <li className="user-columns-best-answers stats__item">
-                                              <a href="https://2code.info/demo/themes/Discy/Main/profile/ahmed/best-answers/">
-                                                <i className="icon-graduation-cap" />
-                                                <span className="stats__count">
-                                                  5
-                                                </span>
-                                                <span className="stats__text">
-                                                  Best Answers
-                                                </span>
-                                              </a>
-                                            </li>
-                                            <li className="user-columns-points stats__item">
-                                              <a href="https://2code.info/demo/themes/Discy/Main/profile/ahmed/points/">
-                                                <i className="icon-bucket" />
-                                                <span className="stats__count">
-                                                  895
-                                                </span>
-                                                <span className="stats__text">
-                                                  Points
-                                                </span>
-                                              </a>
-                                            </li>
-                                          </ul>
-                                        </div>
-                                        {/* End user-columns-data */}
-                                        <div className="user-follow-profile">
-                                          <div className="member__actions d-flex justify-content-between">
-                                            <a
-                                              className="btn btn__semi__height btn__primary"
-                                              href="https://2code.info/demo/themes/Discy/Main/profile/ahmed/"
-                                            >
-                                              View Profile
-                                            </a>
-                                          </div>
-                                        </div>
-                                        {/* End user-follow-profile */}
-                                        <div className="clearfix" />
-                                      </div>
-                                      {/* End post-inner */}
-                                    </div>
-                                    {/* End post */}
-                                  </div>
-                                </div>
-                                <ul className="question-vote question-mobile">
-                                  <li className="question-vote-up">
-                                    <a
-                                      href="#"
-                                      data-id={120}
-                                      data-type="question"
-                                      data-vote-type="up"
-                                      className="wpqa_vote question_vote_up vote_allow"
-                                      title="Like"
-                                    >
-                                      <i className="icon-up-dir" />
-                                    </a>
-                                  </li>
-                                  <li className="vote_result">519</li>
-                                  <li className="li_loader">
-                                    <span className="loader_3 fa-spin" />
-                                  </li>
-                                  <li className="question-vote-down">
-                                    <a
-                                      href="#"
-                                      data-id={120}
-                                      data-type="question"
-                                      data-vote-type="down"
-                                      className="wpqa_vote question_vote_down vote_allow"
-                                      title="Dislike"
-                                    >
-                                      <i className="icon-down-dir" />
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="question-content question-content-first">
-                                <header className="article-header">
-                                  <div className="question-header">
-                                    <a
-                                      className="post-author"
-                                      href="profile/ahmed/index.html"
-                                    >
-                                      Ahmed Hassan
-                                    </a>
-                                    <span
-                                      className="verified_user tooltip-n"
-                                      original-title="Verified"
-                                    >
-                                      <i className="icon-check" />
-                                    </span>
-                                    <span
-                                      className="badge-span"
-                                      style={{ backgroundColor: '#d9a34a' }}
-                                    >
-                                      Enlightened
-                                    </span>
-                                    <div className="post-meta">
-                                      <span className="post-date">
-                                        Asked:
-                                        <span className="date-separator" />
-                                        <a href="question/how-do-native-speakers-tell-im-foreign-based-on-my-english-alone/index.html">
-                                          <span className="entry-date published">
-                                            April 19, 2023
-                                          </span>
-                                        </a>
-                                      </span>
-                                      <span className="byline">
-                                        <span className="post-cat">
-                                          In:
-                                          <a
-                                            href="question-category/language/index.html"
-                                            rel="tag"
-                                          >
-                                            Language
-                                          </a>
-                                        </span>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </header>
-                                <div>
-                                  <h2 className="post-title">
-                                    <a
-                                      className="post-title"
-                                      href="question/how-do-native-speakers-tell-im-foreign-based-on-my-english-alone/index.html"
-                                      rel="bookmark"
-                                    >
-                                      How do native speakers tell I’m foreign
-                                      based on my English alone?
-                                    </a>
-                                  </h2>
-                                </div>
-                              </div>
-                              <div className="question-not-mobile question-image-vote question-vote-sticky">
-                                <div className="question-sticky-stop">
-                                  <ul className="question-vote">
-                                    <li className="question-vote-up">
-                                      <a
-                                        href="#"
-                                        data-id={120}
-                                        data-type="question"
-                                        data-vote-type="up"
-                                        className="wpqa_vote question_vote_up vote_allow"
-                                        title="Like"
-                                      >
-                                        <i className="icon-up-dir" />
-                                      </a>
-                                    </li>
-                                    <li className="vote_result">519</li>
-                                    <li className="li_loader">
-                                      <span className="loader_3 fa-spin" />
-                                    </li>
-                                    <li className="question-vote-down">
-                                      <a
-                                        href="#"
-                                        data-id={120}
-                                        data-type="question"
-                                        data-vote-type="down"
-                                        className="wpqa_vote question_vote_down vote_allow"
-                                        title="Dislike"
-                                      >
-                                        <i className="icon-down-dir" />
-                                      </a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <div className="question-content question-content-second">
-                                <div className="post-wrap-content">
-                                  <div className="question-content-text">
-                                    <div className="all_not_single_post_content">
-                                      <p className="excerpt-question">
-                                        I’m a 19-year-old student from Malaysia.
-                                        I’ve been introduced to the language at
-                                        a very young age and I’m capable of
-                                        conducting any type of conversation.
-                                        However, some of my English-speaking
-                                        friends on the internet didn’t take too
-                                        long to ...
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="tagcloud">
-                                    <div className="question-tags">
-                                      <i className="icon-tags" />
-                                      <a href="question-tag/english/index.html">
-                                        english
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="wpqa_error" />
-                                <div className="wpqa_success" />
-                                <footer className="question-footer">
-                                  <ul className="footer-meta">
-                                    <li className="best-answer-meta">
-                                      <a href="question/how-do-native-speakers-tell-im-foreign-based-on-my-english-alone/index.html#comments">
-                                        <i className="icon-comment" />
-                                        <span className="question-span">
-                                          3 Answers
-                                        </span>
-                                      </a>
-                                    </li>
-                                    <li className="view-stats-meta">
-                                      <i className="icon-eye" />
-                                      6k
-                                      <span className="question-span">
-                                        Views
-                                      </span>
-                                    </li>
-                                  </ul>
-                                  <a
-                                    className="meta-answer meta-answer-a"
-                                    href="question/how-do-native-speakers-tell-im-foreign-based-on-my-english-alone/index.html#respond"
-                                  >
-                                    Answer
-                                  </a>
-                                </footer>
-                              </div>
-                              <div className="clearfix" />
-                            </div>
-                          </div>
-                        </article>
-                        <article
-                          id="post-119"
-                          className="article-question article-post question clearfix question-answer-before question-vote-inside question-with-comments answer-question-not-jquery question-vote-image discoura-not-credential question-type-normal post-119 type-question status-publish hentry question-category-language question_tags-british question_tags-english"
-                        >
-                          <div className="single-inner-content">
-                            <div className="question-inner">
-                              <div className="question-image-vote">
-                                <div className="author-image author__avatar author-image-42">
-                                  <a href="profile/aaron/index.html">
-                                    <span className="author-image-span">
-                                      <img
-                                        className="avatar avatar-42 photo"
-                                        alt="Aaron Aiken"
-                                        title="Aaron Aiken"
-                                        width={42}
-                                        height={42}
-                                        srcSet="https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2023/05/team-1-42x42.jpg 1x, https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2023/05/team-1-84x84.jpg 2x"
-                                        src="../../../../../cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2023/05/team-1-42x42.jpg"
-                                      />
-                                    </span>
-                                  </a>
-                                  <div
-                                    className="author-image-pop-2 member-card"
-                                    data-user={7}
-                                  >
-                                    <div className="author-pop-loader">
-                                      <div className="loader_2" />
-                                    </div>
-                                  </div>
-                                </div>
-                                <ul className="question-vote question-mobile">
-                                  <li className="question-vote-up">
-                                    <a
-                                      href="#"
-                                      data-id={119}
-                                      data-type="question"
-                                      data-vote-type="up"
-                                      className="wpqa_vote question_vote_up vote_allow"
-                                      title="Like"
-                                    >
-                                      <i className="icon-up-dir" />
-                                    </a>
-                                  </li>
-                                  <li className="vote_result">278</li>
-                                  <li className="li_loader">
-                                    <span className="loader_3 fa-spin" />
-                                  </li>
-                                  <li className="question-vote-down">
-                                    <a
-                                      href="#"
-                                      data-id={119}
-                                      data-type="question"
-                                      data-vote-type="down"
-                                      className="wpqa_vote question_vote_down vote_allow"
-                                      title="Dislike"
-                                    >
-                                      <i className="icon-down-dir" />
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="question-content question-content-first">
-                                <header className="article-header">
-                                  <div className="question-header">
-                                    <a
-                                      className="post-author"
-                                      href="profile/aaron/index.html"
-                                    >
-                                      Aaron Aiken
-                                    </a>
-                                    <span
-                                      className="badge-span"
-                                      style={{ backgroundColor: '#d9a34a' }}
-                                    >
-                                      Enlightened
-                                    </span>
-                                    <div className="post-meta">
-                                      <span className="post-date">
-                                        Asked:
-                                        <span className="date-separator" />
-                                        <a href="question/why-are-the-british-confused-about-us-calling-bread-rolls-biscuits-when-they-call-bread-rolls-puddings/index.html">
-                                          <span className="entry-date published">
-                                            April 19, 2023
-                                          </span>
-                                        </a>
-                                      </span>
-                                      <span className="byline">
-                                        <span className="post-cat">
-                                          In:
-                                          <a
-                                            href="question-category/language/index.html"
-                                            rel="tag"
-                                          >
-                                            Language
-                                          </a>
-                                        </span>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </header>
-                                <div>
-                                  <h2 className="post-title">
-                                    <a
-                                      className="post-title"
-                                      href="question/why-are-the-british-confused-about-us-calling-bread-rolls-biscuits-when-they-call-bread-rolls-puddings/index.html"
-                                      rel="bookmark"
-                                    >
-                                      Why are the British confused about us
-                                      calling bread rolls “biscuits” when they
-                                      call bread rolls “puddings”?
-                                    </a>
-                                  </h2>
-                                </div>
-                              </div>
-                              <div className="question-not-mobile question-image-vote question-vote-sticky">
-                                <div className="question-sticky-stop">
-                                  <ul className="question-vote">
-                                    <li className="question-vote-up">
-                                      <a
-                                        href="#"
-                                        data-id={119}
-                                        data-type="question"
-                                        data-vote-type="up"
-                                        className="wpqa_vote question_vote_up vote_allow"
-                                        title="Like"
-                                      >
-                                        <i className="icon-up-dir" />
-                                      </a>
-                                    </li>
-                                    <li className="vote_result">278</li>
-                                    <li className="li_loader">
-                                      <span className="loader_3 fa-spin" />
-                                    </li>
-                                    <li className="question-vote-down">
-                                      <a
-                                        href="#"
-                                        data-id={119}
-                                        data-type="question"
-                                        data-vote-type="down"
-                                        className="wpqa_vote question_vote_down vote_allow"
-                                        title="Dislike"
-                                      >
-                                        <i className="icon-down-dir" />
-                                      </a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <div className="question-content question-content-second">
-                                <div className="post-wrap-content">
-                                  <div className="question-content-text">
-                                    <div className="all_not_single_post_content">
-                                      <p className="excerpt-question">
-                                        (Why I darest say, they darest not get
-                                        offended when they so indeed have
-                                        examples that violate their own use and
-                                        nomenclature!) IE: pudding as a specific
-                                        dessert, puddings as a general term for
-                                        desserts. Calling something a Yorkshire
-                                        pudding ...
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="tagcloud">
-                                    <div className="question-tags">
-                                      <i className="icon-tags" />
-                                      <a href="question-tag/british/index.html">
-                                        british
-                                      </a>
-                                      <a href="question-tag/english/index.html">
-                                        english
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="wpqa_error" />
-                                <div className="wpqa_success" />
-                                <footer className="question-footer">
-                                  <ul className="footer-meta">
-                                    <li className="best-answer-meta meta-best-answer">
-                                      <a href="question/why-are-the-british-confused-about-us-calling-bread-rolls-biscuits-when-they-call-bread-rolls-puddings/index.html#comments">
-                                        <i className="icon-comment" />
-                                        <span className="question-span">
-                                          5 Answers
-                                        </span>
-                                      </a>
-                                    </li>
-                                    <li className="view-stats-meta">
-                                      <i className="icon-eye" />
-                                      5k
-                                      <span className="question-span">
-                                        Views
-                                      </span>
-                                    </li>
-                                  </ul>
-                                  <a
-                                    className="meta-answer meta-answer-a"
-                                    href="question/why-are-the-british-confused-about-us-calling-bread-rolls-biscuits-when-they-call-bread-rolls-puddings/index.html#respond"
-                                  >
-                                    Answer
-                                  </a>
-                                </footer>
-                              </div>
-                              <div className="clearfix" />
-                            </div>
-                          </div>
-                        </article>
-                        <article
-                          id="post-117"
-                          className="article-question article-post question clearfix question-answer-before question-vote-inside question-with-comments answer-question-not-jquery question-vote-image discoura-not-credential question-type-normal post-117 type-question status-publish hentry question-category-analytics question_tags-analytics question_tags-google"
-                        >
-                          <div className="single-inner-content">
-                            <div className="question-inner">
-                              <div className="question-image-vote">
-                                <div className="author-image author__avatar author-image-42">
-                                  <a href="profile/marko/index.html">
-                                    <span className="author-image-span">
-                                      <img
-                                        className="avatar avatar-42 photo"
-                                        alt="Marko Smith"
-                                        title="Marko Smith"
-                                        width={42}
-                                        height={42}
-                                        srcSet="https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-4-42x42.jpg 1x, https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-4-84x84.jpg 2x"
-                                        src="../../../../../cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-4-42x42.jpg"
-                                      />
-                                    </span>
-                                  </a>
-                                  <div
-                                    className="author-image-pop-2 member-card"
-                                    data-user={5}
-                                  >
-                                    <div className="author-pop-loader">
-                                      <div className="loader_2" />
-                                    </div>
-                                  </div>
-                                </div>
-                                <ul className="question-vote question-mobile">
-                                  <li className="question-vote-up">
-                                    <a
-                                      href="#"
-                                      data-id={117}
-                                      data-type="question"
-                                      data-vote-type="up"
-                                      className="wpqa_vote question_vote_up vote_allow"
-                                      title="Like"
-                                    >
-                                      <i className="icon-up-dir" />
-                                    </a>
-                                  </li>
-                                  <li className="vote_result">107</li>
-                                  <li className="li_loader">
-                                    <span className="loader_3 fa-spin" />
-                                  </li>
-                                  <li className="question-vote-down">
-                                    <a
-                                      href="#"
-                                      data-id={117}
-                                      data-type="question"
-                                      data-vote-type="down"
-                                      className="wpqa_vote question_vote_down vote_allow"
-                                      title="Dislike"
-                                    >
-                                      <i className="icon-down-dir" />
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="question-content question-content-first">
-                                <header className="article-header">
-                                  <div className="question-header">
-                                    <a
-                                      className="post-author"
-                                      href="profile/marko/index.html"
-                                    >
-                                      Marko Smith
-                                    </a>
-                                    <span
-                                      className="badge-span"
-                                      style={{ backgroundColor: '#d9a34a' }}
-                                    >
-                                      Enlightened
-                                    </span>
-                                    <div className="post-meta">
-                                      <span className="post-date">
-                                        Asked:
-                                        <span className="date-separator" />
-                                        <a href="question/google-analytics-reads-like-a-seismic-chart-lately/index.html">
-                                          <span className="entry-date published">
-                                            April 19, 2023
-                                          </span>
-                                        </a>
-                                      </span>
-                                      <span className="byline">
-                                        <span className="post-cat">
-                                          In:
-                                          <a
-                                            href="question-category/analytics/index.html"
-                                            rel="tag"
-                                          >
-                                            Analytics
-                                          </a>
-                                        </span>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </header>
-                                <div>
-                                  <h2 className="post-title">
-                                    <a
-                                      className="post-title"
-                                      href="question/google-analytics-reads-like-a-seismic-chart-lately/index.html"
-                                      rel="bookmark"
-                                    >
-                                      Google Analytics reads like a seismic
-                                      chart lately
-                                    </a>
-                                  </h2>
-                                </div>
-                              </div>
-                              <div className="question-not-mobile question-image-vote question-vote-sticky">
-                                <div className="question-sticky-stop">
-                                  <ul className="question-vote">
-                                    <li className="question-vote-up">
-                                      <a
-                                        href="#"
-                                        data-id={117}
-                                        data-type="question"
-                                        data-vote-type="up"
-                                        className="wpqa_vote question_vote_up vote_allow"
-                                        title="Like"
-                                      >
-                                        <i className="icon-up-dir" />
-                                      </a>
-                                    </li>
-                                    <li className="vote_result">107</li>
-                                    <li className="li_loader">
-                                      <span className="loader_3 fa-spin" />
-                                    </li>
-                                    <li className="question-vote-down">
-                                      <a
-                                        href="#"
-                                        data-id={117}
-                                        data-type="question"
-                                        data-vote-type="down"
-                                        className="wpqa_vote question_vote_down vote_allow"
-                                        title="Dislike"
-                                      >
-                                        <i className="icon-down-dir" />
-                                      </a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <div className="question-content question-content-second">
-                                <div className="post-wrap-content">
-                                  <div className="question-content-text">
-                                    <div className="all_not_single_post_content">
-                                      <p className="excerpt-question">
-                                        Anyone else seeing dramatic ranking
-                                        shakeups lately? Thankfully, this client
-                                        is the blue line, but that’s a serious
-                                        drop and recovery. We don’t operate at
-                                        all in the black hat world, so our links
-                                        and content should be in good shape. ...
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="tagcloud">
-                                    <div className="question-tags">
-                                      <i className="icon-tags" />
-                                      <a href="question-tag/analytics/index.html">
-                                        analytics
-                                      </a>
-                                      <a href="question-tag/google/index.html">
-                                        google
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="wpqa_error" />
-                                <div className="wpqa_success" />
-                                <footer className="question-footer">
-                                  <ul className="footer-meta">
-                                    <li className="best-answer-meta">
-                                      <a href="question/google-analytics-reads-like-a-seismic-chart-lately/index.html#comments">
-                                        <i className="icon-comment" />
-                                        <span className="question-span">
-                                          2 Answers
-                                        </span>
-                                      </a>
-                                    </li>
-                                    <li className="view-stats-meta">
-                                      <i className="icon-eye" />
-                                      2k
-                                      <span className="question-span">
-                                        Views
-                                      </span>
-                                    </li>
-                                  </ul>
-                                  <a
-                                    className="meta-answer meta-answer-a"
-                                    href="question/google-analytics-reads-like-a-seismic-chart-lately/index.html#respond"
-                                  >
-                                    Answer
-                                  </a>
-                                </footer>
-                              </div>
-                              <div className="clearfix" />
-                            </div>
-                          </div>
-                        </article>
-                        <article
-                          id="post-116"
-                          className="article-question article-post question clearfix question-answer-before question-vote-inside question-no-comments answer-question-not-jquery question-vote-image discoura-not-credential question-type-normal post-116 type-question status-publish hentry question-category-analytics question_tags-analytics question_tags-google"
-                        >
-                          <div className="single-inner-content">
-                            <div className="question-inner">
-                              <div className="question-image-vote">
-                                <div className="author-image author__avatar author-image-42">
-                                  <a href="profile/james/index.html">
-                                    <span className="author-image-span">
-                                      <img
-                                        className="avatar avatar-42 photo"
-                                        alt="James Wane"
-                                        title="James Wane"
-                                        width={42}
-                                        height={42}
-                                        srcSet="https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-6-42x42.jpg 1x, https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-6-84x84.jpg 2x"
-                                        src="../../../../../cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-6-42x42.jpg"
-                                      />
-                                    </span>
-                                  </a>
-                                  <div
-                                    className="author-image-pop-2 member-card"
-                                    data-user={4}
-                                  >
-                                    <div className="author-pop-loader">
-                                      <div className="loader_2" />
-                                    </div>
-                                  </div>
-                                </div>
-                                <ul className="question-vote question-mobile">
-                                  <li className="question-vote-up">
-                                    <a
-                                      href="#"
-                                      data-id={116}
-                                      data-type="question"
-                                      data-vote-type="up"
-                                      className="wpqa_vote question_vote_up vote_allow"
-                                      title="Like"
-                                    >
-                                      <i className="icon-up-dir" />
-                                    </a>
-                                  </li>
-                                  <li className="vote_result">124</li>
-                                  <li className="li_loader">
-                                    <span className="loader_3 fa-spin" />
-                                  </li>
-                                  <li className="question-vote-down">
-                                    <a
-                                      href="#"
-                                      data-id={116}
-                                      data-type="question"
-                                      data-vote-type="down"
-                                      className="wpqa_vote question_vote_down vote_allow"
-                                      title="Dislike"
-                                    >
-                                      <i className="icon-down-dir" />
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="question-content question-content-first">
-                                <header className="article-header">
-                                  <div className="question-header">
-                                    <a
-                                      className="post-author"
-                                      href="profile/james/index.html"
-                                    >
-                                      James Wane
-                                    </a>
-                                    <span
-                                      className="badge-span"
-                                      style={{ backgroundColor: '#d9a34a' }}
-                                    >
-                                      Enlightened
-                                    </span>
-                                    <div className="post-meta">
-                                      <span className="post-date">
-                                        Asked:
-                                        <span className="date-separator" />
-                                        <a href="question/what-are-your-thoughts-on-google-analytics-vs-other-analytics-platforms/index.html">
-                                          <span className="entry-date published">
-                                            April 19, 2023
-                                          </span>
-                                        </a>
-                                      </span>
-                                      <span className="byline">
-                                        <span className="post-cat">
-                                          In:
-                                          <a
-                                            href="question-category/analytics/index.html"
-                                            rel="tag"
-                                          >
-                                            Analytics
-                                          </a>
-                                        </span>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </header>
-                                <div>
-                                  <h2 className="post-title">
-                                    <a
-                                      className="post-title"
-                                      href="question/what-are-your-thoughts-on-google-analytics-vs-other-analytics-platforms/index.html"
-                                      rel="bookmark"
-                                    >
-                                      What are your thoughts on Google Analytics
-                                      vs other analytics platforms?
-                                    </a>
-                                  </h2>
-                                </div>
-                              </div>
-                              <div className="question-not-mobile question-image-vote question-vote-sticky">
-                                <div className="question-sticky-stop">
-                                  <ul className="question-vote">
-                                    <li className="question-vote-up">
-                                      <a
-                                        href="#"
-                                        data-id={116}
-                                        data-type="question"
-                                        data-vote-type="up"
-                                        className="wpqa_vote question_vote_up vote_allow"
-                                        title="Like"
-                                      >
-                                        <i className="icon-up-dir" />
-                                      </a>
-                                    </li>
-                                    <li className="vote_result">124</li>
-                                    <li className="li_loader">
-                                      <span className="loader_3 fa-spin" />
-                                    </li>
-                                    <li className="question-vote-down">
-                                      <a
-                                        href="#"
-                                        data-id={116}
-                                        data-type="question"
-                                        data-vote-type="down"
-                                        className="wpqa_vote question_vote_down vote_allow"
-                                        title="Dislike"
-                                      >
-                                        <i className="icon-down-dir" />
-                                      </a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <div className="question-content question-content-second">
-                                <div className="post-wrap-content">
-                                  <div className="question-content-text">
-                                    <div className="all_not_single_post_content">
-                                      <p className="excerpt-question">
-                                        Recently heard about Heap which seems
-                                        pretty cool, but I’m not sure if it
-                                        would really be valuable, or simply
-                                        another tool that I need to check. We
-                                        are not at the point of using
-                                        HubSpot/Marketo yet so Heap’s free ...
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="tagcloud">
-                                    <div className="question-tags">
-                                      <i className="icon-tags" />
-                                      <a href="question-tag/analytics/index.html">
-                                        analytics
-                                      </a>
-                                      <a href="question-tag/google/index.html">
-                                        google
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="wpqa_error" />
-                                <div className="wpqa_success" />
-                                <footer className="question-footer">
-                                  <ul className="footer-meta">
-                                    <li className="best-answer-meta">
-                                      <a href="question/what-are-your-thoughts-on-google-analytics-vs-other-analytics-platforms/index.html#comments">
-                                        <i className="icon-comment" />
-                                        <span className="question-span">
-                                          0 Answers
-                                        </span>
-                                      </a>
-                                    </li>
-                                    <li className="view-stats-meta">
-                                      <i className="icon-eye" />
-                                      2k
-                                      <span className="question-span">
-                                        Views
-                                      </span>
-                                    </li>
-                                  </ul>
-                                  <a
-                                    className="meta-answer meta-answer-a"
-                                    href="question/what-are-your-thoughts-on-google-analytics-vs-other-analytics-platforms/index.html#respond"
-                                  >
-                                    Answer
-                                  </a>
-                                </footer>
-                              </div>
-                              <div className="clearfix" />
-                            </div>
-                          </div>
-                        </article>
-                        <article
-                          id="post-115"
-                          className="article-question article-post question clearfix question-answer-before question-vote-inside question-with-comments answer-question-not-jquery question-vote-image discoura-not-credential question-type-normal post-115 type-question status-publish hentry question-category-company question_tags-company question_tags-interview"
-                        >
-                          <div className="single-inner-content">
-                            <div className="question-inner">
-                              <div className="question-image-vote">
-                                <div className="author-image author__avatar author-image-42">
-                                  <a href="profile/barry/index.html">
-                                    <span className="author-image-span">
-                                      <img
-                                        className="avatar avatar-42 photo"
-                                        alt="Barry Carter"
-                                        title="Barry Carter"
-                                        width={42}
-                                        height={42}
-                                        srcSet="https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2023/12/team-8-42x42.jpeg 1x, https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2023/12/team-8-84x84.jpeg 2x"
-                                        src="../../../../../cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2023/12/team-8-42x42.jpg"
-                                      />
-                                    </span>
-                                  </a>
-                                  <div
-                                    className="author-image-pop-2 member-card"
-                                    data-user={3}
-                                  >
-                                    <div className="author-pop-loader">
-                                      <div className="loader_2" />
-                                    </div>
-                                  </div>
-                                </div>
-                                <ul className="question-vote question-mobile">
-                                  <li className="question-vote-up">
-                                    <a
-                                      href="#"
-                                      data-id={115}
-                                      data-type="question"
-                                      data-vote-type="up"
-                                      className="wpqa_vote question_vote_up vote_allow"
-                                      title="Like"
-                                    >
-                                      <i className="icon-up-dir" />
-                                    </a>
-                                  </li>
-                                  <li className="vote_result">58</li>
-                                  <li className="li_loader">
-                                    <span className="loader_3 fa-spin" />
-                                  </li>
-                                  <li className="question-vote-down">
-                                    <a
-                                      href="#"
-                                      data-id={115}
-                                      data-type="question"
-                                      data-vote-type="down"
-                                      className="wpqa_vote question_vote_down vote_allow"
-                                      title="Dislike"
-                                    >
-                                      <i className="icon-down-dir" />
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="question-content question-content-first">
-                                <header className="article-header">
-                                  <div className="question-header">
-                                    <a
-                                      className="post-author"
-                                      href="profile/barry/index.html"
-                                    >
-                                      Barry Carter
-                                    </a>
-                                    <span
-                                      className="badge-span"
-                                      style={{ backgroundColor: '#30a96f' }}
-                                    >
-                                      Explainer
-                                    </span>
-                                    <div className="post-meta">
-                                      <span className="post-date">
-                                        Asked:
-                                        <span className="date-separator" />
-                                        <a href="question/what-is-a-nice-way-to-end-an-interview-that-is-clearly-going-badly/index.html">
-                                          <span className="entry-date published">
-                                            April 19, 2023
-                                          </span>
-                                        </a>
-                                      </span>
-                                      <span className="byline">
-                                        <span className="post-cat">
-                                          In:
-                                          <a
-                                            href="question-category/company/index.html"
-                                            rel="tag"
-                                          >
-                                            Company
-                                          </a>
-                                        </span>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </header>
-                                <div>
-                                  <h2 className="post-title">
-                                    <a
-                                      className="post-title"
-                                      href="question/what-is-a-nice-way-to-end-an-interview-that-is-clearly-going-badly/index.html"
-                                      rel="bookmark"
-                                    >
-                                      What is a nice way to end an interview
-                                      that is clearly going badly?
-                                    </a>
-                                  </h2>
-                                </div>
-                              </div>
-                              <div className="question-not-mobile question-image-vote question-vote-sticky">
-                                <div className="question-sticky-stop">
-                                  <ul className="question-vote">
-                                    <li className="question-vote-up">
-                                      <a
-                                        href="#"
-                                        data-id={115}
-                                        data-type="question"
-                                        data-vote-type="up"
-                                        className="wpqa_vote question_vote_up vote_allow"
-                                        title="Like"
-                                      >
-                                        <i className="icon-up-dir" />
-                                      </a>
-                                    </li>
-                                    <li className="vote_result">58</li>
-                                    <li className="li_loader">
-                                      <span className="loader_3 fa-spin" />
-                                    </li>
-                                    <li className="question-vote-down">
-                                      <a
-                                        href="#"
-                                        data-id={115}
-                                        data-type="question"
-                                        data-vote-type="down"
-                                        className="wpqa_vote question_vote_down vote_allow"
-                                        title="Dislike"
-                                      >
-                                        <i className="icon-down-dir" />
-                                      </a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <div className="question-content question-content-second">
-                                <div className="post-wrap-content">
-                                  <div className="question-content-text">
-                                    <div className="all_not_single_post_content">
-                                      <p className="excerpt-question">
-                                        As an interviewer, I occasionally
-                                        conduct interviews that become painful
-                                        as time goes on because the candidate is
-                                        doing so poorly. I have the impression
-                                        that, in these cases, the candidate
-                                        internally knows they are not getting
-                                        the job, and ...
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="tagcloud">
-                                    <div className="question-tags">
-                                      <i className="icon-tags" />
-                                      <a href="question-tag/company/index.html">
-                                        company
-                                      </a>
-                                      <a href="question-tag/interview/index.html">
-                                        interview
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="wpqa_error" />
-                                <div className="wpqa_success" />
-                                <footer className="question-footer">
-                                  <ul className="footer-meta">
-                                    <li className="best-answer-meta meta-best-answer">
-                                      <a href="question/what-is-a-nice-way-to-end-an-interview-that-is-clearly-going-badly/index.html#comments">
-                                        <i className="icon-comment" />
-                                        <span className="question-span">
-                                          3 Answers
-                                        </span>
-                                      </a>
-                                    </li>
-                                    <li className="view-stats-meta">
-                                      <i className="icon-eye" />
-                                      1k
-                                      <span className="question-span">
-                                        Views
-                                      </span>
-                                    </li>
-                                  </ul>
-                                  <a
-                                    className="meta-answer meta-answer-a"
-                                    href="question/what-is-a-nice-way-to-end-an-interview-that-is-clearly-going-badly/index.html#respond"
-                                  >
-                                    Answer
-                                  </a>
-                                </footer>
-                              </div>
-                              <div className="clearfix" />
-                            </div>
-                          </div>
-                        </article>
-                      </div>
-                      <div className="clearfix" />
-                      <div className="pagination-wrap pagination-question">
-                        <div className="pagination-nav posts-load-more">
-                          <span className="load_span">
-                            <span className="loader_2" />
-                          </span>
-                          <div className="load-more">
-                            <a href="page/2/index.html">Load More Questions</a>
-                          </div>
+                        <h2 className="screen-reader-text">
+                          Discy Latest Questions
+                        </h2>
+                        <div className="post-articles question-articles">
+                          {
+                          questions.map((question) => <Article question={question} key={question.id}/> )}
                         </div>
-                      </div>
-                    </section>
-                  </div>
-                </div>
+                        <div className="clearfix" />
+                        <form onSubmit={loadMoreQuestionClick}>
+                          <PanelSubmitButton name="Hiển thị thêm câu hỏi" style={{ width: '100%', height: '40px'}}/>
+                        </form>
+                      </section>
+                  </>
               )}
+              </div>
               <div className="hide-main-inner" />
               <div className="hide-sidebar sidebar-width">
                 <div className="hide-sidebar-inner" />
@@ -1656,7 +234,7 @@ function MainContent() {
                           <li className="stats-card__item stats-questions">
                             <div className="d-flex justify-content-between stats-card__item_div">
                               <span className="stats-text">Questions</span>
-                              <span className="stats-value" />
+                              <span className="stats-value">21</span>
                             </div>
                           </li>
                           <li className="stats-card__item stats-answers">
@@ -1723,7 +301,7 @@ function MainContent() {
                                         rel="bookmark"
                                       >
                                         <i className="icon-ios-paper-outline wpqa_hide" />
-                                        How How How to approach applying for a
+                                        How to approach applying for a
                                         job at a company ...
                                       </a>
                                     </h3>

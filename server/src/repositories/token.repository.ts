@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose';
-import { Token } from '../models/mongodb';
-import { TokenDoc, TokenInput } from '../models/mongodb/token.model';
+import { Token } from '../models/mongodb/documents';
+import { TokenDoc, TokenInput } from '../models/mongodb/documents/token.model';
 
 export const create = (tokenBody: TokenInput) => {
   return Token.create(tokenBody);

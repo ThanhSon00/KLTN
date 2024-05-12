@@ -6,10 +6,12 @@
 import * as React from 'react';
 import { Question } from 'app/components/QuestionDetails/slice/types';
 import { User } from '../SignInPanel/slice/types';
-
+import { convertToReadableDate } from 'utils/date';
+import parse from 'html-react-parser';
+ 
 interface Props {
   question: Question;
-  author?: User;
+  author: User;
 }
 
 export function QuestionInner(prop: Props) {
@@ -152,10 +154,12 @@ export function QuestionInner(prop: Props) {
           <div className="question-content-text">
             <div className="all_single_post_content">
               <div className="content-text" itemProp="text">
-                <p>{prop.question.details}</p>
+                  {
+                    parse(prop.question.details)
+                  }
               </div>
               <div className="clearfix" />
-              <div className="question-custom-links">
+              {/* <div className="question-custom-links">
                 <a
                   href="/"
                   className="bump-question wpqa-open-click color btn btn__link custom-post-link"
@@ -182,7 +186,7 @@ export function QuestionInner(prop: Props) {
                   </a>
                 </div>
                 <div className="clearfix" />
-              </div>
+              </div> */}
               <div className="clearfix" />
               <div className="bump-question-area wpqa-open-div wpqa_hide">
                 <input
@@ -209,14 +213,14 @@ export function QuestionInner(prop: Props) {
               <a href="https://2code.info/demo/themes/Discy/Main/question/testing-title/#comments">
                 <i className="icon-comment" />
                 <span itemProp="answerCount" className="number discy_hide">
-                  0
+                  {prop.question.comments.length}
                 </span>
-                <span className="question-span">0 Answers</span>
+                <span className="question-span">{prop.question.comments.length} Answers</span>
               </a>
             </li>
             <li className="view-stats-meta">
-              <i className="icon-eye" />0{' '}
-              <span className="question-span">Views</span>
+              <i className="icon-eye" />{prop.question.views}
+              <span className="question-span"> Views</span>
             </li>
             <li className="question-followers question-followers-no-link">
               <i className="icon-users" />
@@ -235,29 +239,3 @@ export function QuestionInner(prop: Props) {
   );
 }
 
-function convertToReadableDate(isoTimestamp) {
-  const date = new Date(isoTimestamp);
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
-  const year = date.getUTCFullYear();
-  const month = monthNames[date.getUTCMonth()];
-  const day = date.getUTCDate();
-
-  // Construct the readable date string
-  const readableDate = `${month} ${day}, ${year}`;
-
-  return readableDate;
-}

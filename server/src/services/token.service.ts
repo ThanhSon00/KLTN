@@ -1,6 +1,6 @@
-import { UserDocument } from "../models/mongodb/user.model";
+import { UserDocument } from "../models/mongodb/documents/user.model";
 import { TokenType } from "../config/tokens";
-import { TokenDocument, TokenInput } from "../models/mongodb/token.model";
+import { TokenDocument, TokenInput } from "../models/mongodb/documents/token.model";
 
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import moment from 'moment';
