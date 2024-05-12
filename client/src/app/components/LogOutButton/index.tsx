@@ -18,7 +18,7 @@ export function LogOutButton(props: Props) {
     e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>,
   ) => {
     e.preventDefault();
-    await dispatch(logout(''));
+    await dispatch(logout());
     navigate('/');
   };
   return (

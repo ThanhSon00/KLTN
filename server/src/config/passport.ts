@@ -1,7 +1,7 @@
 import { Strategy as JwtStrategy, ExtractJwt, VerifiedCallback } from 'passport-jwt';
 import config from './config';
 import { TokenType } from './tokens';
-import { User } from '../models/mongodb';
+import { User } from '../models/mongodb/documents';
 
 const jwtOptions = {
   secretOrKey: config.jwt.secret,

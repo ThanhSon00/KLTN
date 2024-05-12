@@ -66,4 +66,7 @@ export default {
   client: {
     origin: envVars.CLIENT_ORIGIN,
   },
+  nlp: {
+    origin: envVars.NLP_ORIGIN,
+  }
 };

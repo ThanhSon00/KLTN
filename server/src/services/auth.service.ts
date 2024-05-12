@@ -3,7 +3,7 @@ import generator from 'generate-password';
 import tokenService, { PayloadToken } from './token.service';
 import userService from './user.service';
 import emailService from './email.service';
-import { Token, TokenDocument } from '../models/mongodb/token.model';
+import { Token, TokenDocument } from '../models/mongodb/documents/token.model';
 import ApiError from '../utils/ApiError';
 import { TokenType } from '../config/tokens';
 import { tokenRepository, userRepository } from '../repositories';
@@ -35,7 +35,7 @@ const logout = async (refreshToken: string) => {
   if (!refreshTokenData[0]) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Not found');
   }
-  const result = await tokenRepository.destroy(refreshTokenData[0].id);
+  await tokenRepository.destroy(refreshTokenData[0].id);
 };
 
 // /**

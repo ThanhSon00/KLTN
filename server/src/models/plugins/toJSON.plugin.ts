@@ -8,15 +8,6 @@
  */
 import mongoose, { Document, Schema, Types } from 'mongoose';
 
-interface IAny {
-  id: Types.ObjectId;
-}
-type ExtractGenerics<T> = T extends mongoose.Schema<infer A, infer B, infer C, infer D> ? [A, B, C, D] : never;
-
-interface CustomSchema extends mongoose.Schema {
-  options: mongoose.SchemaOptions;
-}
-
 const deleteAtPath = (obj: object, path: string[], index: number) => {
   if (index === path.length - 1) {
     // @ts-expect-error
@@ -39,18 +30,24 @@ export const toJSON = (schema: Schema) => {
   schema.options.toJSON = Object.assign(schema.options.toJSON || {}, {
     transform(doc: Document, ret: Record<string, any>) {
       Object.keys(schema.paths).forEach((path) => {
-        if (schema.paths[path].options && schema.paths[path].options.private) {
+        if (schema.paths[path].options?.private) {
           deleteAtPath(ret, path.split('.'), 0);
         }
+        if (schema.paths[path].options?.toId) {
+          ret[path] &&= ret[path].toString();
+        }
       });
-
-      ret.authorId &&= ret.authorId.toString();
 
       ret.id = ret._id.toString();
       delete ret._id;
       delete ret.__v;
-      delete ret.createdAt;
-      delete ret.updatedAt;
+
+      if (ret.enableTimestamps) {
+        delete ret.enableTimestamps;
+      } else {  
+        delete ret.createdAt;
+        delete ret.updatedAt;
+      }
       
       // @ts-expect-error
       if (transform) {

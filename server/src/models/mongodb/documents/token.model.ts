@@ -1,8 +1,8 @@
 import mongoose, { Model, Schema, Types, Document } from 'mongoose';
 // import { toJSON } from '../plugins';
-import { TokenType } from '../../config/tokens';
-import { PartialBy } from '../../utils/types';
-import { toJSON } from '../plugins';
+import { TokenType } from '../../../config/tokens';
+import { PartialBy } from '../../../utils/types';
+import { toJSON } from '../../plugins';
 
 export interface TokenDoc {
   token: string;

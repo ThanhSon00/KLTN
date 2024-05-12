@@ -1,15 +1,33 @@
 /* eslint-disable no-lone-blocks */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getAuth } from '../SignInPanel/slice/selectors';
 import { UserMenu } from '../UserMenu';
 import { panelActions } from '../SignUpPanel/slice';
 import { panelName } from '../SignUpPanel/slice/types';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { user } = useAppSelector(getAuth);
+  const [searchText, setSearchText] = useState(''); 
+
+  const returnHome = (e) => {
+    e.preventDefault();
+    navigate('/home')
+  }
+
+  const handleSearchTextChange = (e) => {
+    setSearchText(e.target.value);
+  }
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    navigate(`${process.env.PUBLIC_URL}/home/search?text=${searchText}`);
+  }
+
   return (
     <div className="hidden-header header-dark mobile_bar_active">
       <header
@@ -42,9 +60,7 @@ function Header() {
                   data-toggle="modal"
                   onClick={e => {
                     e.preventDefault();
-                    console.log(
-                      dispatch(panelActions.openPanel(panelName.SIGN_IN)),
-                    );
+                    dispatch(panelActions.openPanel(panelName.SIGN_IN));
                   }}
                 >
                   Sign In
@@ -66,8 +82,9 @@ function Header() {
             <h2 className="screen-reader-text site_logo">Discy</h2>
             <a
               className="logo float_l logo-img"
-              href="index.html"
               title="Discy"
+              onClick={returnHome}
+              href=''
             >
               <img
                 title="Discy"
@@ -93,15 +110,16 @@ function Header() {
                   className="searchform main-search-form"
                   method="get"
                   action="https://2code.info/demo/themes/Discy/Main/search/"
+                  onSubmit={handleSearch}
                 >
                   <div className="search-wrapper">
                     <input
                       type="search"
                       className="live-search live-search-icon"
                       autoComplete="off"
-                      placeholder="Type Search Words"
+                      placeholder="Nhập từ khóa tìm kiếm"
                       name="search"
-                      defaultValue="Type something to search"
+                      onChange={handleSearchTextChange}
                     />
                     <div className="loader_2 search_loader" />
                     <div className="search-results results-empty" />
@@ -176,7 +194,8 @@ function Header() {
                     className="live-search"
                     autoComplete="off"
                     name="search"
-                    defaultValue="Hit enter to search"
+                    placeholder="Hit enter to search"
+                    onChange={handleSearchTextChange}
                   />
                   <div className="loader_2 search_loader" />
                   <div className="search-results results-empty" />
