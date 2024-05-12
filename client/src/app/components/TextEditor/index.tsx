@@ -10,6 +10,7 @@ import { Editor as TinyMCEEditor } from 'tinymce';
 
 interface Props {
   editorRef: MutableRefObject<TinyMCEEditor | undefined>;
+  value?: string;
 }
 
 export function TextEditor(props: Props) {
@@ -36,7 +37,7 @@ export function TextEditor(props: Props) {
             ),
         }}
         onInit={(evt, editor) => (editorRef.current = editor)}
-        initialValue="Welcome to TinyMCE!"
+        initialValue={props.value || "Welcome to TinyMCE!"}
       />
     </>
   );

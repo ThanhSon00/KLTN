@@ -5,9 +5,7 @@ import { ResponseError } from 'utils/request';
 
 export const verifyEmail = createAsyncThunk<
   any,
-  {
-    token: string;
-  },
+  { token: string },
   {
     rejectValue: string;
     dispatch: AppDispatch;
@@ -79,7 +77,7 @@ export const getNewPassword = createAsyncThunk<
 
 export const logout = createAsyncThunk<
   any,
-  unknown,
+  void,
   {
     dispatch: AppDispatch;
   }

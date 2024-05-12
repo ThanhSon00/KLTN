@@ -4,6 +4,7 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { Saga } from './saga';
 import { AlertState } from './types';
 import { getNewPassword, verifyEmail } from 'services/auth.service';
+import { createAnswer } from 'services/answer.service';
 
 export const initialState: AlertState = {
   warning: undefined,
@@ -32,6 +33,9 @@ const slice = createSlice({
         state.error = action.payload;
       },
     );
+    builder.addCase(createAnswer.fulfilled, (state, action) => {
+      state.success = 'Your answer has been successfully submitted.';
+    })
   },
 });
 

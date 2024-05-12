@@ -19,7 +19,7 @@ export function AlertMessage(props: Props) {
   useEffect(() => {
     if (success) {
       setTimeout(() => {
-        dispatch(AlertActions.setAlertMessage({ success: '' }));
+        dispatch(AlertActions.setAlertMessage({ success: '', error: '' }));
       }, 5000);
     }
   }, [success, warning, dispatch]);

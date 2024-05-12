@@ -11,6 +11,7 @@
     "node": ">=12.0.0"
   },
   "scripts": {
+    "exp": "cross-env NODE_ENV=development ts-node test",
     "start": "pm2 start ecosystem.config.json --no-daemon",
     "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
     "test": "cross-env NODE_ENV=test jest -i --colors --verbose --detectOpenHandles",
@@ -59,6 +60,7 @@
     "prettier"
   ],
   "dependencies": {
+    "mongoose-autopopulate": "^1.1.0",
     "@babel/preset-env": "^7.24.3",
     "@babel/preset-typescript": "^7.24.1",
     "@jest/globals": "^29.7.0",
@@ -109,6 +111,7 @@
     "@types/morgan": "^1.9.9",
     "@types/nodemailer": "^6.4.14",
     "@types/passport-jwt": "^4.0.1",
+    "@types/supertest": "^6.0.2",
     "coveralls": "^3.0.7",
     "eslint": "^7.0.0",
     "eslint-config-airbnb-base": "^14.0.0",

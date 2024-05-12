@@ -13,3 +13,19 @@ export const getQuestion = catchAsync(async (req: Request, res: Response) => {
   const question = await questionService.getQuestion(req.params.id);
   res.status(httpStatus.OK).send(question);
 });
+
+export const updateQuestion = catchAsync(async (req: Request, res: Response) => {
+  const question = await questionRepository.update({ id: req.params.id }, req.body);
+  res.status(httpStatus.OK).send(question);
+})
+
+export const getQuestions = catchAsync(async (req: Request, res: Response) => {
+  if (typeof req.query.amount === 'number') {
+    const questions = await questionService.getRandomQuestions({ amount: req.query.amount });
+    res.status(httpStatus.OK).send(questions);  
+  }
+})
+
+// export const getQuestionWithAnswers = catchAsync(async (req: Request, res: Response) => {
+//   const question = await questionService.
+// });

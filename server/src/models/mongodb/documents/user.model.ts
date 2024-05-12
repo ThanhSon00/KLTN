@@ -1,7 +1,7 @@
 import mongoose, { Types, SchemaOptions } from 'mongoose';
 import { isEmail } from 'validator';
 import { compare, hash } from 'bcryptjs';
-import { toJSON, /*paginate*/ } from '../plugins';
+import { toJSON, /*paginate*/ } from '../../plugins';
 import { ObjectId } from 'mongodb';
 /**
  * @type {SchemaDefinitionProperty}
@@ -15,7 +15,7 @@ export interface IUser {
   confirmPassword?: string;
 }
 
-export type UserInput = Omit<IUser, 'avatar' | 'isEmailVerified'> & { id: string };
+export type UserInput = Omit<IUser, 'avatar' | 'isEmailVerified'> & { id?: string };
 
 export interface IUserMethods {
   isPasswordMatch(password: string): Promise<boolean>;
@@ -79,6 +79,7 @@ export const UserSchema = new mongoose.Schema<IUser, UserModel>(
 // add plugin that converts mongoose to json
     
 // @ts-expect-error
+
 UserSchema.plugin(toJSON);
 // userSchema.plugin(paginate);
 /**
@@ -97,7 +98,6 @@ UserSchema.statics.isNameTaken = async function (name: string, excludeUserId: Ob
   return !!user;
 };
 
-
 /**
  * Check if password matches the user's password
  * @param {string} password
@@ -109,7 +109,7 @@ UserSchema.methods.isPasswordMatch = async function (password: string) {
 };
 
 UserSchema.pre('save', async function (next) {
-  const user = this;
+  const user = this as UserDocument;
   if (user.isModified('password')) {
     user.password = await hash(user.password, 8);
   }

@@ -18,13 +18,17 @@ import { User } from './components/SignInPanel/slice/types';
 import MainPage from './pages/MainPage';
 import LandingPage from './pages/LandingPage';
 import QuestionDetails from './components/QuestionDetails';
+import EditQuestionForm from './components/EditQuestionForm';
+import Auth from './components/Auth';
+import EditCommentForm from './components/EditCommentForm';
+import SearchSection from './components/SearchSection';
 export function App() {
   const { user } = useAppSelector(getAuth);
   const dispatch = useAppDispatch();
   const firstUpdate = useRef(true);
 
   useEffect(() => {
-    if (firstUpdate.current) {
+    if (firstUpdate.current && process.env.NODE_ENV != 'production') {
       firstUpdate.current = false;
       return;
     }
@@ -46,7 +50,14 @@ export function App() {
         <Route path="/verify-email" element={<CheckVerifyEmailToken />} />
 
         <Route path="/home" element={<MainPage />}>
+
+          <Route element={<Auth />}>
+            <Route path="edit-question/:id" element={<EditQuestionForm />} />
+            <Route path="edit-answer/:id/details/:answerDetailsId" element={<EditCommentForm />} />
+          </Route>
+
           <Route path="questions/:id" element={<QuestionDetails />} />
+          <Route path="search" element={<SearchSection />} />
         </Route>
       </Routes>
     </HashRouter>
@@ -65,7 +76,6 @@ async function verifyUser(): Promise<User> {
   const myPromise: Promise<User> = new Promise((resolve, reject) => {
     if (response.ok && response.status !== 204) {
       resolve(jsonObj);
-      // eslint-disable-next-line prettier/prettier
     } /*if (response.status === 204) */ else {
       reject();
     }

@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import app from '../../src/app';
 import setupTestDB from '../utils/setupTestDB';
 import { User } from '../../src/models/mongodb';
-import { userThree, insertUser, userFour } from '../fixtures/user.fixture';
+import { userOne, insertUser, userFour } from '../fixtures/user.fixture';
 // import { userOneAccessToken, adminAccessToken } from '../fixtures/token.fixture';
 
 setupTestDB();
@@ -13,19 +13,19 @@ describe('User routes', () => {
   
   describe('GET /v1/users/:userId', () => {
     test('should return 200 and the user object if data is ok', async () => {
-      await insertUser(userThree);
+      await insertUser(userOne);
 
       const res = await request(app)
-        .get(`/v1/users/${userThree.id}`)
+        .get(`/v1/users/${userOne.id}`)
         // .set('Authorization', `Bearer ${userOneAccessToken}`)
         .send()
         .expect(httpStatus.OK);
 
       expect(res.body).not.toHaveProperty('password');
       expect(res.body).toEqual({
-        id: userThree.id,
-        email: userThree.email,
-        name: userThree.name,
+        id: userOne.id,
+        email: userOne.email,
+        name: userOne.name,
         isEmailVerified: false,
         avatar: expect.anything(),
       });
@@ -58,7 +58,7 @@ describe('User routes', () => {
     // });
 
     test('should return 400 error if userId is not a valid mongo id', async () => {
-      await insertUser(userThree);
+      await insertUser(userOne);
 
       await request(app)
         .get('/v1/users/invalidId')
@@ -68,7 +68,7 @@ describe('User routes', () => {
     });
 
     test('should return 404 error if user is not found', async () => {
-      await insertUser(userThree);
+      await insertUser(userOne);
 
       await request(app)
         .get(`/v1/users/${userFour.id}`)
