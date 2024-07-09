@@ -1,0 +1,1139 @@
+[{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034026"
+  },
+  "name": "son 999",
+  "email": "20110714@student.hcmute.edu.vn",
+  "avatar": "/static/uploads/23892fa08443bf5e66de565ef682da31",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-02T08:04:56.683Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T12:38:45.950Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 117,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "/static/uploads/4bbb5917bc10e22188ae02ed1fe24db8",
+  "isBanned": false,
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "660e75a564a0aa70ecfa825b"
+  },
+  "name": "thanhson00",
+  "email": "phanson9999999@gmail.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-04T09:40:53.296Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-03T03:30:05.400Z"
+  },
+  "__v": 0,
+  "cover": "",
+  "age": 18,
+  "gender": "Male",
+  "phoneNumber": "0943667980",
+  "description": "<p>Giới thiệu về bản th&acirc;n</p>",
+  "city": "Lâm Đồng",
+  "enableTimestamps": true,
+  "views": 375,
+  "answers": 0,
+  "isBanned": false,
+  "points": 0,
+  "questions": 0,
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "6645e20f82f941988846f860"
+  },
+  "name": "son",
+  "email": "thanhsona5ls2@gmail.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-05-16T10:38:07.952Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T13:42:57.251Z"
+  },
+  "__v": 0,
+  "answers": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "isBanned": false,
+  "phoneNumber": "",
+  "points": 0,
+  "questions": 0,
+  "views": 43,
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "6645e386b93dd7d518cf736b"
+  },
+  "name": "phanson999999",
+  "email": "1phanhoangthanhson@gmail.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-05-16T10:44:22.720Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-26T02:43:31.132Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 8,
+  "answers": 0,
+  "isBanned": true,
+  "points": 0,
+  "questions": 0,
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "name": "thanhsona5",
+  "email": "phanson999999@gmail.com",
+  "avatar": "/static/uploads/14f2c2e9ca1031ed03a9f3a38320c553",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "description": "<p>Giới thiệu về bản th&acirc;n</p>",
+  "phoneNumber": "0943667980",
+  "gender": "Male",
+  "city": "asfsfds",
+  "views": 6623,
+  "enableTimestamps": true,
+  "createdAt": {
+    "$date": "2024-05-31T04:02:22.648Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T13:40:37.368Z"
+  },
+  "__v": 0,
+  "age": 18,
+  "cover": "/static/uploads/c34b83c7c7b7eaf04262eb77106af116",
+  "answers": 3,
+  "points": 6,
+  "questions": 3,
+  "isBanned": false,
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034027"
+  },
+  "name": "user_123",
+  "email": "user_123@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2023-11-15T17:22:40.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-20T08:11:01.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 80,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034028"
+  },
+  "name": "johndoe456",
+  "email": "johndoe456@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-01-22T09:05:33.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-05T10:31:16.994Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 99,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false,
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034029"
+  },
+  "name": "emma_789",
+  "email": "emma_789@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-02-11T18:29:50.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-21T10:17:15.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 62,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034030"
+  },
+  "name": "user987",
+  "email": "user987@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-03-05T11:55:18.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-25T14:52:12.338Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 117,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false,
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034031"
+  },
+  "name": "alice_smith",
+  "email": "alice_smith@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2023-12-09T15:07:02.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-20T15:30:11.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 88,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034032"
+  },
+  "name": "mark_jones",
+  "email": "mark_jones@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-14T20:12:45.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-18T09:36:25.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 75,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034033"
+  },
+  "name": "sara_miller",
+  "email": "sara_miller@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-01-30T12:59:10.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-17T18:22:55.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 91,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034034"
+  },
+  "name": "alexander_wang",
+  "email": "alexander_wang@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-02-18T08:41:30.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T16:04:40.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 82,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034035"
+  },
+  "name": "lily_88",
+  "email": "lily_88@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-03-10T14:27:58.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-20T11:09:53.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 97,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034036"
+  },
+  "name": "robert_jackson",
+  "email": "robert_jackson@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-01T19:36:20.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-18T22:50:07.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 84,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034037"
+  },
+  "name": "emily_davis",
+  "email": "emily_davis@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2023-10-25T13:48:12.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T09:57:28.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 70,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034038"
+  },
+  "name": "michael_brown",
+  "email": "michael_brown@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-25T16:09:37.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-20T18:02:10.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 90,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034039"
+  },
+  "name": "olivia_smith",
+  "email": "olivia_smith@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-02-04T11:22:55.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-21T13:40:44.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 85,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034040"
+  },
+  "name": "william_jackson",
+  "email": "william_jackson@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-03-15T09:33:40.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-18T12:45:19.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 78,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034041"
+  },
+  "name": "sophia_clark",
+  "email": "sophia_clark@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-01-12T17:55:20.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T22:15:38.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 93,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034042"
+  },
+  "name": "ethan_miller",
+  "email": "ethan_miller@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-08T14:17:29.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T10:03:22.007Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 72,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false,
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034043"
+  },
+  "name": "ava_johnson",
+  "email": "ava_johnson@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-02-22T08:59:04.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-21T08:33:12.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 77,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034044"
+  },
+  "name": "noah_anderson",
+  "email": "noah_anderson@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-01-05T12:43:15.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-18T17:50:30.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 83,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034045"
+  },
+  "name": "isabella_thomas",
+  "email": "isabella_thomas@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-19T10:25:50.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T14:08:21.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 72,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034046"
+  },
+  "name": "logan_wilson",
+  "email": "logan_wilson@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2023-12-30T18:08:35.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-21T11:55:49.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 87,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034047"
+  },
+  "name": "oliver_white",
+  "email": "oliver_white@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-03-08T15:30:10.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-08T07:26:33.676Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 94,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false,
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034048"
+  },
+  "name": "emma_thompson",
+  "email": "emma_thompson@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-10T11:55:29.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-20T21:18:37.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 75,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034049"
+  },
+  "name": "jacob_harris",
+  "email": "jacob_harris@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-02-18T19:10:45.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T07:48:53.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 81,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034050"
+  },
+  "name": "mia_martin",
+  "email": "mia_martin@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-01-28T14:08:59.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-18T23:55:14.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 79,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "660bbc28320b18fff6034051"
+  },
+  "name": "james_roberts",
+  "email": "james_roberts@example.com",
+  "avatar": "",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-05T10:22:30.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-21T09:36:40.000Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 76,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": ""
+},
+{
+  "_id": {
+    "$oid": "667ae7619e76a6b6d6655a9d"
+  },
+  "name": "son_admin",
+  "email": "20110714@example.com",
+  "avatar": "/static/uploads/23892fa08443bf5e66de565ef682da31",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-02T08:04:56.683Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T07:48:03.576Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 1561,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "/static/uploads/4bbb5917bc10e22188ae02ed1fe24db8",
+  "isBanned": false,
+  "role": "admin"
+},
+{
+  "_id": {
+    "$oid": "667ae7619e76a6b6d6655a9e"
+  },
+  "name": "son 1000",
+  "email": "20110715@student.hcmute.edu.vn",
+  "avatar": "/static/uploads/23892fa08443bf5e66de565ef682da31",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-02T08:04:56.683Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T14:27:16.260Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 150,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false
+},
+{
+  "_id": {
+    "$oid": "667ae7619e76a6b6d6655a9f"
+  },
+  "name": "son 1001",
+  "email": "20110716@student.hcmute.edu.vn",
+  "avatar": "/static/uploads/23892fa08443bf5e66de565ef682da31",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-02T08:04:56.683Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T13:40:18.546Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 217,
+  "answers": 1,
+  "points": 1,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false,
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "667ae7619e76a6b6d6655b00"
+  },
+  "name": "son 1002",
+  "email": "20110717@student.hcmute.edu.vn",
+  "avatar": "/static/uploads/23892fa08443bf5e66de565ef682da31",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-02T08:04:56.683Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T13:32:13.575Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 315,
+  "answers": 2,
+  "points": 2,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false,
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "667ae7619e76a6b6d6655b01"
+  },
+  "name": "son 1003",
+  "email": "20110718@student.hcmute.edu.vn",
+  "avatar": "/static/uploads/23892fa08443bf5e66de565ef682da31",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-02T08:04:56.683Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T14:27:16.260Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 300,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false
+},
+{
+  "_id": {
+    "$oid": "667ae7619e76a6b6d6655b02"
+  },
+  "name": "son 1004",
+  "email": "20110719@student.hcmute.edu.vn",
+  "avatar": "/static/uploads/23892fa08443bf5e66de565ef682da31",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-02T08:04:56.683Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T14:27:16.260Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 350,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false
+},
+{
+  "_id": {
+    "$oid": "667ae7619e76a6b6d6655b03"
+  },
+  "name": "son 1005",
+  "email": "20110720@student.hcmute.edu.vn",
+  "avatar": "/static/uploads/23892fa08443bf5e66de565ef682da31",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-02T08:04:56.683Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T14:27:16.260Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 400,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false
+},
+{
+  "_id": {
+    "$oid": "667ae7619e76a6b6d6655b04"
+  },
+  "name": "son 1006",
+  "email": "20110721@student.hcmute.edu.vn",
+  "avatar": "/static/uploads/23892fa08443bf5e66de565ef682da31",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-02T08:04:56.683Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T14:27:16.260Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 450,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false
+},
+{
+  "_id": {
+    "$oid": "667ae7619e76a6b6d6655b05"
+  },
+  "name": "son 1007",
+  "email": "20110722@student.hcmute.edu.vn",
+  "avatar": "/static/uploads/23892fa08443bf5e66de565ef682da31",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-02T08:04:56.683Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T14:27:16.260Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 500,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false
+},
+{
+  "_id": {
+    "$oid": "667ae7619e76a6b6d6655b06"
+  },
+  "name": "son 1008",
+  "email": "20110723@student.hcmute.edu.vn",
+  "avatar": "/static/uploads/23892fa08443bf5e66de565ef682da31",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-02T08:04:56.683Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T14:27:16.260Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 550,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false
+},
+{
+  "_id": {
+    "$oid": "667ae7619e76a6b6d6655b07"
+  },
+  "name": "son 1008",
+  "email": "201107@student.hcmute.edu.vn",
+  "avatar": "/static/uploads/23892fa08443bf5e66de565ef682da31",
+  "password": "$2a$08$LR1J/JvhRtlrYpiu.j0.5eY6R/fzqFBEsOc/DWureHyK9KMFuui5i",
+  "isEmailVerified": true,
+  "createdAt": {
+    "$date": "2024-04-02T08:04:56.683Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-19T14:27:16.260Z"
+  },
+  "__v": 0,
+  "city": "",
+  "description": "",
+  "enableTimestamps": true,
+  "gender": "",
+  "phoneNumber": "",
+  "views": 550,
+  "answers": 0,
+  "points": 0,
+  "questions": 0,
+  "cover": "",
+  "isBanned": false
+}]

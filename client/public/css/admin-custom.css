@@ -1,0 +1,44 @@
+th.table-head {
+    font-weight: 700;
+    text-align: center;
+}
+
+tr.table-row td {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+
+th.table-head.head-one {
+    width: 10%;
+}
+
+th.table-head.head-two {
+    width: 15%;
+}
+
+th.table-head.head-three {
+    width: 15%;
+}
+
+th.table-head.head-four {
+    width: 15%;
+}
+
+th.table-head.head-five {
+    width: 15%;
+}
+
+th.table-head.head-six {
+    width: 15%;
+}
+
+th.table-head.head-seven {
+    width: 10%;
+}
+
+.fa-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
