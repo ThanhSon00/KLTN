@@ -4,8 +4,11 @@ import { Saga } from './saga';
 import { LoadingIndicatorState } from './types';
 import { forgotPassword, login, register } from 'services/auth.service';
 import { createQuestion, getQuestions } from 'services/question.service';
-import { createAnswer, updateAnswerDetail } from 'services/answer.service';
+import { createAnswer, updateAnswer } from 'services/answer.service';
 import { fullTextSearch } from 'services/searching.service';
+import { updateUser } from 'services/user.service';
+import { createReport } from 'services/report.service';
+import { createVote, deleteVote, updateVote } from 'services/vote.service';
 
 export const initialState: LoadingIndicatorState = {
   display: false,
@@ -18,7 +21,8 @@ const slice = createSlice({
   extraReducers: builder => {
     const serviceList = [
       login, forgotPassword, register, createQuestion, 
-      createAnswer, updateAnswerDetail, getQuestions, fullTextSearch
+      createAnswer, updateAnswer, getQuestions, 
+      fullTextSearch, updateUser, createReport
     ];
     for (const thunk of serviceList) {
       builder.addCase(thunk.pending, state => {

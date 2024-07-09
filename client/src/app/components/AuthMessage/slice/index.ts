@@ -4,6 +4,7 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { Saga } from './saga';
 import { AuthMessageState } from './types';
 import { forgotPassword, login, register } from 'services/auth.service';
+import { updateUser } from 'services/user.service';
 
 export const initialState: AuthMessageState = {
   error: undefined,
@@ -23,7 +24,7 @@ const slice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(forgotPassword.fulfilled, state => {
-      state.success = 'Please check your email';
+      state.success = 'Vui lòng kiểm tra mail của bạn';
     });
     builder.addCase(
       forgotPassword.rejected,
@@ -40,6 +41,9 @@ const slice = createSlice({
     builder.addCase(login.rejected, (state, action) => {
       state.error = action.payload;
     });
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      state.success = 'Dữ liệu đã được cập nhật';
+    })
   },
 });
 

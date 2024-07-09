@@ -1,6 +1,6 @@
 import { Strategy as JwtStrategy, ExtractJwt, VerifiedCallback } from 'passport-jwt';
 import config from './config';
-import { TokenType } from './tokens';
+import { TokenTypes } from './tokens';
 import { User } from '../models/mongodb/documents';
 
 const jwtOptions = {
@@ -10,7 +10,7 @@ const jwtOptions = {
 
 const jwtVerify = async (payload: any, done: VerifiedCallback) => {
   try {
-    if (payload.type !== TokenType.ACCESS) {
+    if (payload.type !== TokenTypes.ACCESS) {
       throw new Error('Invalid token type');
     }
     const user = await User.findById(payload.sub);

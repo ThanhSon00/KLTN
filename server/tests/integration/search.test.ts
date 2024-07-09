@@ -1,14 +1,12 @@
 import setupTestDB from "../utils/setupTestDB";
 import { expect, describe, test, beforeEach, jest } from '@jest/globals';
+// @ts-expect-error
 import request from 'supertest';
 import httpStatus from 'http-status';
 import app from '../../src/app';
-import { userOne, insertUser, userFour, matchUserOne } from '../fixtures/user.fixture';
-import { answerRepository, questionRepository, searchRepository, userRepository } from '../../src/repositories';
-import { insertQuestion, insertQuestions, questionOne, questionThree, questionTwo } from '../fixtures/question.fixture';
-import { answerOne, insertAnswer } from "../fixtures/answer.fixture";
-import { AnswerDetailInput, AnswerDetailUpdate } from "models/mongodb/subdocuments/answerDetail.model";
-import { faker } from "@faker-js/faker";
+import { userOne, insertUser } from '../fixtures/user.fixture';
+import { searchRepository } from '../../src/repositories';
+import { insertQuestions, questionOne, questionThree, questionTwo } from '../fixtures/question.fixture';
 
 setupTestDB();
 

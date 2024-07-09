@@ -1,6 +1,9 @@
 import Joi from 'joi';
 import { objectId } from './custom.validation';
-import { QuestionInput } from 'models/mongodb/documents/question.model';
+import { IQuestion, QuestionInput } from '../models/mongodb/documents/question.model';
+import { SearchOptions, sortCategory } from '../services/question.service';
+import { IAnswer } from 'models/mongodb/documents/answer.model';
+import { IAnswerDetail } from 'models/mongodb/subdocuments/answerDetail.model';
 
 export const createQuestion = {
   body: Joi.object().keys({
@@ -28,11 +31,25 @@ export const updateQuestion = {
 }
 
 export const getQuestions = {
-  query: Joi.object().keys({
+  query: Joi.object<SearchOptions>().keys({
     amount: Joi.number()
       .integer()
       .min(1)
       .max(10)
       .required(),
+    sortDesc: Joi.string().valid(...Object.values(sortCategory)),
+    page: Joi.number().integer().min(1).required(),
   })
 }
+
+export const getQuestionAnswers = {
+  query: Joi.object<IAnswerDetail>().keys({
+    author: Joi.string().required().custom(objectId),
+  }),
+  params: Joi.object().keys({
+    id: Joi.string().required().custom(objectId),
+  })
+}
+
+export const getQuestionsCount = {}
+export const getAnsweredPercentage = {}

@@ -7,6 +7,9 @@ import panelReducer from 'app/components/SignUpPanel/slice';
 import alertReducer from 'app/components/AlertMessage/slice';
 import authMessageReducer from 'app/components/AuthMessage/slice';
 import loadingIndicatorReducer from 'app/components/PanelSubmitButton/slice';
+import reportReducer from 'app/components/CreateReportForm/slice';
+import adminReducer from 'app/components/AdminLogin/slice';
+import solutionReducer from 'app/components/AdminReport/slice';
 
 export const store = configureAppStore();
 export function configureAppStore() {
@@ -24,6 +27,9 @@ export function configureAppStore() {
       alertState: alertReducer,
       authMessageState: authMessageReducer,
       loadingIndicatorState: loadingIndicatorReducer,
+      reportState: reportReducer,
+      adminState: adminReducer,
+      solutionState: solutionReducer,
     }),
     // middleware: defaultMiddleware => [...defaultMiddleware(), ...middlewares],
   });

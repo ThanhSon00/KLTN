@@ -1,6 +1,8 @@
 import Joi from 'joi';
 import { password } from './custom.validation';
 import { IUser } from '../models/mongodb/documents/user.model';
+import { IAdmin } from 'models/mongodb/documents/admin.model';
+import { LoginRole } from '../middlewares/role';
 
 const register = {
   body: Joi.object()
@@ -60,6 +62,13 @@ const newPassword = {
   }),
 };
 
+const adminLogin = {
+  body: Joi.object<IAdmin>().keys({
+    name: Joi.string().required(),
+    password: Joi.string().required(),
+  }),
+}
+
 export default {
   register,
   login,
@@ -69,4 +78,5 @@ export default {
   resetPassword,
   verifyEmail,
   newPassword,
+  adminLogin,
 };
