@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Admin } from 'app/components/AdminLogin/slice/types';
 import { User } from 'app/components/SignInPanel/slice/types';
 import { AppDispatch } from 'store/configureStore';
-import { ResponseError } from 'utils/request';
 
 export const verifyEmail = createAsyncThunk<
   any,
@@ -48,10 +48,10 @@ export const forgotPassword = createAsyncThunk<
   });
 
   if (response.status === 404) {
-    return thunkApi.rejectWithValue('Email not found');
+    return thunkApi.rejectWithValue('Không tìm thấy Email');
   }
   if (response.status === 400) {
-    return thunkApi.rejectWithValue('Email not valid');
+    return thunkApi.rejectWithValue('Email không hợp lệ');
   }
 });
 
@@ -92,6 +92,29 @@ export const logout = createAsyncThunk<
   });
 });
 
+export const adminLogout = createAsyncThunk<
+  any,
+  void,
+  {
+    rejectValue: string;
+    dispatch: AppDispatch;
+  }
+>('logoutAdmin', async (_, thunkApi) => {
+  const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v2/auth/logout`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    mode: 'cors',
+  });
+  if (!response.ok) {
+    return thunkApi.rejectWithValue(
+      'Log out failed, please try again later',
+    );
+  }
+})
+
 export const login = createAsyncThunk<
   User,
   { email: string; password: string },
@@ -114,12 +137,37 @@ export const login = createAsyncThunk<
   });
 
   if (response.status === 400) {
-    const jsonResponse = (await response.json()) as ResponseError;
-    return thunkApi.rejectWithValue(jsonResponse.message);
+    return thunkApi.rejectWithValue("Email hoặc mật khẩu không đúng");
   }
 
   const user = await response.json();
   return user as User;
+});
+
+export const adminLogin = createAsyncThunk<
+  Admin,
+  { name: string; password: string },
+  {
+    rejectValue: string;
+    dispatch: AppDispatch;
+  }
+>('adminLogin', async ({ name, password }, thunkApi) => {
+  const response = await fetch(`${process.env.REACT_APP_SERVER_ORIGIN}/v2/auth/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    body: JSON.stringify({
+      name,
+      password,
+    }),
+  });
+
+  if (response.status === 400) {
+    return thunkApi.rejectWithValue("Email hoặc mật khẩu không đúng");
+  }
+  return await response.json() as Admin;
 });
 
 export const register = createAsyncThunk<
@@ -150,8 +198,7 @@ export const register = createAsyncThunk<
     mode: 'cors',
   });
   if (response.status === 400) {
-    const jsonResponse = (await response.json()) as ResponseError;
-    return thunkApi.rejectWithValue(jsonResponse.message);
+    return thunkApi.rejectWithValue("Vui lòng kiểm tra lại thông tin đăng ký");
   }
   const user = await response.json();
   return user as User;

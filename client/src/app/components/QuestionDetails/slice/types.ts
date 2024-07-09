@@ -1,5 +1,6 @@
 import { User } from "app/components/SignInPanel/slice/types";
 import { Answer, AnswerDetails } from "services/answer.service";
+import { Vote } from "services/vote.service";
 
 /* --- STATE --- */
 export interface Question {
@@ -8,7 +9,10 @@ export interface Question {
   details: string;
   author: User;
   views: number;
-  comments: Array<AnswerDetails>;
+  answers: Array<Answer>;
   createdAt: string;
   updatedAt: string;
+  votes: number;
+  voteStatus?: Vote;
+  answered: boolean;
 }

@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
-import { User } from '../models/mongodb/documents';
+import { Answer, Question, User } from '../models/mongodb/documents';
 import ApiError from '../utils/ApiError';
-import { userRepository } from '../repositories';
+import { answerRepository, questionRepository, userRepository } from '../repositories';
 import { ObjectId } from 'mongoose';
 import { IUser, UserDocument } from '../models/mongodb/documents/user.model';
 /**
@@ -9,6 +9,13 @@ import { IUser, UserDocument } from '../models/mongodb/documents/user.model';
  * @param {Object} userBody
  * @returns {Promise<User>}
  */
+
+export interface SearchOptions {
+  limit: number
+  sortDesc?: string,
+  page: number,
+}
+
 const createUser = async (userBody: Partial<IUser>) => {
   if (userBody.email && await User.isEmailTaken(userBody.email)) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
@@ -58,38 +65,23 @@ const getUserByEmail = async (email: string) => {
   return user;
 };
 
+const getAdminByName = async (name: string) => {
+  const users = await userRepository.getList({ name, role: 'admin' });
+  const user = users[0];
+  return user;
+}
+
 // /**
 //  * Update user by id
 //  * @param {ObjectId} userId
 //  * @param {Object} updateBody
 //  * @returns {Promise<User>}
 //  */
-// const updateUserById = async (userId, updateBody) => {
-//   const user = await getUserById(userId);
-//   if (!user) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-//   }
-//   if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
-//     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
-//   }
-//   Object.assign(user, updateBody);
-//   await user.save();
-//   return user;
-// };
-
-// /**
-//  * Delete user by id
-//  * @param {ObjectId} userId
-//  * @returns {Promise<User>}
-//  */
-// const deleteUserById = async (userId) => {
-//   const user = await getUserById(userId);
-//   if (!user) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-//   }
-//   await user.remove();
-//   return user;
-// };
+const updateUserById = async (userId: string, updateBody: Partial<IUser>) => {
+  await getUserById(userId);
+  const user = await userRepository.update(userId, updateBody);
+  return user;
+};
 
 const setNewPassword = async (userId: string, newPassword: string) => {
   const user = await userRepository.getById(userId);
@@ -101,12 +93,77 @@ const setNewPassword = async (userId: string, newPassword: string) => {
   return user;
 };
 
+const getUserQuestions = async (userId: string, filterOptions: { answersCount?: number }, queryOptions?: { amount: number, page: number }) => {
+  if (!queryOptions) return []; 
+  const filter = { author: userId }
+  console.log(filterOptions);
+  if (filterOptions.answersCount || filterOptions.answersCount === 0) {
+    Object.assign(filter, { answersCount: filterOptions.answersCount })
+  }
+  return await questionRepository.getList(filter, { 
+    limit: queryOptions?.amount,
+    skip: (queryOptions.page - 1) * queryOptions.amount,
+  })
+}
+const getUserAnswers = async (userId: string, queryOptions: { amount: number, page: number }) => {
+  return await answerRepository.getList({ details: { author: userId }}, { 
+    limit: queryOptions.amount,
+    skip: (queryOptions.page - 1) * queryOptions.amount,
+  })
+}
+
+const countQuestions = async (userId: string) => {
+  return await Question.countDocuments({ author: userId });
+}
+
+const countAnswers = async (userId: string) => {
+  return await Answer.countDocuments({ details: { author: userId }});
+}
+
+const getUsersCount = async () => {
+  return await User.estimatedDocumentCount();
+}
+
+const getUsers = async (filter: Partial<IUser>, searchOptions: SearchOptions) => {
+  const { limit, page } = searchOptions;
+  return await userRepository.getList(filter, {
+    limit,
+    skip: (page - 1) * limit,
+    sort: { [`${searchOptions.sortDesc}`]: -1 },
+  })
+}
+
+const searchUsers = async (text: string, searchOptions: SearchOptions) => {
+  const { limit, page } = searchOptions;
+  const users = await userRepository.getList({ $or: [
+    { name: { $regex: new RegExp(text, 'i')} },
+    { email: { $regex: new RegExp(text, 'i')} },
+    { phoneNumber: { $regex: new RegExp(text, 'i')} },
+  ]}, { limit, skip: (page - 1) * limit })
+
+  const usersCount = await User.countDocuments({ $or: [
+    { name: { $regex: new RegExp(text, 'i')} },
+    { email: { $regex: new RegExp(text, 'i')} },
+    { phoneNumber: { $regex: new RegExp(text, 'i')} },
+  ]});
+  return {
+    users,
+    usersCount,
+  };
+}
+
 export default {
+  searchUsers,
   createUser,
-  // queryUsers,
   getUserById,
   getUserByEmail,
-  // updateUserById,
-  // deleteUserById,
+  updateUserById,
   setNewPassword,
+  getUserAnswers,
+  countQuestions,
+  countAnswers,
+  getUserQuestions,
+  getUsersCount,
+  getUsers,
+  getAdminByName,
 };

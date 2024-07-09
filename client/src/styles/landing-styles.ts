@@ -63,7 +63,7 @@ export const LandingStyle = createGlobalStyle`
 @font-face {
     font-family: "entypo";
     font-display: swap;
-    src: url(https://cdn.2code.info/demo/themes/Discy/Try/wp-content/themes/discy/css/entypo/entypo.woff2) format("woff2");
+    src: url(/font/entypo.woff2) format("woff2");
     font-weight: 400;
     font-style: normal
 }

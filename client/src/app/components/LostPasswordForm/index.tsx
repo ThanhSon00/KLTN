@@ -49,6 +49,7 @@ export function LostPasswordForm(props: Props) {
               name="user_mail"
               id="user_mail_900"
               onChange={handleEmailChange}
+              placeholder='E-mail'
               required
             />
             <i className="icon-mail" />
@@ -58,7 +59,7 @@ export function LostPasswordForm(props: Props) {
         <div className="wpqa_error_mobile wpqa_hide">
           <div className="wpqa_error" />
         </div>
-        <PanelSubmitButton name="Request new password" />
+        <PanelSubmitButton name="Yêu cầu lấy mật khẩu mới" />
       </form>
     </div>
   );

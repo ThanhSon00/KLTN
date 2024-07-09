@@ -1,8 +1,10 @@
 import httpStatus from 'http-status';
 import catchAsync from '../utils/catchAsync';
-import { questionRepository } from '../repositories';
+import { answerRepository, questionRepository } from '../repositories';
 import { Request, Response } from 'express';
-import { questionService } from '../services';
+import { answerService, questionService } from '../services';
+import { SearchOptions } from 'services/question.service';
+import { IUser, UserDocument } from 'models/mongodb/documents/user.model';
 
 export const createQuestion = catchAsync(async (req: Request, res: Response) => {
   const question = await questionRepository.create(req.body);
@@ -10,7 +12,9 @@ export const createQuestion = catchAsync(async (req: Request, res: Response) => 
 });
 
 export const getQuestion = catchAsync(async (req: Request, res: Response) => {
-  const question = await questionService.getQuestion(req.params.id);
+  const userId = (req.user as UserDocument)?.id || undefined;
+  const increaseView = true;
+  const question = await questionService.getQuestion(req.params.id, userId, increaseView);
   res.status(httpStatus.OK).send(question);
 });
 
@@ -20,12 +24,16 @@ export const updateQuestion = catchAsync(async (req: Request, res: Response) => 
 })
 
 export const getQuestions = catchAsync(async (req: Request, res: Response) => {
-  if (typeof req.query.amount === 'number') {
-    const questions = await questionService.getRandomQuestions({ amount: req.query.amount });
-    res.status(httpStatus.OK).send(questions);  
-  }
+  const questions = await questionService.getQuestions(req.query as unknown as SearchOptions);
+  res.status(httpStatus.OK).send(questions);  
 })
 
-// export const getQuestionWithAnswers = catchAsync(async (req: Request, res: Response) => {
-//   const question = await questionService.
-// });
+export const getQuestionsCount = catchAsync(async (req: Request, res: Response) => {
+  const questionCount = await questionService.countQuestions();
+  res.status(httpStatus.OK).json(questionCount);
+})
+
+export const getAnsweredPercentage = catchAsync(async (req: Request, res: Response) => {
+  const percentage = await questionService.getAnsweredPercentage();
+  res.status(httpStatus.OK).json(percentage);
+})

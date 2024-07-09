@@ -4,6 +4,8 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { Saga } from './saga';
 import AuthState, { User } from './types';
 import { login, logout, register, verifyEmail } from 'services/auth.service';
+import { updateUser } from 'services/user.service';
+import { Avatar } from 'app/components/ReportLine';
 
 export const initialState: AuthState = {
   user: undefined,
@@ -11,43 +13,45 @@ export const initialState: AuthState = {
   successMessage: undefined,
 };
 
+const setUser = (state, action: PayloadAction<User>) => {
+  const user = action.payload;
+  user.cover = user.cover ? `${process.env.REACT_APP_SERVER_ORIGIN}${user.cover}` : undefined;
+  user.avatar = user.avatar ? `${process.env.REACT_APP_SERVER_ORIGIN}${user.avatar}` : Avatar.anonymous;
+  state.user = action.payload;
+}
+
+
+const clearUser = state => {
+  state.user = undefined;
+}
+
 const authSlice = createSlice({
   name: 'authState',
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<User>) => {
-      state.user = action.payload;
-    },
-    clearUser: state => {
-      state.user = undefined;
-    },
+    setUser: setUser,
+    clearUser: clearUser,
     clearError: state => {
       state.errorMessage = undefined;
     },
   },
   extraReducers: builder => {
-    builder.addCase(login.fulfilled, (state, action: PayloadAction<User>) => {
-      state.user = action.payload;
-    });
+    builder.addCase(login.fulfilled, setUser);
     builder.addCase(login.rejected, (state, action) => {
-      state.errorMessage = action.payload;
-    });
-    builder.addCase(logout.fulfilled, state => {
-      state.user = undefined;
-    });
-    builder.addCase(register.fulfilled, (state, action) => {
-      state.user = action.payload;
+      state.errorMessage = "Emmail hoặc mật khẩu không đúng";
     });
     builder.addCase(register.rejected, (state, action) => {
-      state.errorMessage = action.payload;
+      state.errorMessage = "Vui lòng kiểm tra lại thông tin đăng ký tài khoản";
     });
     builder.addCase(verifyEmail.fulfilled, (state, action) => {
-      if (state.user) {
-        state.user.isEmailVerified = true;
-      }
+      if (state.user) state.user.isEmailVerified = true;
     });
+    builder.addCase(logout.fulfilled, clearUser);
+    builder.addCase(register.fulfilled, setUser);
+    builder.addCase(updateUser.fulfilled, setUser);
   },
 });
+
 
 export const { actions: authActions } = authSlice;
 

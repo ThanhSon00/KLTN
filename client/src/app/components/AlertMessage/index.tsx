@@ -38,20 +38,26 @@ export function AlertMessage(props: Props) {
           <p>{warning}</p>
         </div>
       )}
-      {user && !user.isEmailVerified && (
-        <div className="alert-message warning">
-          <i className="icon-flag"></i>
-          <p>
-            A confirmation mail has been sent to your registered email account,
-            If you have not received the confirmation mail, kindly Click here to
-            re-send another confirmation mail.
-          </p>
-        </div>
-      )}
       {error && (
         <div className="alert-message error">
           <i className="icon-cancel"></i>
           <p>{error}</p>
+        </div>
+      )}
+      {user && !user.isEmailVerified && (
+        <div className="alert-message warning">
+          <i className="icon-flag"></i>
+          <p>
+            Mail xác thực đã được gửi đến email mà bạn đăng ký cho tài khoản này.
+          </p>
+        </div>
+      )}
+      {user && user.isBanned && (
+        <div className="alert-message error">
+          <i className="icon-cancel"></i>
+          <p>
+            Tài khoản của bạn đã bị khóa, vui lòng liên hệ với quản trị viên để được hỗ trợ.
+          </p>
         </div>
       )}
     </>

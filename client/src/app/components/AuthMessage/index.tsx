@@ -26,7 +26,7 @@ export function AuthMessage(props: Props) {
     <>
       <div className="wpqa_error" style={{ display: error ? 'block' : 'none' }}>
         <span className="required-error">
-          <strong> ERROR </strong>: {error}
+          <strong> Lỗi </strong>: {error}
         </span>
       </div>
       <div

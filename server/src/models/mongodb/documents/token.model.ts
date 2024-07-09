@@ -1,13 +1,13 @@
 import mongoose, { Model, Schema, Types, Document } from 'mongoose';
 // import { toJSON } from '../plugins';
-import { TokenType } from '../../../config/tokens';
+import { TokenTypes } from '../../../config/tokens';
 import { PartialBy } from '../../../utils/types';
 import { toJSON } from '../../plugins';
 
 export interface TokenDoc {
   token: string;
   userId: Types.ObjectId;
-  type: TokenType;
+  type: TokenTypes;
   expires: Date;
   blacklisted: boolean;
 }
@@ -35,7 +35,7 @@ const tokenSchema = new Schema<TokenDoc, TokenModel, TokenVirtuals>(
     },
     type: {
       type: Schema.Types.String,
-      enum: [TokenType.REFRESH, TokenType.RESET_PASSWORD, TokenType.VERIFY_EMAIL],
+      enum: [TokenTypes.REFRESH, TokenTypes.RESET_PASSWORD, TokenTypes.VERIFY_EMAIL],
       required: true,
     },
     expires: {

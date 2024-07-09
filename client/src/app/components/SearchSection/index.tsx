@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Question } from "../QuestionDetails/slice/types";
 import { Article } from "../Article";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useAppDispatch } from "store/hooks";
 import { fullTextSearch } from "services/searching.service";
 import { PanelSubmitButton } from "../PanelSubmitButton";
@@ -55,15 +55,15 @@ export default function SearchSection() {
                   itemType="https://schema.org/ListItem"
                 >
                   <meta itemProp="position" />
-                  <a itemProp="item" href="../index.html" title="Home">
+                  <Link to="/#/home" title="Trang chủ">
                     <span itemProp="name">
                       <i className="icon-home font-xl mr-2" />
-                      Home
+                      Trang chủ
                     </span>
-                  </a>
+                  </Link>
                 </span>
                 <span className="crumbs-span">/</span>
-                <span className="current">Search</span>
+                <span className="current">Tìm kiếm</span>
               </span>
             </span>
           </div>
@@ -97,33 +97,6 @@ export default function SearchSection() {
                   onChange={handleSearchTextChange}
                 />
               </div>
-              <div className="form-group col col6 col-boot-sm-6">
-                
-                <span className="styled-select">
-                  
-                  <select
-                    name="search_type"
-                    className="form-control search_type user_filter_active"
-                  >
-                    
-                    <option value={-1}>Select kind of search</option>
-                    <option value="questions">
-                      Questions
-                    </option>
-                    <option value="answers">Answers</option>
-                    <option value="question-category">
-                      Question categories
-                    </option>
-                    <option value="question_tags">Question tags</option>
-                    <option value="posts">Posts</option>
-                    <option value="comments">Comments</option>
-                    <option value="category">Post categories</option>
-                    <option value="post_tag">Post tags</option>
-                    <option value="users">Users</option>
-                    <option value="groups">Groups</option>
-                  </select>
-                </span>
-              </div>
               <div className="form-group col col6 col-boot-sm-6 user-filter-div">
                 
                 <span className="styled-select user-filter">
@@ -146,7 +119,7 @@ export default function SearchSection() {
               </div>
             </div>
             <div className="wpqa_form">
-              <PanelSubmitButton name="Search" />
+              <PanelSubmitButton name="Tìm kiếm" />
             </div>
           </form>
         </div>

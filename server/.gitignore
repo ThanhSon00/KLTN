@@ -3,7 +3,10 @@ node_modules
 
 # yarn error logs
 yarn-error.log
+test1.ts
 
+combineFiles.ts
+segmentData.ts
 # Environment varibales
 .env*
 !.env*.example

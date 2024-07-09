@@ -8,6 +8,7 @@ export default function Auth() {
     
     if (!user) {
         navigate('/');
+        return <></>;
     }
 
     return (

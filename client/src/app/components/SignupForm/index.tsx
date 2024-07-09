@@ -4,7 +4,7 @@
  *
  */
 import { register } from 'services/auth.service';
-import React, { useState } from 'react';
+import React, { useEffect, useState, type ReactNode } from 'react';
 import { AuthMessage } from 'app/components/AuthMessage';
 import { PanelSubmitButton } from 'app/components/PanelSubmitButton';
 import { selectPanelState } from '../SignUpPanel/slice/selectors';
@@ -42,6 +42,15 @@ export function SignupForm(props: Props) {
     dispatch(register({ email, password, confirmPassword, name }));
   };
 
+  useEffect(() => {
+    if (popUp !== panelName.SIGN_UP) {
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      setName('');
+    }
+  }, [popUp])
+
   return (
     <div
       className="panel-pop-content"
@@ -62,14 +71,15 @@ export function SignupForm(props: Props) {
         <div className="form-inputs clearfix">
           <p className="username_field">
             <label htmlFor="user_name_826">
-              Username<span className="required">*</span>
+              Tên tài khoản<span className="required">*</span>
             </label>
             <input
               type="text"
               className="required-item form-control"
               name="user_name"
               id="user_name_826"
-              placeholder="username"
+              placeholder="Tên tài khoản"
+              value={name}
               required
               onChange={handleUsernameChange}
             />
@@ -85,7 +95,8 @@ export function SignupForm(props: Props) {
               type="text"
               name="email"
               id="email_826"
-              placeholder="email"
+              placeholder="E-mail"
+              value={email}
               required
               onChange={handleEmailChange}
             />
@@ -93,7 +104,7 @@ export function SignupForm(props: Props) {
           </p>
           <p className="password_field">
             <label htmlFor="pass1_826">
-              Password<span className="required">*</span>
+              Mật khẩu<span className="required">*</span>
             </label>
             <input
               type="password"
@@ -101,7 +112,8 @@ export function SignupForm(props: Props) {
               name="pass1"
               id="pass1_826"
               autoComplete="off"
-              placeholder="password"
+              placeholder="Mật khẩu"
+              value={password}
               required
               onChange={handlePasswordChange}
             />
@@ -109,7 +121,7 @@ export function SignupForm(props: Props) {
           </p>
           <p className="password_2_field">
             <label htmlFor="pass2_826">
-              Confirm Password<span className="required">*</span>
+              Mật khẩu xác thực<span className="required">*</span>
             </label>
             <input
               type="password"
@@ -117,7 +129,8 @@ export function SignupForm(props: Props) {
               name="pass2"
               id="pass2_826"
               autoComplete="off"
-              placeholder="confirm password"
+              placeholder="Mật khẩu xác thực"
+              value={confirmPassword}
               required
               onChange={handleConfirmPasswordChange}
             />
@@ -128,7 +141,7 @@ export function SignupForm(props: Props) {
         <div className="wpqa_error_mobile">
           <div className="wpqa_error" />
         </div>
-        <PanelSubmitButton name="Register" />
+        <PanelSubmitButton name="Đăng ký" />
         <input type="hidden" name="form_type" defaultValue="wpqa-signup" />
         <input
           type="hidden"

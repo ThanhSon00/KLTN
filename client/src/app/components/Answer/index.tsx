@@ -1,237 +1,307 @@
-interface User {
-    name: string;
-    avatar: string;
-    email: string;
-}
+import { Answer as AnswerType, AnswerDetails, updateAnswer, createAnswerComment, Comment as CommentType, getAnswerComments } from "services/answer.service"
+import { isoToDateTimeString } from "utils/date"
+import parse from 'html-react-parser';
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { getAuth } from "../SignInPanel/slice/selectors";
+import { useNavigate } from "react-router-dom";
+import { Question } from "../QuestionDetails/slice/types";
+import { panelActions } from "../SignUpPanel/slice";
+import { panelName } from "../SignUpPanel/slice/types";
+import { ReportActions } from "../CreateReportForm/slice";
+import { ReportedType } from "services/report.service";
+import { Avatar } from "../ReportLine";
+import VoteSection, { VoteSectionType } from "../VoteSection";
+import { ChangeEvent, useEffect, useState } from "react";
+import { PanelSubmitButton } from "../PanelSubmitButton";
+import Comment from "../Comment";
+import { AlertActions } from "../AuthMessage/slice";
+import ReadMore from "../ReadMore";
+
 
 interface Props {
-    content: string;
-    createdAt: string;
-    updatedAt: string;
-    user: User;
+    answer: AnswerType,
+    question: Question,
+    highlight?: Boolean,
+    updateQuestion: (question: Question) => void;
 }
 
 export default function Answer(props: Props) {
+    const { user } = useAppSelector(getAuth);
+    const [answer, setAnswer] = useState<AnswerType>(props.answer)
+    const [commentOpened, setCommentOpened] = useState<boolean>(false);
+    const [listCommentOpened, setListCommentOpened] = useState<boolean>(false);
+    const [commentText, setCommentText] = useState<string>("");
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const handleOpenReportForm = (e) => {
+        e.preventDefault();
+        if (user) {
+            dispatch(ReportActions.setReportState({ reportedContentId: props.answer.id, reportedType: ReportedType.answer }));
+            dispatch(panelActions.openPanel(panelName.CREATE_REPORT));
+        } else {
+            dispatch(
+                AlertActions.setAuthMessage({
+                error: 'Bạn vui lòng đăng nhập để tiếp tục để viết báo cáo',
+                }),
+            );
+            dispatch(panelActions.openPanel(panelName.SIGN_IN));
+        }
+    }
+
+    const handleCreateComment = async (e) => {
+        e.preventDefault();
+        if (!commentOpened || !user) return;
+        const result = await dispatch(createAnswerComment({ answerId: answer.id, content: commentText, author: user.id }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            setAnswer({
+                ...answer, 
+                comments: [...answer.comments, (result.payload as CommentType)], 
+                commentsAmount: answer.commentsAmount + 1 
+            });
+            setCommentOpened(false);
+            setListCommentOpened(true);
+        }
+    }
+
+    const editAnswerOnClick = (e) => {
+        e.preventDefault();
+        navigate(`/home/edit-answer/${props.answer.id}`);
+    }
+
+    const handleMarkBestAnswer = (e, isBestAnswer: boolean) => {
+        e.preventDefault();
+        markBestAnswer(isBestAnswer);
+    }
+
+    const markBestAnswer = async (isBestAnswer: boolean) => {
+        const result = await dispatch(updateAnswer({ id: answer.id, isBestAnswer }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            // setAnswer(result.payload as AnswerDetails);
+            props.updateQuestion({ ...props.question, answered: isBestAnswer });
+            setAnswer({...answer, details: {... answer.details, isBestAnswer: isBestAnswer } });
+        }
+    }
+
+    const commentOpenedStyle = commentOpened ? { display: "block" } : { display: "none" };
+
+    const handleCommentChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
+        event.preventDefault();
+        setCommentText(event.target.value);
+    }
+
+    const loadComments = async (answerId: string) => {
+        const comments = await getAnswerComments(answerId);
+        setAnswer({...answer, comments: comments });
+    }
+
+    useEffect(() => {
+        if (listCommentOpened) {
+            loadComments(answer.id);
+        }
+    }, [listCommentOpened]);
+
     return (
         <li
-        className="comment byuser comment-author-john even thread-even depth-1 not-activate-gender comment"
+        className="comment"
         itemType="https://schema.org/Answer"
-        itemProp="suggestedAnswer"
+        style={props.highlight? { background: "rgb(255, 255, 172)" } : {}}
     >
         
-        <div className="comment-body clearfix">    
-            <div className="comment-text">
-                
-                <div className="d-flex align-items-center header-of-comment">
-                
-                <div className="author-image author__avatar author-image-42">
-                    <a href="/">
-                    <span className="author-image-span">
-                        <img
-                            className="avatar avatar-42 rounded-circle photo"
-                            alt="John Peter"
-                            title="John Peter"
-                            width={42}
-                            height={42}
-                            src={`${process.env.REACT_APP_CLIENT_ORIGIN}${props.user.avatar}`}
-                        />
-                    </span>
-                    </a>
-                    <div className="author-image-pop-2 member-card" data-user={2}>
-                        <div className="author-pop-loader">
-                            <div className="loader_2" />
-                        </div>
-                    </div>
-                </div>
-                <div className="author clearfix">
-                    
-                    <div className="comment-meta">
-                    
-                    <div className="comment-author">
-                        
-                        <span
-                        itemProp="author"
-                        itemType="http://schema.org/Person"
-                        >
-                        
-                        <a
-                            itemProp="url"
-                            href="https://2code.info/demo/themes/Discy/Main/profile/john/"
-                        >
-                            
-                            <span itemProp="name">{props.user.name}</span>
-                        </a>
-                        </span>
-                        <span
-                        className="badge-span"
-                        style={{ backgroundColor: "#d9a34a" }}
-                        >
-                        Coming soon
-                        </span>
-                    </div>
-                    <a
-                        href="/"
-                        className="comment-date"
-                        itemProp="url"
-                    >
-                        
-                        <span
-                        className="wpqa_hide"
-                        itemProp="dateCreated"
-                        >
-                        2023-04-19T02:00:52+00:00
-                        </span>
-                        Added an answer on April 19, 2023 at 2:00 am
-                    </a>
-                    </div>
+        <div className="comment-body clearfix">
+        
+        <div className="comment-text">
+            
+            <div className="d-flex align-items-center header-of-comment">
+            
+            <div className="author-image author__avatar author-image-42">
+                <a href="/">
+                <span className="author-image-span">
+                    <img
+                    className="avatar avatar-42 rounded-circle photo"
+                    title={answer.details.author.name}
+                    width={42}
+                    height={42}
+                    style={{ maxBlockSize: 42 }}
+                    src={answer.details.author.avatar ? `${process.env.REACT_APP_SERVER_ORIGIN}` + answer.details.author.avatar : Avatar.anonymous}
+                    />
+                </span>
+                </a>
+                <div className="author-image-pop-2 member-card" data-user={5}>
+                <div className="author-pop-loader">
+                    <div className="loader_2" />
                 </div>
                 </div>
-                <div className="text">
-                
-                <div itemProp="text">
-                    
-                    <p>
-                    Yes, I understand it. I hear a lot of this incorrect grammar
-                    from my wife. I would expect that the person that spoke this
-                    was possibly Chinese. In Chinese there are no tenses or
-                    plurals. No he or she pronouns. The context tells all. So it
-                    might have been a direct translation from Chinese.
-                    </p>
-                </div>
-                <div className="clearfix" /> <div className="clearfix" />
-                <div className="wpqa_error" />
-                <div className="comment-footer-bottom">
-                    
-                    <ul className="comment-reply">
-                    
-                    <li className="comment-reaction-votes">
-                        
-                        <ul className="question-vote answer-vote answer-vote-dislike">
-                        
-                        <li>
-                            <a
-                            href="#"
-                            data-id={61}
-                            data-type="comment"
-                            data-vote-type="up"
-                            className="wpqa_vote comment_vote_up vote_allow"
-                            title="Like"
-                            >
-                            <i className="icon-up-dir" />
-                            </a>
-                        </li>
-                        <li className="vote_result" itemProp="upvoteCount">
-                            133
-                        </li>
-                        <li className="li_loader">
-                            <span className="loader_3 fa-spin" />
-                        </li>
-                        <li className="dislike_answers">
-                            <a
-                            href="#"
-                            data-id={61}
-                            data-type="comment"
-                            data-vote-type="down"
-                            className="wpqa_vote comment_vote_down vote_allow"
-                            title="Dislike"
-                            >
-                            <i className="icon-down-dir" />
-                            </a>
-                        </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a
-                        rel="nofollow"
-                        className="comment-reply-link wpqa-reply-link"
-                        href="https://2code.info/demo/themes/Discy/Main/question/is-this-statement-i-see-him-last-night-can-be-understood-as-i-saw-him-last-night/#respond"
-                        data-id={61}
-                        data-post_id={118}
-                        aria-label="Reply to John Peter"
-                        >
-                        <i className="icon-reply" />
-                        Reply
-                        </a>
-                    </li>
-                    <li className="comment-share question-share question-share-2">
-                        
-                        <i className="icon-share" /> <span>Share</span>
-                        <div className="post-share">
-                        
-                        <span>
-                            <i className="icon-share" />
-                            <span>Share</span>
-                        </span>
-                        <ul className="social-icons list-unstyled mb-0 d-flex align-items-center">
-                            
-                            <li className="share-facebook">
-                            
-                            <a
-                                target="_blank"
-                                href="http://www.facebook.com/sharer.php?u=https://2code.info/demo/themes/Discy/Main/question/is-this-statement-i-see-him-last-night-can-be-understood-as-i-saw-him-last-night/#comment-61&t=Yes%2C+I+understand+it.+I+hear+a+lot+of+this+incorrect+grammar+from+my+wife.+I+would+expect+that+the+person+that+spoke+this+was+possibly+Chinese.+In+Chinese+there"
-                            >
-                                
-                                <i className="icon-facebook" />
-                                <span>
-                                Share on <span>Facebook</span>
-                                </span>
-                            </a>
-                            </li>
-                            <li className="share-twitter">
-                            
-                            <a
-                                target="_blank"
-                                href="http://twitter.com/share?text=Yes%2C+I+understand+it.+I+hear+a+lot+of+this+incorrect+grammar+from+my+wife.+I+would+expect+that+the+person+that+spoke+this+was+possibly+Chinese.+In+Chinese+there&url=https://2code.info/demo/themes/Discy/Main/question/is-this-statement-i-see-him-last-night-can-be-understood-as-i-saw-him-last-night/#comment-61"
-                            >
-                                
-                                <i className="icon-twitter" />
-                                <span>Share on Twitter</span>
-                            </a>
-                            </li>
-                            <li className="share-linkedin">
-                            
-                            <a
-                                target="_blank"
-                                href="http://www.linkedin.com/shareArticle?mini=true&url=https://2code.info/demo/themes/Discy/Main/question/is-this-statement-i-see-him-last-night-can-be-understood-as-i-saw-him-last-night/#comment-61&title=Yes%2C+I+understand+it.+I+hear+a+lot+of+this+incorrect+grammar+from+my+wife.+I+would+expect+that+the+person+that+spoke+this+was+possibly+Chinese.+In+Chinese+there"
-                            >
-                                
-                                <i className="icon-linkedin" />
-                                <span>Share on LinkedIn</span>
-                            </a>
-                            </li>
-                            <li className="share-whatsapp">
-                            
-                            <a
-                                target="_blank"
-                                href="https://api.whatsapp.com/send?text=Yes%2C+I+understand+it.+I+hear+a+lot+of+this+incorrect+grammar+from+my+wife.+I+would+expect+that+the+person+that+spoke+this+was+possibly+Chinese.+In+Chinese+there - https://2code.info/demo/themes/Discy/Main/question/is-this-statement-i-see-him-last-night-can-be-understood-as-i-saw-him-last-night/#comment-61"
-                            >
-                                
-                                <i className="fab fa-whatsapp" />
-                                <span>Share on WhatsApp</span>
-                            </a>
-                            </li>
-                        </ul>
-                        </div>
-                    </li>
-                    <li className="question-list-details comment-list-details">
-                        
-                        <i className="icon-dot-3" />
-                        <ul>
-                        
-                        <li className="report_activated">
-                            <a className="report_c" href="/">
-                            <i className="icon-attention" />
-                            Report
-                            </a>
-                        </li>
-                        </ul>
-                    </li>
-                    </ul>
-                </div>
-                </div>
-                <div className="clearfix" />
             </div>
+            <div className="author clearfix">
+                <div className="comment-meta">
+                {answer.details.isBestAnswer && <div className="best-answer">Trả lời chính xác nhất</div>}
+                <div className="comment-author">
+                    <span
+                    itemProp="author"
+                    itemType="http://schema.org/Person"
+                    >
+                    <a
+                        itemProp="url"
+                        href="/"
+                    >
+                        <span itemProp="name">{answer.details.author.name}</span>
+                    </a>
+                    </span>
+                    <span
+                    className="badge-span"
+                    style={{ backgroundColor: "#d9a34a" }}
+                    >
+                    
+                    </span>
+                </div>
+                <a
+                    href="/"
+                    className="comment-date"
+                    itemProp="url"
+                >
+                    
+                    <span
+                    className="wpqa_hide"
+                    itemProp="dateCreated"
+                    >
+                        {answer.details.createdAt}
+                    </span>
+                    Trả lời vào {isoToDateTimeString(answer.details.createdAt)}
+                </a>
+                </div>
+            </div>
+            </div>
+            <div className="text">
+            
+            <div itemProp="text" style={{ marginBottom: "15px" }}>
+                <ReadMore htmlText={answer.details.content} />
+            </div>
+            <div className="clearfix" /> <div className="clearfix" />
+            <div className="wpqa_error" />
+            <div className="comment-footer-bottom">
+            <VoteSection type={VoteSectionType.answer} votes={answer.details.votes} contentId={answer.id} voteStatus={answer.voteStatus} /> 
+            <ul className="comment-reply comment-reply-main">
+                {user && 
+                    <li>
+                        <a rel="nofollow" className="comment-reply-link wpqa-reply-link" href="index.html#respond" onClick={(e) => { e.preventDefault(); setCommentOpened(true) }}>
+                        <i className="icon-reply" />Phản hồi </a>
+                    </li>
+                }
+                {props.question.author.id === user?.id && !props.question.answered &&
+                    <li className="wpqa-add-remove-best-answer">
+                        <a
+                            className="best_answer_a"
+                            data-nonce="27cac7a94e"
+                            href="/"
+                            title="Xác nhận là câu trả lời chính xác nhất "
+                            onClick={(e) => handleMarkBestAnswer(e, true)}
+                        >
+                            <i className="icon-check" />
+                            Xác nhận trả lời phù hợp
+                        </a>
+                    </li>
+                }
+                {props.question.author.id === user?.id && answer.details.isBestAnswer &&
+                    <li className="wpqa-add-remove-best-answer">
+                        <a
+                            className="best_answer_a"
+                            data-nonce="27cac7a94e"
+                            href="/"
+                            title="Xác nhận là câu trả lời chính xác nhất "
+                            onClick={(e) => handleMarkBestAnswer(e, false)}
+                        >
+                            <i className="icon-cancel" />
+                            Hủy xác nhận trả lời 
+                        </a>
+                    </li>
+                }
+                {answer.commentsAmount > 0 && 
+                    <li>
+                        <a rel="nofollow" className="comment-reply-link wpqa-reply-link" href="/" onClick={(e) => {
+                            e.preventDefault();
+                            setListCommentOpened(!listCommentOpened)
+                        }}>
+                        <i className={listCommentOpened ? "icon-up" : "icon-down"} />{listCommentOpened ? `Ẩn phản hồi` : `Xem phản hồi (${answer.commentsAmount})`}</a>
+                    </li>
+                }
+                <li className="clearfix last-item-answers" />
+            </ul>   
+            <ul className="comment-reply comment-list-links">
+                <li className="question-list-details comment-list-details">
+                    <i className="icon-dot-3" />
+                    { 
+                        user?.id === answer.details.author.id 
+                            ? 
+                            <ul>
+                                <li>
+                                    <a className="comment-edit-link edit-comment" href="/" onClick={editAnswerOnClick}>
+                                    <i className="icon-pencil" />Chỉnh sửa </a>
+                                </li>
+                            </ul> 
+                            : 
+                            <ul>
+                                <li className="report_activated" onClick={handleOpenReportForm}>
+                                    <a className="report_c" href="index.html">
+                                    <i className="icon-attention" />Báo cáo </a>
+                                </li>
+                            </ul>
+                    }
+                </li>
+            <li className="clearfix last-item-answers" />
+            </ul>
+
+            </div>
+            </div>
+            <div className="clearfix" />
         </div>
+        </div>
+        <div
+            id="respond"
+            className="comment-respond wpqa_hide"
+            style={commentOpenedStyle}
+            >
+            {" "}
+            <div>
+                <h3 className="section-title">
+                    Phản hồi tới {answer.details.author.name}
+                </h3>{" "}
+                <div className="wpqa-cancel-link cancel-comment-reply">
+                {" "}
+                    <a style={{ color: 'red' }} rel="nofollow" id="cancel-comment-reply-link" href="#respond" onClick={(e) => { e.preventDefault(); setCommentOpened(false) }}>
+                        Hủy
+                    </a>{" "}
+                </div>{" "}
+            </div>
+            <form
+                method="post"
+                id="commentform"
+                className="post-section comment-form answers-form"
+                onSubmit={handleCreateComment}
+            >
+                {" "}
+                <div className="wpqa_error" />{" "}
+                <div className="form-input form-textarea form-comment-normal">
+                {" "}
+                <textarea
+                    id="comment"
+                    name="comment"
+                    rows={5}
+                    className="form-control"
+                    aria-required="true"
+                    placeholder="Nội dung bình luận"
+                    onChange={handleCommentChange}
+                    defaultValue={""}
+                />{" "}
+                <i className="icon-pencil" />{" "}
+                </div>{" "}
+                <div className="clearfix" />{" "}
+                <PanelSubmitButton name="Gửi bình luận" style={{ width: "100%", height: "35px" }}/>{" "}
+            </form>{" "}
+        </div>
+
+        <ul className="children" style={{ display: listCommentOpened ? "block" : "none" }}>
+            {answer.comments.map((comment) => <Comment key={comment.id} comment={comment} />)}
+        </ul>
     </li>
     )
 }

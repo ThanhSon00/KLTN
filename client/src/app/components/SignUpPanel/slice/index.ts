@@ -4,6 +4,7 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { panelSaga } from './saga';
 import { PanelState, panelName } from './types';
 import { login, register } from 'services/auth.service';
+import { updateReportStatus } from 'services/report.service';
 
 export const initialState: PanelState = {
   popUp: panelName.NONE,
@@ -25,6 +26,9 @@ const slice = createSlice({
       state.popUp = panelName.NONE;
     });
     builder.addCase(register.fulfilled, state => {
+      state.popUp = panelName.NONE;
+    });
+    builder.addCase(updateReportStatus.fulfilled, state => {
       state.popUp = panelName.NONE;
     });
   },

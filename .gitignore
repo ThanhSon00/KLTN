@@ -1,1 +1,5 @@
 /node_modules
+/data/raw
+/data/final
+/data/translated
+/yarn-error.log

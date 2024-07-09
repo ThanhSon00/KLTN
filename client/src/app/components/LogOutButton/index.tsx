@@ -25,7 +25,7 @@ export function LogOutButton(props: Props) {
     <li className="menu-item wpqa-logout">
       <a href="/" onClick={handleClick}>
         <i className="icon-logout" />
-        Log Out
+        Đăng xuất
       </a>
     </li>
   );

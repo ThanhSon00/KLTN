@@ -25,9 +25,9 @@ export function convertToReadableDate(isoTimestamp) {
     return readableDate;
   }
 
-export function isoToDateString(isoString) {
+export function isoToDateTimeString(isoString) {
   const date = new Date(isoString);
-  return date.toLocaleString('en-US', {
+  return date.toLocaleString('vi-VN', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -35,4 +35,12 @@ export function isoToDateString(isoString) {
     minute: 'numeric',
     hour12: true,
   });
+}
+
+export function isoToDateString(isoString: string) {
+  const date = new Date(isoString);
+  const day = date.getDate();
+  const month = date.getMonth() + 1; // Months are zero-based, so add 1
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
 }

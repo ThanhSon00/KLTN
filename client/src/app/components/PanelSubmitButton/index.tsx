@@ -10,12 +10,13 @@ import { selectLoadingIndicator } from './slice/selectors';
 interface Props {
   name: string;
   style?: object;
+  disabled?: boolean;
 }
 
 export function PanelSubmitButton(props: Props) {
   const { display } = useAppSelector(selectLoadingIndicator);
   const displayAttr = display ? { display: 'none' } : {};
-  const style = props.style? {...props.style,...displayAttr } : {...displayAttr };
+  const style = props.style ? {...props.style,...displayAttr } : {...displayAttr };
 
   return (
     <p className="form-submit login-submit d-flex align-items-center justify-content-between mb-0">
@@ -30,6 +31,7 @@ export function PanelSubmitButton(props: Props) {
         type="submit"
         className="button-default login-submit"
         style={style}
+        disabled={props.disabled || false}
       />
     </p>
   );

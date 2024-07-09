@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import { FilterQuery, ObjectId, QueryOptions } from 'mongoose';
 import { User } from '../models/mongodb/documents';
 import { IUser, UserDocument, UserInput } from '../models/mongodb/documents/user.model';
 
@@ -7,8 +7,8 @@ const getById = async (id: string) => {
   return user;
 };
 
-const getList = (filter: Partial<IUser>) => {
-  return User.find(filter);
+const getList = (filter: FilterQuery<IUser>, queryOptions?: QueryOptions<IUser & { lean: true }>) => {
+  return User.find(filter, null, queryOptions);
 };
 
 const create = (userBody: UserInput) => {
@@ -16,7 +16,7 @@ const create = (userBody: UserInput) => {
 };
 
 const update = (id: string, userBody: Partial<IUser>) => {
-  return User.findByIdAndUpdate(id, userBody)
+  return User.findByIdAndUpdate(id, userBody, { new: true })
 }
 
 export default {

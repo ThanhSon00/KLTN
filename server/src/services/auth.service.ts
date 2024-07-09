@@ -5,8 +5,9 @@ import userService from './user.service';
 import emailService from './email.service';
 import { Token, TokenDocument } from '../models/mongodb/documents/token.model';
 import ApiError from '../utils/ApiError';
-import { TokenType } from '../config/tokens';
+import { TokenTypes } from '../config/tokens';
 import { tokenRepository, userRepository } from '../repositories';
+import { adminService } from '../services';
 /**
  * Login with username and password
  * @param {string} email
@@ -29,7 +30,7 @@ const loginUserWithEmailAndPassword = async (email: string, password: string) =>
 const logout = async (refreshToken: string) => {
   const refreshTokenData = await tokenRepository.getList({
     token: refreshToken,
-    type: TokenType.REFRESH,
+    type: TokenTypes.REFRESH,
     blacklisted: false,
   });
   if (!refreshTokenData[0]) {
@@ -83,7 +84,7 @@ const logout = async (refreshToken: string) => {
  * @returns {Promise}
  */
 const verifyEmail = async (verifyEmailToken: string) => {
-  const verifyEmailTokenData = await tokenService.verifyToken(verifyEmailToken, TokenType.VERIFY_EMAIL)
+  const verifyEmailTokenData = await tokenService.verifyToken(verifyEmailToken, TokenTypes.VERIFY_EMAIL)
   ;
   const user = await userService.getUserById(verifyEmailTokenData.userId.toString());
   if (!user) {
@@ -94,13 +95,13 @@ const verifyEmail = async (verifyEmailToken: string) => {
 };
 
 const verifyUser = async (accessToken: string) => {
-  const payload = await tokenService.verifyToken(accessToken, TokenType.ACCESS) as PayloadToken;
+  const payload = await tokenService.verifyToken(accessToken, TokenTypes.ACCESS) as PayloadToken;
   const userId = payload.sub;
   return userId;
 };
 
 const setNewPassword = async (token: string) => {
-  const tokenData = await tokenService.verifyToken(token, TokenType.RESET_PASSWORD) as TokenDocument;
+  const tokenData = await tokenService.verifyToken(token, TokenTypes.RESET_PASSWORD) as TokenDocument;
   const user = await userService.getUserById(tokenData.userId.toString());
   const newPassword = generator.generate({ length: 16, numbers: true });
   await userService.setNewPassword(user.id, newPassword);
@@ -108,11 +109,18 @@ const setNewPassword = async (token: string) => {
   await tokenRepository.destroy(tokenData.id);
 };
 
+const loginAdmin = async (name: string, password: string) => {
+  const admin = await userService.getAdminByName(name);
+  if (!admin || !(await admin.isPasswordMatch(password))) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Incorrect name or password');
+  }
+  return admin;
+}
+
 export default {
+  loginAdmin,
   loginUserWithEmailAndPassword,
   logout,
-  // refreshAuth,
-  // resetPassword,
   verifyEmail,
   verifyUser,
   setNewPassword,

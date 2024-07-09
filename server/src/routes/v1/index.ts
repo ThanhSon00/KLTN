@@ -3,10 +3,10 @@ import authRoute from './auth.route';
 import userRoute from './user.route';
 import questionRoute from './question.route';
 import answerRoute from './answer.route';
-import answerDetailRoute from './answerDetail.route';
 import searchRoute from './search.route';
 import searchingRoute from './searching.route';
-
+import reportRoute from './report.route';
+import voteRotue from './vote.route';
 // import docsRoute from './docs.route';
 // import config from '../../config/config';
 
@@ -30,16 +30,20 @@ const defaultRoutes = [
     route: answerRoute,
   },
   {
-    path: '/answers/details',
-    route: answerDetailRoute,
-  },
-  {
     path: '/searches',
     route: searchRoute,
   },
   {
     path: '/searching',
     route: searchingRoute,
+  },
+  {
+    path: '/reports',
+    route: reportRoute,
+  },
+  {
+    path: '/votes',
+    route: voteRotue,
   }
 ];
 

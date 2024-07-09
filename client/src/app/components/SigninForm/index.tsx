@@ -33,10 +33,24 @@ export function SigninForm(props: Props) {
     dispatch(panelActions.openPanel(panelName.LOST_PASSWORD));
   };
 
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(login({ email, password }));
+    const result = await dispatch(login({ email, password }));
+    if (result.meta.requestStatus === 'fulfilled') {
+      refreshPage();
+    };
   };
+
+  React.useEffect(() => {
+    if (popUp !== panelName.SIGN_IN) {
+      setEmail('');
+      setPassword('');
+    }
+  }, [popUp])
 
   return (
     <div
@@ -53,7 +67,7 @@ export function SigninForm(props: Props) {
         <div className="form-inputs clearfix">
           <p className="login-text">
             <label htmlFor="username_528">
-              Username or email<span className="required">*</span>
+              E-mail<span className="required">*</span>
             </label>
             <input
               id="username_528"
@@ -61,7 +75,8 @@ export function SigninForm(props: Props) {
               autoComplete="email"
               type="email"
               name="log"
-              placeholder="email"
+              placeholder="e-mail"
+              value={email}
               onChange={handleEmailChange}
               required
             />
@@ -69,7 +84,7 @@ export function SigninForm(props: Props) {
           </p>
           <p className="login-password">
             <label htmlFor="password_528">
-              Password<span className="required">*</span>
+              Mật khẩu<span className="required">*</span>
             </label>
             <input
               id="password_528"
@@ -77,7 +92,8 @@ export function SigninForm(props: Props) {
               autoComplete="current-password"
               type="password"
               name="pwd"
-              placeholder="password"
+              placeholder="Mật khẩu"
+              value={password}
               onChange={handlePasswordChange}
               required
             />
@@ -95,7 +111,7 @@ export function SigninForm(props: Props) {
                   defaultChecked={true}
                 />
               </span>
-              <span className="wpqa_checkbox_span">Remember Me!</span>
+              <span className="wpqa_checkbox_span">Ghi nhớ đăng nhập</span>
             </label>
           </div>
           <a
@@ -103,14 +119,14 @@ export function SigninForm(props: Props) {
             className="font-weight-bold color-dark mb-1 lost-password"
             onClick={handleForgotPasswordClick}
           >
-            Forgot Password?
+            Quên mật khẩu?
           </a>
         </div>
         <div className="clearfix" />
         <div className="wpqa_error_mobile">
           <div className="wpqa_error" />
         </div>
-        <PanelSubmitButton name="Login" />
+        <PanelSubmitButton name="Đăng nhập" />
         <input
           type="hidden"
           name="redirect_to"
