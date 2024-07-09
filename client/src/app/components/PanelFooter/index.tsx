@@ -20,7 +20,7 @@ PanelFooter(props: Props) {
     <>
       {popUp === panelName.SIGN_IN && (
         <div className="pop-footer">
-          Don't have account, 
+          Chưa có tài khoản? 
           <a
             href="/"
             className="signup-panel"
@@ -28,13 +28,13 @@ PanelFooter(props: Props) {
               e.preventDefault();
               dispatch(panelActions.openPanel(panelName.SIGN_UP));
             }}
-          > Sign Up Here
+          > Đăng ký tại đây
           </a>
         </div>
       )}
       {popUp === panelName.SIGN_UP && (
         <div className="pop-footer">
-          Have an account? 
+          Đã có tài khoản? 
           <a
             href="/"
             className="login-panel"
@@ -42,13 +42,13 @@ PanelFooter(props: Props) {
               e.preventDefault();
               dispatch(panelActions.openPanel(panelName.SIGN_IN));
             }}
-          > Sign In Now
+          > Đăng nhập ngay
           </a>
         </div>
       )}
       {popUp === panelName.LOST_PASSWORD && (
         <div className="pop-footer">
-          Have an account? 
+          Đã có tài khoản? 
           <a
             href="/"
             className="login-panel"
@@ -56,7 +56,7 @@ PanelFooter(props: Props) {
               e.preventDefault();
               dispatch(panelActions.openPanel(panelName.SIGN_IN));
             }}
-          > Sign In Now
+            > Đăng nhập ngay
           </a>
         </div>
       )}

@@ -11,9 +11,10 @@ import { panelName } from '../SignUpPanel/slice/types';
 import { panelActions } from '../SignUpPanel/slice';
 import { SigninForm } from '../SigninForm';
 
-function SignInPanel() {
+function SignInPanel(): JSX.Element {
   const { popUp } = useAppSelector(selectPanelState);
   const dispatch = useDispatch();
+  
 
   return (
     <div
@@ -21,9 +22,10 @@ function SignInPanel() {
       data-width={770}
       id="login-panel"
       style={{
-        top: '7%',
+        position: 'sticky',
+        top: '300px',
         width: '770px',
-        marginLeft: '-385px',
+        left: "30%",
         display: popUp === panelName.SIGN_IN ? 'block' : 'none',
       }}
     >
@@ -40,11 +42,9 @@ function SignInPanel() {
         <div className="panel-image-content">
           <div className="panel-image-opacity" />
           <div className="panel-image-inner">
-            <h3>Sign In</h3>
+            <h3>Đăng nhập</h3>
             <p>
-              Login to our social questions &amp; Answers Engine to ask
-              questions answer people’s questions &amp; connect with other
-              people.
+              Đăng nhập vào nền tảng câu hỏi và trả lời xã hội của chúng tôi để đặt câu hỏi, trả lời câu hỏi của người khác và kết nối với cộng đồng. 
             </p>
           </div>
           <a
@@ -55,7 +55,7 @@ function SignInPanel() {
               dispatch(panelActions.openPanel(panelName.SIGN_UP));
             }}
           >
-            Sign Up Here
+            Đăng ký tại đây
           </a>
         </div>
         <SigninForm />

@@ -23,9 +23,10 @@ export function LostPasswordPanel(props: Props) {
       data-width={770}
       id="lost-password"
       style={{
-        top: '7%',
+        position:'sticky',
+        top: '300px',
         width: '770px',
-        marginLeft: '-385px',
+        left: '30%',
         display: popUp === panelName.LOST_PASSWORD ? 'block' : 'none',
       }}
     >
@@ -40,19 +41,18 @@ export function LostPasswordPanel(props: Props) {
         <div className="panel-image-content">
           <div className="panel-image-opacity" />
           <div className="panel-image-inner">
-            <h3>Forgot Password</h3>
+            <h3>Quên mật khẩu</h3>
             <p>
-              Lost your password? Please enter your email address. You will
-              receive a link and will create a new password via email.
+              Quên mật khẩu? Vui lòng nhập địa chỉ email của bạn. Bạn sẽ nhận được một liên kết và tạo mật khẩu mới qua email. 
             </p>
           </div>
         </div>
         <LostPasswordForm />
       </div>
       <div className="pop-footer wpqa_hide">
-        Have an account?
+        Đã có tài khoản?
         <a href="log-in/index.html" className="login-panel">
-          Sign In Now
+          Đăng nhập ngay
         </a>
       </div>
     </div>

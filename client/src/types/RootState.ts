@@ -1,4 +1,3 @@
-import { GithubRepoFormState } from 'app/pages/HomePage/Features/GithubRepoForm/slice/types';
 import { ThemeState } from 'styles/theme/slice/types';
 import AuthState from 'app/components/SignInPanel/slice/types';
 import { PanelState } from 'app/components/SignUpPanel/slice/types';
@@ -6,6 +5,10 @@ import { AlertState } from 'app/components/AlertMessage/slice/types';
 import { AuthMessageState } from 'app/components/AuthMessage/slice/types';
 import { LoadingIndicatorState } from 'app/components/PanelSubmitButton/slice/types';
 import { Question } from 'app/components/QuestionDetails/slice/types';
+import { ReportState } from 'app/components/CreateReportForm/slice/types';
+import { AdminState } from 'app/components/AdminLogin/slice/types';
+import { SolutionStatus } from 'app/components/AdminReport/slice/types';
+
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -16,12 +19,14 @@ import { Question } from 'app/components/QuestionDetails/slice/types';
 */
 export interface RootState {
   theme?: ThemeState;
-  githubRepoForm?: GithubRepoFormState;
   authState?: AuthState;
   panelState?: PanelState;
   alertState?: AlertState;
   authMessageState?: AuthMessageState;
   loadingIndicatorState?: LoadingIndicatorState;
   questions?: Question[];
+  reportState?: ReportState;
+  adminState?: AdminState;
+  solutionState?: SolutionStatus;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

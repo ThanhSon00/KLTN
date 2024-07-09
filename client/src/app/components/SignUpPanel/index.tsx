@@ -23,9 +23,10 @@ function SignUpPanel() {
         data-width={770}
         id="signup-panel"
         style={{
-          top: '7%',
+          position: 'sticky',
+          top: '300px',
           width: '770px',
-          marginLeft: '-385px',
+          left: '30%',
           display: popUp === panelName.SIGN_UP ? 'block' : 'none',
         }}
       >
@@ -41,11 +42,9 @@ function SignUpPanel() {
           <div className="panel-image-content">
             <div className="panel-image-opacity" />
             <div className="panel-image-inner">
-              <h3>Sign Up</h3>
+              <h3>Đăng ký</h3>
               <p>
-                Sign Up to our social questions and Answers Engine to ask
-                questions, answer people’s questions, and connect with other
-                people.
+              Hãy đăng ký tham gia vào nền tảng câu hỏi và trả lời xã hội của chúng tôi để đặt câu hỏi, trả lời câu hỏi của người khác và kết nối với cộng đồng.
               </p>
             </div>
             <a
@@ -56,7 +55,7 @@ function SignUpPanel() {
                 dispatch(panelActions.openPanel(panelName.SIGN_IN));
               }}
             >
-              Have an account? Sign In
+              Đã có tài khoản? Đăng nhập
             </a>
           </div>
           {/* End panel-image-content */}

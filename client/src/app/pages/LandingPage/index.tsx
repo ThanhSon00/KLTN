@@ -12,7 +12,6 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { LandingStyle } from 'styles/landing-styles';
 
 function LandingPage() {
-  const origin = window.location.origin.toString();
   const dispatch = useAppDispatch();
   const { popUp } = useAppSelector(selectPanelState);
   const { user } = useAppSelector(getAuth);
@@ -43,7 +42,7 @@ function LandingPage() {
         <header className="header-login">
           <a
             className="logo float_l logo-img"
-            href="https://2code.info/demo/themes/Discy/Try/"
+            href="/#/home"
             title="Discy"
           >
             <img
@@ -69,40 +68,6 @@ function LandingPage() {
             itemType="https://schema.org/SiteNavigationElement"
           >
             <h3 className="screen-reader-text">Discy Navigation</h3>
-            <ul id="menu-company" className="menu">
-              <li
-                id="menu-item-71"
-                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-71"
-              >
-                <a href="https://2code.info/demo/themes/Discy/Try/users/">
-                  Meet The Team
-                </a>
-              </li>
-              <li
-                id="menu-item-72"
-                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-72"
-              >
-                <a href="https://2code.info/demo/themes/Discy/Try/blog/">
-                  Blog
-                </a>
-              </li>
-              <li
-                id="menu-item-73"
-                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-73"
-              >
-                <a href="https://2code.info/demo/themes/Discy/Try/about-us/">
-                  About Us
-                </a>
-              </li>
-              <li
-                id="menu-item-74"
-                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-74"
-              >
-                <a href="https://2code.info/demo/themes/Discy/Try/contact-us/">
-                  Contact Us
-                </a>
-              </li>
-            </ul>
           </nav>
           <div className="mobile-menu">
             <div className="mobile-menu-click" data-menu="mobile-menu-main">
@@ -110,61 +75,12 @@ function LandingPage() {
             </div>
           </div>
         </header>
-        <aside
-          className="mobile-aside mobile-menu-main mobile-menu-wrap gray-mobile-menu"
-          data-menu="mobile-menu-main"
-        >
-          <h3 className="screen-reader-text">Mobile menu</h3>
-          <div className="mobile-aside-inner">
-            <div className="mobile-aside-inner-inner">
-              <a href="/" className="mobile-aside-close">
-                <i className="icon-cancel" />
-                <span className="screen-reader-text">Close</span>
-              </a>
-              <div className="mobile-menu-top mobile--top">
-                <div className="widget widget_ask">
-                  <a
-                    target="_self"
-                    className="button-default wpqa-question"
-                    href="https://2code.info/demo/themes/Discy/Try/add-question/"
-                  >
-                    Ask A Question
-                  </a>
-                </div>
-              </div>
-              <ul id="nav_menu" className="menu">
-                <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-71">
-                  <a href="https://2code.info/demo/themes/Discy/Try/users/">
-                    Meet The Team
-                  </a>
-                </li>
-                <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-72">
-                  <a href="https://2code.info/demo/themes/Discy/Try/blog/">
-                    Blog
-                  </a>
-                </li>
-                <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-73">
-                  <a href="https://2code.info/demo/themes/Discy/Try/about-us/">
-                    About Us
-                  </a>
-                </li>
-                <li className="menu-item menu-item-type-post_type menu-item-object-page menu-item-74">
-                  <a href="https://2code.info/demo/themes/Discy/Try/contact-us/">
-                    Contact Us
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </aside>
         <main className="discy-login-wrap">
           <div className="centered">
             <div className="login-text-col col8">
-              <h2>Join the world's biggest Q &amp; A network!</h2>
+              <h2>Hãy tham gia vào mạng lưới hỏi và đáp HCMUTE</h2>
               <p>
-                Login to our social questions &amp; Answers Engine to ask
-                questions answer people’s qustions &amp; connect with other
-                people.
+                Đăng nhập vào nền tảng câu hỏi và trả lời xã hội của chúng tôi để đặt câu hỏi, trả lời câu hỏi của người khác và kết nối với cộng đồng. 
               </p>
             </div>
             <div className="login-forms-col col4">
@@ -173,9 +89,9 @@ function LandingPage() {
                 <div className="pop-border-radius">
                   <div className="pop-header">
                     <h3>
-                      {popUp === panelName.SIGN_IN && 'Sign In'}
-                      {popUp === panelName.SIGN_UP && 'Sign Up'}
-                      {popUp === panelName.LOST_PASSWORD && 'Forgot Password'}
+                      {popUp === panelName.SIGN_IN && 'Đăng nhập'}
+                      {popUp === panelName.SIGN_UP && 'Đăng ký'}
+                      {popUp === panelName.LOST_PASSWORD && 'Quên mật khẩu'}
                     </h3>
                   </div>
                   <SignupForm />
@@ -187,16 +103,6 @@ function LandingPage() {
             </div>
           </div>
         </main>
-        <footer className="footer-login">
-          <p className="copyrights">
-            © 2024 Discy. All Rights Reserved
-            <br />
-            With Love by
-            <a href="https://2code.info/" target="_blank" rel="noreferrer">
-              2code
-            </a>
-          </p>
-        </footer>
       </div>
       <LandingStyle />
     </>

@@ -427,7 +427,7 @@ body .is-layout-grid>* {
   --hcb--data-label--bgc: #e8e8e8;
   --hcb--line-numbers--c: #999;
   --hcb--highlight-color: #9678641a;
-  --hcb--file-icon: url(https://cdn.2code.info/demo/themes/Discy/Main/wp-content/plugins/highlighting-code-block/assets/img/file-icon-light.svg);
+  --hcb--file-icon: url(/font/file-icon-light.svg);
   --hcb--scbar-track--bgc: #9696961a;
   --hcb--scbar-thumb--bgc: #96969640;
 }
@@ -442,17 +442,17 @@ body .is-layout-grid>* {
 
 #login-panel .panel-image-content,
 .dark-skin #login-panel .panel-image-content {
-    background-image: url(https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2019/01/signin.png)
+    background-image: url(/images/signin.png)
 }
 
 #signup-panel .panel-image-content,
 .dark-skin #signup-panel .panel-image-content {
-    background-image: url(https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2019/01/signup.png)
+    background-image: url(/images/signup.png)
 }
 
 #lost-password .panel-image-content,
 .dark-skin #lost-password .panel-image-content {
-    background-image: url(https://cdn.2code.info/demo/themes/Discy/Main/wp-content/uploads/2019/01/signup.png)
+    background-image: url(/images/signup.png)
 }
 
 @media only screen and (max-width:600px) {
@@ -469,7 +469,7 @@ body .is-layout-grid>* {
 @font-face {
     font-family: "entypo";
     font-display: swap;
-    src: url(https://cdn.2code.info/demo/themes/Discy/Main/wp-content/themes/discy/css/entypo/entypo.woff2) format("woff2");
+    src: url(/font/entypo.woff2) format("woff2");
     font-weight: 400;
     font-style: normal
 }

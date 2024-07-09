@@ -11,18 +11,19 @@ import { getQuestion } from 'services/question.service';
 import LeaveAnswerForm from '../LeaveAnswerForm';
 import { useAppSelector } from 'store/hooks';
 import { getAuth } from '../SignInPanel/slice/selectors';
-import Comments from '../Comments';
+import Answers from '../Answers';
 import { QuestionBottom } from '../QuestionBottom';
 import BreadCrumb from '../BreadCrumbs';
 import { AlertMessage } from '../AlertMessage';
 
-interface Props {}
+interface Props {
+  highlight?: boolean;
+}
 
 export default function QuestionDetails(props: Props) {
-  const { id } = useParams();
+  const { id, answerId } = useParams();
   const [question, setQuestion] = useState<Question>();
   const { user } = useAppSelector(getAuth);
-
   const loadDetails = async () => {
     const question = await getQuestion(id);
     setQuestion(question);
@@ -30,20 +31,12 @@ export default function QuestionDetails(props: Props) {
 
   useEffect(() => {
     loadDetails();
-  }, [id]);
-
-  // const questionIndex = questions.findIndex(
-  //   question => question.id === parseInt(id),
-  // );
-
-  // if (questionIndex !== -1) {
-  //   questionData = questions[questionIndex];
-  // }
+  }, [id, user]);
 
   return (
     <>
       <AlertMessage />
-      <BreadCrumb />
+      <BreadCrumb question={question}/>
       <div className="clearfix" />
       <div className="post-articles question-articles">
         <div className="activate-post-stats page-visits-post" data-id={41015} />
@@ -60,7 +53,7 @@ export default function QuestionDetails(props: Props) {
               <div className="single-inner-content">
                 {question && (
                   <>
-                    <QuestionInner question={question} author={question.author} />
+                    <QuestionInner question={question} author={question.author} highlight={props.highlight}  />
                     <QuestionBottom author={question.author}/>
                   </>
                 )}
@@ -69,7 +62,7 @@ export default function QuestionDetails(props: Props) {
                 {question && 
                   <>
                     <LeaveAnswerForm question={question} setQuestion={setQuestion}/>
-                    <Comments comments={question.comments} question={question}/>
+                    <Answers answers={question.answers} question={question} highlightAnswerDetailsId={answerId} updateQuestion={setQuestion}/>
                   </>}
               </div>
             </article>

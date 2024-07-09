@@ -6,7 +6,7 @@ import { getAuth } from '../SignInPanel/slice/selectors';
 import { UserMenu } from '../UserMenu';
 import { panelActions } from '../SignUpPanel/slice';
 import { panelName } from '../SignUpPanel/slice/types';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Header() {
   const dispatch = useAppDispatch();
@@ -63,7 +63,7 @@ function Header() {
                     dispatch(panelActions.openPanel(panelName.SIGN_IN));
                   }}
                 >
-                  Sign In
+                  Đăng nhập
                 </a>
                 <a
                   className="button-default-2 button-sign-up"
@@ -73,19 +73,14 @@ function Header() {
                     dispatch(panelActions.openPanel(panelName.SIGN_UP));
                   }}
                 >
-                  Sign Up
+                  Đăng ký
                 </a>
               </>
             )}
           </div>
           <div className="left-header float_l">
             <h2 className="screen-reader-text site_logo">Discy</h2>
-            <a
-              className="logo float_l logo-img"
-              title="Discy"
-              onClick={returnHome}
-              href=''
-            >
+            <Link to="/home" className='logo float_l logo-img'> 
               <img
                 title="Discy"
                 height={45}
@@ -102,7 +97,8 @@ function Header() {
                 alt="Discy Logo"
                 src={process.env.PUBLIC_URL + `/images/logo-2x.png`}
               />
-            </a>
+            </Link>
+            
             <div className="mid-header float_l">
               <div className="header-search float_r">
                 <form
@@ -147,25 +143,7 @@ function Header() {
                     id="menu-item-75"
                     className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-64 current_page_item menu-item-75"
                   >
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li
-                    id="menu-item-76"
-                    className="menu-item menu-item-type-post_type menu-item-object-page menu-item-76"
-                  >
-                    <a href="about-us/index.html">About Us</a>
-                  </li>
-                  <li
-                    id="menu-item-77"
-                    className="menu-item menu-item-type-post_type menu-item-object-page menu-item-77"
-                  >
-                    <a href="blog/index.html">Blog</a>
-                  </li>
-                  <li
-                    id="menu-item-78"
-                    className="menu-item menu-item-type-post_type menu-item-object-page menu-item-78"
-                  >
-                    <a href="contact-us/index.html">Contact Us</a>
+                    <Link to="/home">Trang chủ</Link>
                   </li>
                 </ul>
               </nav>
@@ -230,19 +208,3 @@ Header.propTypes = {
 };
 
 export default Header;
-
-{
-  /* <div>
-<A href="https://www.reactboilerplate.com/">
-  <Img src={Banner} alt="react-boilerplate - Logo" />
-</A>
-<NavBar>
-  <HeaderLink to="/">
-    <FormattedMessage {...messages.home} />
-  </HeaderLink>
-  <HeaderLink to="/features">
-    <FormattedMessage {...messages.features} />
-  </HeaderLink>
-</NavBar>
-</div> */
-}

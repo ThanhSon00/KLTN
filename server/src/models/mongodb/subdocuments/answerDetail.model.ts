@@ -1,14 +1,20 @@
 import mongoose, { Schema, Types } from "mongoose";
 import { toJSON } from "../../plugins";
-import { Question } from "../documents";
+import { Answer, Question } from "../documents";
 import autoPopulate from "mongoose-autopopulate";
+import { removeFalsyProperties } from "../../../utils/removeFalsyProperties";
+import { IComment } from "../documents/comment.model";
+import { IUser } from "../documents/user.model";
 
 export interface IAnswerDetail {
-    id: Types.ObjectId;
-    author: Types.ObjectId;
+    id: Types.ObjectId | string; 
+    author: Types.ObjectId | string | IUser;
     content: string;
-    voteCount: number;
+    votes: number;
     enableTimestamps?: boolean;
+    isBestAnswer: boolean;
+    updatedAt: Date | string;
+    createdAt: Date | string;
 }
 
 export interface IAnswerDetailMethods {
@@ -19,7 +25,9 @@ export interface AnswerDetailModel extends mongoose.Model<IAnswerDetail, {}, IAn
     // static methods
 }
 
-export type AnswerDetailUpdate = Pick<IAnswerDetail, 'content'>;
+export type AnswerDetailSearch = Partial<Pick<IAnswerDetail, 'content' | 'id'>> & { author?: string };
+
+export type AnswerDetailUpdate = Partial<Pick<IAnswerDetail, 'content' | 'votes' | 'isBestAnswer'>>;
 
 export type AnswerDetailInput = AnswerDetailUpdate & { id?: string, author: string };
 
@@ -39,14 +47,19 @@ export const AnswerDetailSchema = new mongoose.Schema<IAnswerDetail, AnswerDetai
             type: Schema.Types.String,
             required: true,
         },
-        voteCount: {
+        votes: {
             type: Schema.Types.Number,
+            required: true,
             default: 0,
         },
         enableTimestamps: {
             type: Schema.Types.Boolean,
             default: true,
-        }
+        },
+        isBestAnswer: {
+            type: Schema.Types.Boolean,
+            default: false,
+        },
     }, {
         timestamps: true,
     }
@@ -54,3 +67,8 @@ export const AnswerDetailSchema = new mongoose.Schema<IAnswerDetail, AnswerDetai
 
 AnswerDetailSchema.plugin(toJSON);
 AnswerDetailSchema.plugin(autoPopulate);
+
+AnswerDetailSchema.pre('find', function () {
+    const newQuery = removeFalsyProperties(this.getQuery());
+    this.setQuery(dot.dot(newQuery));
+})
