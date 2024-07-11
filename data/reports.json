@@ -1,0 +1,290 @@
+[{
+  "_id": {
+    "$oid": "668dec1f27eaddd9630b56df"
+  },
+  "details": "Chúng tôi đã phát hiện anh A chia sẻ một tài liệu nội bộ có chứa thông tin mật của công ty ra bên ngoài mà không có sự cho phép từ cấp trên.",
+  "reporter": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "type": "answer",
+  "highlightLink": "/home/questions/668cbf1e54c120f5ecb0681f/answers/668cbf1e54c120f5ecb06826/highlight",
+  "status": "approved",
+  "enableTimestamps": true,
+  "title": "Mọi người dường như cũng luôn sử dụng YouTube để xem nội dung chỉ có âm thanh... ",
+  "answerId": {
+    "$oid": "668cbf1e54c120f5ecb06826"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T02:04:15.222Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T02:41:27.541Z"
+  },
+  "__v": 0,
+  "response": "Để xử lý vi phạm này, chúng tôi đã quyết định tạm thời đình chỉ công việc của anh A trong vòng 7 ngày để tiến hành điều tra thêm và chờ quyết định cuối cùng từ Ban Giám đốc."
+},
+{
+  "_id": {
+    "$oid": "668df88c2bb0a6d4454626e9"
+  },
+  "details": "Để ngăn chặn các vi phạm tương tự trong tương lai, chúng tôi đề xuất tăng cường giám sát hoạt động của các người dùng, đặc biệt là đối với những người có lịch sử vi phạm.",
+  "reporter": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "type": "question",
+  "highlightLink": "/home/questions/668cba049c0da5705daf2ba9/highlight",
+  "status": "pending",
+  "enableTimestamps": true,
+  "title": "Cách ngăn chặn tình trạng \"mọi người cũng tìm kiếm\" của Google",
+  "questionId": {
+    "$oid": "668cba049c0da5705daf2ba9"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T02:57:16.240Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T02:57:16.240Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668df8a32bb0a6d4454626ee"
+  },
+  "details": "Bằng cách áp dụng các biện pháp kỷ luật nghiêm khắc, chúng tôi hy vọng sẽ ngăn chặn các hành vi tương tự từ các người dùng khác và nâng cao chất lượng dịch vụ của nền tảng.",
+  "reporter": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "type": "answer",
+  "highlightLink": "/home/questions/668cba049c0da5705daf2ba9/answers/668cba049c0da5705daf2bb4/highlight",
+  "status": "pending",
+  "enableTimestamps": true,
+  "title": "trên AdGuard, tôi đã thêm dòng này vào \"Bộ lọc người dùng\" trong các tùy chọn tiện ích mở rộng của chrome và nó đã sửa nó: google.com##div[id^=\"ed_\"] Thay thế .com ở đâu phù hợp. ^= có nghĩa là \"bắt đầu bằng\", vì vậy mọi div bắt đầu bằng ed_ trên google.com sẽ bị xóa. EDIT: điều này dường như đã thay đổi đối với tôi từ \"ed_\" đến \"eod_\". Bạn có thể nhấp chuột phải vào phần tử kiểm tra và tìm thuộc tính id trên div rồi cập nhật \"ed_\" ở trên với bất kỳ tiền tố nào mà div của bạn có.",
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2bb4"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T02:57:39.980Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T02:57:39.980Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668df8d92bb0a6d445462802"
+  },
+  "details": "Ngoài những nội dung bất hợp pháp và khiêu dâm, User123 cũng đã đăng tải các thông tin sai lệch và không chính xác, gây hiểu lầm cho cộng đồng người dùng.",
+  "reporter": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "type": "question",
+  "highlightLink": "/home/questions/668cba049c0da5705daf2bbe/highlight",
+  "status": "pending",
+  "enableTimestamps": true,
+  "title": "Làm cách nào Google Docs và markdown có thể hoạt động tốt?",
+  "questionId": {
+    "$oid": "668cba049c0da5705daf2bbe"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T02:58:33.569Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T02:58:33.569Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668df8f62bb0a6d445462807"
+  },
+  "details": "Dựa trên các vi phạm nghiêm trọng và liên tục của User123, chúng tôi đề xuất áp dụng các biện pháp kỷ luật nghiêm khắc. Đầu tiên, chúng tôi kiến nghị tạm khóa tài khoản User123 trong vòng 30 ngày",
+  "reporter": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "type": "answer",
+  "highlightLink": "/home/questions/668cba049c0da5705daf2bbe/answers/668cba049c0da5705daf2bc7/highlight",
+  "status": "pending",
+  "enableTimestamps": true,
+  "title": "Giả sử rằng sau khi tạo xong một tài liệu ở dạng đánh dấu, bạn muốn chuyển đổi nó thành một tài liệu google thực sự (ngược lại với việc có thể xem trước tài liệu trong giao diện web của google drive và tiếp tục chỉnh sửa theo cú pháp đánh dấu) để những người khác không quen với việc đánh dấu có thể cộng tác. Tôi đã tìm thấy khá nhanh những điều sau:  Tạo đánh dấu của bạn ở bất cứ nơi nào thuận tiện. Khi hoàn tất xuất sang trình duyệt Sao chép văn bản kết quả từ trình duyệt Dán vào Google Tài liệu mới  Tài liệu Google đã sẵn sàng để dán HTML vào nên nó sẽ giữ nguyên tất cả các tiêu đề , khoảng cách, danh sách và các định dạng khác. Tất nhiên, điều này chỉ có ý nghĩa nếu bạn chỉ muốn đích thân làm việc trong markdown nhưng cộng tác với những người khác trong tài liệu Google thông thường.",
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2bc7"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T02:59:02.824Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T02:59:02.824Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668df91a2bb0a6d445462839"
+  },
+  "details": "Người dùng này cũng liên tục spam các câu hỏi và trả lời với mục đích quảng cáo cho các sản phẩm và dịch vụ không liên quan. Trong vòng ba ngày qua, chúng tôi đã ghi nhận hơn 50 bài viết của User123",
+  "reporter": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "type": "answer",
+  "highlightLink": "/home/questions/668cba049c0da5705daf2fe5/answers/668cba049c0da5705daf2fec/highlight",
+  "status": "pending",
+  "enableTimestamps": true,
+  "title": "vì bạn đã có tài khoản Google nên không cần thêm máy chủ lưu trữ khác cho dữ liệu của mình: tải tệp lên docs.google.com như được mô tả tại đây và chia sẻ nó.",
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2fec"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T02:59:38.096Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T02:59:38.096Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668df95e2bb0a6d445462b16"
+  },
+  "details": "Chân thành cảm ơn sự quan tâm và hỗ trợ từ Quản lý trong việc xử lý vấn đề này. Chúng tôi tin rằng sự hợp tác chặt chẽ giữa chúng tôi sẽ giúp nền tảng phát triển bền vững và mang lại lợi ích lớn ",
+  "reporter": {
+    "$oid": "6645e20f82f941988846f860"
+  },
+  "type": "answer",
+  "highlightLink": "/home/questions/668cba049c0da5705daf2ba0/answers/668cba049c0da5705daf2ba5/highlight",
+  "status": "pending",
+  "enableTimestamps": true,
+  "title": "Youtube đã thêm khả năng xem tất cả lịch sử nhận xét của bạn từ Nhận xét về video tab lịch sử (liên kết này sẽ đưa bạn tới đó) từ Màn hình nền.  Truy cập Youtube https://youtube.com.  Nhấp vào Menu ở góc trên cùng bên trái (≡).  Tùy thuộc vào kích thước màn hình của bạn, bạn có thể thấy bố cục hai cột hoặc bố cục một cột.  Trên bố cục hai cột, trên cột bên phải màn hình, Trên bố cục một cột, phía trên màn hình,  trong phần Quản lý tất cả lịch sử, nhấp vào Nhận xét.  ",
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2ba5"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T03:00:46.253Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T03:00:46.253Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668df9b62bb0a6d445462d53"
+  },
+  "details": "Việc xử lý kịp thời về các hành vi vi phạm của User123 là cần thiết để bảo vệ sự tồn vong của cộng đồng hỏi đáp và duy trì một môi trường an toàn, văn minh cho tất cả các thành viên.",
+  "reporter": {
+    "$oid": "660bbc28320b18fff6034026"
+  },
+  "type": "question",
+  "highlightLink": "/home/questions/668cba049c0da5705daf2b2c/highlight",
+  "status": "pending",
+  "enableTimestamps": true,
+  "title": "Làm cách nào để thêm kiểu mới vào tài liệu Google?",
+  "questionId": {
+    "$oid": "668cba049c0da5705daf2b2c"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T03:02:14.701Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T03:02:14.701Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668df9ee2bb0a6d445462ed0"
+  },
+  "details": "User123 đã có nhiều bình luận mang tính chất công kích, thiếu tôn trọng và xúc phạm các thành viên khác.",
+  "reporter": {
+    "$oid": "660bbc28320b18fff6034026"
+  },
+  "type": "question",
+  "highlightLink": "/home/questions/668cba049c0da5705daf2c10/highlight",
+  "status": "pending",
+  "enableTimestamps": true,
+  "title": "Các lựa chọn thay thế cho Google Reader (có đồng bộ hóa Android)",
+  "questionId": {
+    "$oid": "668cba049c0da5705daf2c10"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T03:03:10.661Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T03:03:10.661Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668dfae82bb0a6d445463260"
+  },
+  "details": "Bằng cách áp dụng các biện pháp kỷ luật nghiêm khắc, chúng tôi hy vọng sẽ ngăn chặn các hành vi tương tự từ các người dùng khác và nâng cao chất lượng dịch vụ của nền tảng.",
+  "reporter": {
+    "$oid": "660bbc28320b18fff6034026"
+  },
+  "type": "user",
+  "highlightLink": "/home/profile/660bbc28320b18fff6034042",
+  "status": "pending",
+  "enableTimestamps": true,
+  "title": "ethan_miller",
+  "userId": {
+    "$oid": "660bbc28320b18fff6034042"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T03:07:20.571Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T03:07:20.571Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668dfb062bb0a6d44546326e"
+  },
+  "details": "Các bài viết của User123 thường xuyên chứa các từ khoá liên quan đến mục đích quảng cáo và SEO, không đem lại giá trị thực sự cho cộng đồng. Hành vi này làm giảm chất lượng thông tin trên nền tảng",
+  "reporter": {
+    "$oid": "660bbc28320b18fff6034026"
+  },
+  "type": "user",
+  "highlightLink": "/home/profile/66594bcef8f536c81a655bfd",
+  "status": "pending",
+  "enableTimestamps": true,
+  "title": "thanhsona5",
+  "userId": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T03:07:50.942Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T03:07:50.942Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e20212bb0a6d445465abf"
+  },
+  "details": "Tôi xin báo cáo về việc người dùng Nguyễn Văn A đã vi phạm quy định sử dụng Google Tài liệu của công ty. Cụ thể, vào ngày 09/07/2024, chúng tôi đã phát hiện anh A chia sẻ một tài liệu nội bộ có chứa t",
+  "reporter": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "type": "answer",
+  "highlightLink": "/home/questions/668cbf1e54c120f5ecb0681f/answers/668cbf1e54c120f5ecb06826/highlight",
+  "status": "rejected",
+  "enableTimestamps": true,
+  "title": "Mọi người dường như cũng luôn sử dụng YouTube để xem nội dung chỉ có âm thanh... ",
+  "answerId": {
+    "$oid": "668cbf1e54c120f5ecb06826"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T05:46:09.966Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T05:57:51.947Z"
+  },
+  "__v": 0,
+  "response": "Chân thành cảm ơn sự quan tâm và hỗ trợ từ Quản lý trong việc xử lý vấn đề này. Chúng tôi tin rằng sự hợp tác chặt chẽ giữa chúng tôi sẽ giúp nền tảng phát triển bền vững và mang lại lợi ích lớn "
+}]

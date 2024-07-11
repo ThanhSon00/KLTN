@@ -34,43 +34,16 @@ export function QuestionInner(prop: Props) {
                 width={42}
                 height={42}
                 style={{ maxBlockSize: '42px'}}
-                src={prop.author.avatar ? `${process.env.REACT_APP_SERVER_ORIGIN}${prop.author?.avatar}` : Avatar.anonymous}
+                src={prop.author.avatar 
+                    ? !prop.author.avatar.startsWith('https') 
+                      ? `${process.env.REACT_APP_SERVER_ORIGIN}${prop.author?.avatar}` 
+                      : prop.author?.avatar
+                    : Avatar.anonymous}
               />
             </span>
           </Link>
           <AuthorCard author={prop.author} />
         </div>
-        <ul className="question-vote question-mobile">
-          <li className="question-vote-up">
-            <a
-              href="/"
-              data-type="question"
-              data-vote-type="up"
-              className="wpqa_vote question_vote_up vote_not_allow"
-              title="Like"
-            >
-              <i className="icon-up-dir" />
-            </a>
-          </li>
-          <li className="vote_result" itemProp="upvoteCount">
-            0
-          </li>
-          <li className="li_loader">
-            <span className="loader_3 fa-spin" />
-          </li>
-          <li className="question-vote-down">
-            
-            <a
-              href="/"
-              data-type="question"
-              data-vote-type="down"
-              className="wpqa_vote question_vote_down vote_not_allow"
-              title="Dislike"
-            >
-              <i className="icon-down-dir" />
-            </a>
-          </li>
-        </ul>
       </div>
       <div className="question-content question-content-first" style={prop.highlight ? { background: "rgb(255, 255, 172)" } : {}}>
         <header className="article-header">
@@ -80,9 +53,9 @@ export function QuestionInner(prop: Props) {
               itemScope
               itemType="http://schema.org/Person"
             >
-              <a className="post-author" itemProp="url" href="/">
+              <Link className="post-author" to={`/home/profile/${prop.author.id}`}>
                 <span itemProp="name">{prop.author?.name}</span>
-              </a>
+              </Link>
             </span>
             <div className="post-meta">
               <span className="post-date">
@@ -115,21 +88,6 @@ export function QuestionInner(prop: Props) {
               </div>
               <div className="clearfix" />
               <div className="clearfix" />
-              <div className="bump-question-area wpqa-open-div wpqa_hide">
-                <input
-                  className="form-control"
-                  id="input-add-point"
-                  type="text"
-                  placeholder="Bump question with points"
-                />
-                <a className="button-default btn btn__primary" href="/">
-                  Bump
-                </a>
-                <div className="load_span">
-                  <span className="loader_2" />
-                </div>
-                <div className="clearfix" />
-              </div>
               <div className="clearfix" />
             </div>
           </div>

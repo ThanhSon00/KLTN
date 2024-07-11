@@ -68,23 +68,11 @@ export default function UserAnswer(props: Props) {
                     <span className="post-date">
                       Được hỏi vào lúc:
                       <span className="date-separator" />{" "}
-                      <a href="/">
+                      <a>
                         <span className="entry-date published">
                           {isoToDateTimeString(question?.createdAt)}
                         </span>
                       </a>
-                    </span>
-                    <span className="byline">
-                      <span className="post-cat">
-                        Trong:{" "}
-                        <a
-                          href="/"
-                          rel="tag"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          Công nghệ thông tin
-                        </a>
-                      </span>
                     </span>
                   </div>
                 </div>
@@ -110,7 +98,11 @@ export default function UserAnswer(props: Props) {
                         width={42}
                         height={42}
                         style={{  blockSize: "42px" }}
-                        src={props.answer.details.author.avatar ? `${process.env.REACT_APP_SERVER_ORIGIN}${props.answer.details.author.avatar}` : Avatar.anonymous}
+                        src={props.answer.details.author.avatar 
+                          ? !props.answer.details.author.avatar.startsWith('https')
+                            ? `${process.env.REACT_APP_SERVER_ORIGIN}${props.answer.details.author.avatar}` 
+                            : props.answer.details.author.avatar
+                          : Avatar.anonymous}
                       />
                     </span>
                   </a>
@@ -132,7 +124,6 @@ export default function UserAnswer(props: Props) {
                       </span>{" "}
                     </div>{" "}
                     <a
-                      href="/"
                       className="comment-date"
                       itemProp="url"
                     >
@@ -155,30 +146,6 @@ export default function UserAnswer(props: Props) {
                     {parse(props.answer.details.content)}
                   </div>{" "}
                   <div className="full_answer_text wpqa_hide">
-                    {/* <p>
-                      I have never heard a British person EVER call a bread roll a
-                      `pudding`.
-                    </p>{" "}
-                    <p>
-                      We DO have arguments….mostly of a regional nature. I`ve
-                      heard bread rolls called both baps and barmcakes, for
-                      instance. But never, ever, a `pudding`. You are misinformed.
-                    </p>{" "}
-                    <p>
-                      Or perhaps you are confusing the term with something
-                      else…dessert, afters, or whatever you call the sweet course
-                      in the US.
-                    </p>{" "}
-                    <p>
-                      I have many times had a nice scone for pudding. `Pudding
-                      `being a common ( if now dated) term used for the second
-                      course. It is not the name of the confectionary itself,
-                      though, but an indication that it follows the main, usually
-                      savoury, course.
-                    </p>{" "}
-                    <a className="read_less_answer custom-post-link" href="#">
-                      See less
-                    </a>{" "} */}
                   </div>{" "}
                 </div>{" "}
                 <div className="clearfix" /> <div className="clearfix" />{" "}

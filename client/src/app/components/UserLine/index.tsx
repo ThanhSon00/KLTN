@@ -78,18 +78,6 @@ export default function UserLine(props: Props) {
                         position: 'absolute', inset: '0px auto auto 0px', margin: '0px', transform: 'translate(-98.6667px, 25.3333px)'
                     } : {}}
                     >
-                    {/* <li>
-                        <a href="/">
-                        <i className="fa fa-trash-o" />
-                        Delete{" "}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/">
-                        <i className="fa fa-ban" />
-                        Cancel{" "}
-                        </a>
-                    </li> */}
                     {!user.isBanned ? 
                         <li>
                             <a href="/" onClick={handleBanUserClick}>

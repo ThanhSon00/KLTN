@@ -1,0 +1,285 @@
+[{
+  "_id": {
+    "$oid": "668e1fe12bb0a6d445465a3d"
+  },
+  "voter": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "answerId": {
+    "$oid": "668cbf1e54c120f5ecb0683e"
+  },
+  "type": "upvote",
+  "createdAt": {
+    "$date": "2024-07-10T05:45:05.684Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T05:45:05.684Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e1fe92bb0a6d445465a60"
+  },
+  "voter": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "answerId": {
+    "$oid": "668cbf1e54c120f5ecb06836"
+  },
+  "type": "downvote",
+  "createdAt": {
+    "$date": "2024-07-10T05:45:13.416Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T05:45:13.416Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2e2a2bb0a6d445485aac"
+  },
+  "voter": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2b7b"
+  },
+  "type": "upvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:46:02.284Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:46:02.284Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2e2c2bb0a6d445485ac5"
+  },
+  "voter": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2b85"
+  },
+  "type": "downvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:46:04.164Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:46:04.164Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2e5a2bb0a6d445485d59"
+  },
+  "voter": {
+    "$oid": "660bbc28320b18fff6034026"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2c48"
+  },
+  "type": "downvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:46:50.257Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:46:50.257Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2e5c2bb0a6d445485d77"
+  },
+  "voter": {
+    "$oid": "660bbc28320b18fff6034026"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2c4c"
+  },
+  "type": "upvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:46:52.434Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:46:52.434Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2e5e2bb0a6d445485d95"
+  },
+  "voter": {
+    "$oid": "660bbc28320b18fff6034026"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2c4e"
+  },
+  "type": "upvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:46:54.705Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:46:54.705Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2e602bb0a6d445485db3"
+  },
+  "voter": {
+    "$oid": "660bbc28320b18fff6034026"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2c3e"
+  },
+  "type": "downvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:46:56.181Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:46:56.181Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2e662bb0a6d445485dd1"
+  },
+  "voter": {
+    "$oid": "660bbc28320b18fff6034026"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2c3c"
+  },
+  "type": "upvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:47:02.399Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:47:02.399Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2e6b2bb0a6d445485def"
+  },
+  "voter": {
+    "$oid": "660bbc28320b18fff6034026"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2c3a"
+  },
+  "type": "downvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:47:07.089Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:47:07.089Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2ee22bb0a6d445486309"
+  },
+  "voter": {
+    "$oid": "660bbc28320b18fff6034036"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2ba5"
+  },
+  "type": "upvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:49:06.638Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:49:06.638Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2ee52bb0a6d44548631e"
+  },
+  "voter": {
+    "$oid": "660bbc28320b18fff6034036"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2ba3"
+  },
+  "type": "downvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:49:09.040Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:49:09.040Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2ee62bb0a6d445486333"
+  },
+  "voter": {
+    "$oid": "660bbc28320b18fff6034036"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2ba7"
+  },
+  "type": "downvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:49:10.961Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:49:10.961Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2ee92bb0a6d445486348"
+  },
+  "voter": {
+    "$oid": "660bbc28320b18fff6034036"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2ba1"
+  },
+  "type": "upvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:49:13.863Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:49:13.863Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e2f312bb0a6d445486542"
+  },
+  "voter": {
+    "$oid": "660bbc28320b18fff6034036"
+  },
+  "answerId": {
+    "$oid": "668cba049c0da5705daf2b94"
+  },
+  "type": "upvote",
+  "createdAt": {
+    "$date": "2024-07-10T06:50:25.275Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:50:25.275Z"
+  },
+  "__v": 0
+}]

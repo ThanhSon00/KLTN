@@ -1,8 +1,13 @@
 
 # Trang web chia sẻ kiến thức
 
-Trang web cho sinh viên công nghệ thông tin trong trường tìm kiếm và chia sẻ kiến thức, trải nghiệm và kinh nghiệm, góp phần xây dựng cộng đồng và phát triển bản thân.
+Đối tượng sử dụng là những người có kiến thức công nghệ thông tin cơ bản gặp vấn đề trong các nhu cầu hàng ngày như là soạn thảo văn bản, viết email, tìm kiếm thông tin, dùng mạng xã hội, giải trí, xem phim, ...
 
+## Thông tin thêm
+
+- [Video demo](https://youtu.be/ennOf3-ltfA)
+- [Báo cáo](https://gitlab.com/kltl-ute/242k/22/-/tree/main/BC_KL_Nhom_22.pdf)
+- [Dữ liệu](https://gitlab.com/kltl-ute/242k/22/-/tree/main/data/)
 
 ## Thành viên
 
@@ -81,7 +86,7 @@ Cuối cùng là chạy server
   python manage.py runserver
 ```
 
-## Cơ sở dữ liệu
+## Cơ sở dữ liệu - Cài đặt dữ liệu giả
 
 Sau khi chạy chương trình, ta có thể bổ sung dữ liệu giả nếu cần thiết. Ta sử dụng [MongoDB Compass v1.42.1+](https://www.mongodb.com/try/download/compass) đăng nhập mongodb server, tìm kiếm cơ sở dữ liệu ta đã tạo trước khi chạy chương trình. 
 
@@ -89,8 +94,5 @@ Trong đó, đã có sẵn các collection, ta thêm dữ liệu giả vào đó
 
 ![Đưa dữ liệu vào MongoDB bằng Compass](https://res.cloudinary.com/dfnm6sooi/image/upload/v1720539653/nryynqhndzrpckmolgvm.png)
 
-## Báo cáo
-
-[Khóa luận tốt nghiệp](https://docs.google.com/document/d/1E6u6rqmPKykh6ILFMA8sdAvEvHaP2Of4U3kay3uEEFo/edit?usp=sharing)
 
 

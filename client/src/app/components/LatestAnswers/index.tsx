@@ -41,7 +41,11 @@ export default function LatestAnswers(props: Props) {
                                         }}
                                         className="avatar avatar-25 rounded-circle photo"
                                         title={answer.details.author.name}
-                                        src={answer.details.author.avatar ? `${process.env.REACT_APP_SERVER_ORIGIN}${answer.details.author.avatar}` :  Avatar.anonymous}
+                                        src={answer.details.author.avatar 
+                                            ? !answer.details.author.avatar.startsWith('https') 
+                                                ? `${process.env.REACT_APP_SERVER_ORIGIN}${answer.details.author.avatar}` 
+                                                : answer.details.author.avatar
+                                            :  Avatar.anonymous}
                                     />
                                 </Link>
                             </span>

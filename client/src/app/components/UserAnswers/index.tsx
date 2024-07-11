@@ -21,7 +21,6 @@ export default function UserAnswers({ user }: Props) {
         
         if (typeof result.payload === "object") {
             const { hasMore } = result.payload.pop() as { hasMore: boolean };
-            console.log(result.payload);
             setAnswers(result.payload as AnswerType[]);
             setHasMore(hasMore);
         }

@@ -94,13 +94,14 @@ export const QuestionSchema = new mongoose.Schema<IQuestion, QuestionModel>(
     totalVotes: {
       type: Schema.Types.Number,
       required: true,
-      default: 0,
+      default: 0
     }
   },
   {  
     timestamps: true,
     toJSON: {
       virtuals: true,
+      getters: true,
     },
   }
 );

@@ -27,43 +27,17 @@ export function Article(props: Props) {
                       title={props.question.author.name}
                       width={42}
                       height={42}
-                      style={{ maxBlockSize: "42px" }}
-                      src={props.question.author.avatar ? `${process.env.REACT_APP_SERVER_ORIGIN}${props.question.author.avatar}` : Avatar.anonymous}
+                      style={{ maxBlockSize: "42px", minBlockSize: "42px" }}
+                      src={props.question.author.avatar 
+                        ? !props.question.author.avatar.startsWith('https') 
+                          ? `${process.env.REACT_APP_SERVER_ORIGIN}${props.question.author.avatar}` 
+                          : props.question.author.avatar
+                        : Avatar.anonymous}
                     />
                   </span>
                 </Link>
                 <AuthorCard author={props.question.author} />
               </div>
-              <ul className="question-vote question-mobile">
-                <li className="question-vote-up">
-                  <a
-                    href="#"
-                    data-id={118}
-                    data-type="question"
-                    data-vote-type="up"
-                    className="wpqa_vote question_vote_up vote_allow"
-                    title="Like"
-                  >
-                    <i className="icon-up-dir" />
-                  </a>
-                </li>
-                <li className="vote_result">0</li>
-                <li className="li_loader">
-                  <span className="loader_3 fa-spin" />
-                </li>
-                <li className="question-vote-down">
-                  <a
-                    href="#"
-                    data-id={118}
-                    data-type="question"
-                    data-vote-type="down"
-                    className="wpqa_vote question_vote_down vote_allow"
-                    title="Dislike"
-                  >
-                    <i className="icon-down-dir" />
-                  </a>
-                </li>
-              </ul>
             </div>
             <div className="question-content question-content-first">
               <header className="article-header">
@@ -82,7 +56,7 @@ export function Article(props: Props) {
                     <span className="post-date">
                       Được hỏi vào:{' '}
                       <span className="date-separator" />
-                      <a href="/">
+                      <a>
                         <span className="entry-date published">
                            {isoToDateTimeString(props.question.createdAt)}
                         </span>
@@ -136,7 +110,7 @@ export function Article(props: Props) {
               <footer className="question-footer">
                 <ul className="footer-meta">
                   <li>
-                    <a href="/">
+                    <a>
                       <i className="icon-flag" />
                       <span className="question-span">
                         {totalVotes} Bình chọn
@@ -144,7 +118,7 @@ export function Article(props: Props) {
                     </a>                    
                   </li>
                   <li className={"best-answer-meta" + (props.question.answered ? " meta-best-answer" : "")}>
-                    <a href="/">
+                    <a>
                       <i className="icon-comment" />
                       <span className="question-span">
                         {props.question.answers.length} Trả lời

@@ -25,7 +25,9 @@ export default function ProfileCover() {
 
       if (userId !== userLogged?.id) {
         const user = await getUser(userId);
-        user.avatar &&= `${process.env.REACT_APP_SERVER_ORIGIN}${user.avatar}`;
+        user.avatar &&= !user.avatar.startsWith('https') 
+          ? `${process.env.REACT_APP_SERVER_ORIGIN}${user.avatar}`
+          : user.avatar
         user.cover &&= `${process.env.REACT_APP_SERVER_ORIGIN}${user.cover}`;
         setUser(user);
       } else setUser(userLogged);
@@ -120,11 +122,6 @@ export default function ProfileCover() {
                     <div className="wpqa-cover-buttons wpqa-cover-visits">
                       <i className="icon-eye" />
                       <span className="cover-count">{user?.views} </span>Lượt xem
-                    </div>
-                    <div className="wpqa-cover-buttons wpqa-cover-followers">
-                      <i className="icon-users" />
-                      <span className="cover-count follow-cover-count">0 </span>
-                      Người theo dõi
                     </div>
                     <div>
                       <a

@@ -27,7 +27,6 @@ import MainSite from './pages/MainSite';
 import AdminLogin from './components/AdminLogin';
 import AdminSite from './pages/AdminSite';
 import AdminReport from './components/AdminReport';
-import EditReport from './components/EditReport';
 
 export function App() {
   return (

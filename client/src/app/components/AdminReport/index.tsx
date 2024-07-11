@@ -49,21 +49,21 @@ export default function AdminReport() {
                         >
                         <div className="mdl-tabs__tab-bar tab-left-side">
                             <a
-                            href="/"
+                            href="#"
                             className={"mdl-tabs__tab tabs_three" + isActiveTab(ReportedType.question)}
                             onClick={(e) => changeTab(e, ReportedType.question)}
                             >
                                 Bài đăng
                             </a>
                             <a
-                            href="/"
+                            href="#"
                             className={"mdl-tabs__tab tabs_three" + isActiveTab(ReportedType.answer)}
                             onClick={(e) => changeTab(e, ReportedType.answer)}
                             >
                                 Bình luận
                             </a>
                             <a
-                            href="/"
+                            href="#"
                             className={"mdl-tabs__tab tabs_three" + isActiveTab(ReportedType.user)}
                             onClick={(e) => changeTab(e, ReportedType.user)}
                             >

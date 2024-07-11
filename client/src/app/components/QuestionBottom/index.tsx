@@ -55,8 +55,8 @@ export function QuestionBottom(props: Props) {
               Chỉnh sửa
             </a>
           </li>: 
-          <li className="report_activated" onClick={handleOpenReportForm}>
-            <a className="dropdown-item report_q" href="/">
+          <li className="report_activated" >
+            <a className="dropdown-item report_q" onClick={handleOpenReportForm} href="/">
               <i className="icon-attention" />
               Báo cáo
             </a>

@@ -28,7 +28,7 @@ export default function Answers(props: Props) {
                 
                 <ul>
                 <li className="active-tab">
-                    <a href="/">
+                    <a>
                     Bình chọn
                     </a>
                 </li>

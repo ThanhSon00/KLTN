@@ -1,0 +1,113 @@
+[{
+  "_id": {
+    "$oid": "668e20052bb0a6d445465ab5"
+  },
+  "receiver": {
+    "$oid": "667ae7619e76a6b6d6655a9f"
+  },
+  "details": "thanhsona5 đã bình luận về câu trả lời của bạn <a href=\"/#/home/questions/668cbf1e54c120f5ecb0681f\">Có tính năng \"giống YouTube\" dịch vụ cho âm thanh?</a>",
+  "enableTimestamps": true,
+  "isSeen": false,
+  "unread": true,
+  "comment": {
+    "$oid": "668e20052bb0a6d445465a80"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T05:45:41.380Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T05:45:41.380Z"
+  },
+  "type": "newComment",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e20ad2bb0a6d44546e1d0"
+  },
+  "receiver": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "details": "son đã trả lời câu hỏi của bạn <a href=\"/#/home/questions/668e20782bb0a6d44546dfab\">Làm thế nào để sử dụng tính năng cộng tác trong Google Tài Liệu?</a>",
+  "enableTimestamps": true,
+  "isSeen": true,
+  "unread": true,
+  "answer": {
+    "$oid": "668e20ad2bb0a6d44546e1be"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T05:48:29.397Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:01:37.963Z"
+  },
+  "type": "newAnswer",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e20ef2bb0a6d44546e35a"
+  },
+  "receiver": {
+    "$oid": "6645e20f82f941988846f860"
+  },
+  "details": "Câu trả lời của bạn về câu hỏi <a href=\"/#/home/questions/668e20782bb0a6d44546dfab\">Làm thế nào để sử dụng tính năng cộng tác trong Google Tài Liệu?</a> đã <strong>được chọn là câu trả lời chính xác nhất</strong>",
+  "enableTimestamps": true,
+  "isSeen": false,
+  "unread": true,
+  "bestAnswer": true,
+  "createdAt": {
+    "$date": "2024-07-10T05:49:35.122Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T05:49:35.122Z"
+  },
+  "type": "bestAnswer",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e21372bb0a6d44546e3a5"
+  },
+  "receiver": {
+    "$oid": "6645e20f82f941988846f860"
+  },
+  "details": "thanhsona5 đã bình luận về câu trả lời của bạn <a href=\"/#/home/questions/668e20782bb0a6d44546dfab\">Làm thế nào để chia sẻ và chỉnh sửa Google Tài liệu với người khác?</a>",
+  "enableTimestamps": true,
+  "isSeen": false,
+  "unread": true,
+  "comment": {
+    "$oid": "668e21372bb0a6d44546e392"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T05:50:47.598Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T05:50:47.598Z"
+  },
+  "type": "newComment",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e22df2bb0a6d44546f12b"
+  },
+  "receiver": {
+    "$oid": "66594bcef8f536c81a655bfd"
+  },
+  "details": "Báo cảo của bạn về câu trả lời <a href=\"/#/home/answers/668cbf1e54c120f5ecb06826\">Mọi người dường như cũng luôn sử dụng YouTube để xem nội dung chỉ có âm thanh... </a> đã bị từ chối với phản hồi: <strong>Chân thành cảm ơn sự quan tâm và hỗ trợ từ Quản lý trong việc xử lý vấn đề này. Chúng tôi tin rằng sự hợp tác chặt chẽ giữa chúng tôi sẽ giúp nền tảng phát triển bền vững và mang lại lợi ích lớn </strong> ",
+  "enableTimestamps": true,
+  "isSeen": true,
+  "unread": false,
+  "report": {
+    "$oid": "668e20212bb0a6d445465abf"
+  },
+  "createdAt": {
+    "$date": "2024-07-10T05:57:51.961Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T06:01:37.992Z"
+  },
+  "type": "newMessageFromAdmin",
+  "__v": 0
+}]

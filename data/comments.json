@@ -1,0 +1,66 @@
+[{
+  "_id": {
+    "$oid": "668e20052bb0a6d445465a80"
+  },
+  "answerId": {
+    "$oid": "668cbf1e54c120f5ecb0683e"
+  },
+  "details": {
+    "author": {
+      "$oid": "66594bcef8f536c81a655bfd"
+    },
+    "content": "Cung cấp thêm thông tin",
+    "votes": 0,
+    "enableTimestamps": true,
+    "isBestAnswer": false,
+    "_id": {
+      "$oid": "668e20052bb0a6d445465a81"
+    },
+    "createdAt": {
+      "$date": "2024-07-10T05:45:41.231Z"
+    },
+    "updatedAt": {
+      "$date": "2024-07-10T05:45:41.231Z"
+    }
+  },
+  "createdAt": {
+    "$date": "2024-07-10T05:45:41.231Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T05:45:41.231Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e21372bb0a6d44546e392"
+  },
+  "answerId": {
+    "$oid": "668e20ad2bb0a6d44546e1be"
+  },
+  "details": {
+    "author": {
+      "$oid": "66594bcef8f536c81a655bfd"
+    },
+    "content": "Cần cung cấp thêm thông tin",
+    "votes": 0,
+    "enableTimestamps": true,
+    "isBestAnswer": false,
+    "_id": {
+      "$oid": "668e21372bb0a6d44546e393"
+    },
+    "createdAt": {
+      "$date": "2024-07-10T05:50:47.370Z"
+    },
+    "updatedAt": {
+      "$date": "2024-07-10T05:50:47.370Z"
+    }
+  },
+  "createdAt": {
+    "$date": "2024-07-10T05:50:47.370Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T05:50:47.370Z"
+  },
+  "__v": 0
+}]

@@ -87,7 +87,7 @@ export function AskQuestionPanel(props: Props) {
       data-width={690}
       style={{
         position: 'sticky',
-        top: '300px',
+        top: '100px',
         width: '690px',
         left: '30%',
         display: popUp === panelName.ASK_QUESTION ? 'block' : 'none',

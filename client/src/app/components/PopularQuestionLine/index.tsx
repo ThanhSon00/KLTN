@@ -10,16 +10,20 @@ export default function PopularQuestionLine({ question }: Props) {
     return (<>
         <li className="notifications__item question-item list-item-type-question d-flex widget-posts-text widget-no-img" >
             <span className="span-icon author__avatar">
-                <a href="/">
-                <img
-                    className="avatar avatar-20 rounded-circle photo"
-                    title={question.author.name}
-                    width={20}
-                    height={20}
-                    style={{ maxBlockSize: '20px' }}
-                    src={question.author.avatar ? `${process.env.REACT_APP_SERVER_ORIGIN}${question.author.avatar}` :  Avatar.anonymous}
-                />
-                </a>
+                <Link to={`/home/questions/${question.id}`}>
+                    <img
+                        className="avatar avatar-20 rounded-circle photo"
+                        title={question.author.name}
+                        width={20}
+                        height={20}
+                        style={{ maxBlockSize: '20px' }}
+                        src={question.author.avatar 
+                            ? !question.author.avatar.startsWith('https') 
+                                ? `${process.env.REACT_APP_SERVER_ORIGIN}${question.author.avatar}` 
+                                : question.author.avatar
+                            : Avatar.anonymous}
+                    />
+                </Link>
             </span>
             <div>
                 <h3 className="question__title">
@@ -38,7 +42,6 @@ export default function PopularQuestionLine({ question }: Props) {
                     <li key={question.id}>
                         <a
                         className="post-meta-comment"
-                        href="/"
                         >
                         <i className="icon-comment" />{question.answers.length} Trả lời
                         </a>
