@@ -39,7 +39,11 @@ export default function ReportLine(props: Props) {
         <tr className="table-row">
             <td className="patient-img sorting_1">
             <img
-                src={report.reporter.avatar ? `${process.env.REACT_APP_SERVER_ORIGIN}${report.reporter.avatar}` : Avatar.anonymous}
+                src={report.reporter.avatar 
+                    ? !report.reporter.avatar.startsWith('https') 
+                        ? `${process.env.REACT_APP_SERVER_ORIGIN}${report.reporter.avatar}` 
+                        : report.reporter.avatar
+                    : Avatar.anonymous}
             />
             </td>
             <td>

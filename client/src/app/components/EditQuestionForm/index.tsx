@@ -103,7 +103,7 @@ export default function EditQuestionForm() {
                     </span>
                     </div>
                 </div>
-                <PanelSubmitButton name="Update Your Question" />
+                <PanelSubmitButton name="Cập nhật câu hỏi của bạn" />
                 </form>
             </div>
         </>

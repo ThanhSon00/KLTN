@@ -16,7 +16,11 @@ export const initialState: AuthState = {
 const setUser = (state, action: PayloadAction<User>) => {
   const user = action.payload;
   user.cover = user.cover ? `${process.env.REACT_APP_SERVER_ORIGIN}${user.cover}` : undefined;
-  user.avatar = user.avatar ? `${process.env.REACT_APP_SERVER_ORIGIN}${user.avatar}` : Avatar.anonymous;
+  user.avatar = user.avatar 
+                ? !user.avatar.startsWith('https') 
+                  ? `${process.env.REACT_APP_SERVER_ORIGIN}${user.avatar}` 
+                  : user.avatar
+                : Avatar.anonymous;
   state.user = action.payload;
 }
 

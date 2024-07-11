@@ -59,9 +59,11 @@ export default function Comment(props: Props) {
                     title={comment.details.author.name}
                     width={42}
                     height={42}
-                    src={comment.details.author.avatar ?
-                      `${process.env.REACT_APP_SERVER_ORIGIN}${comment.details.author.avatar}` : 
-                      Avatar.anonymous}
+                    src={comment.details.author.avatar 
+                      ? !comment.details.author.avatar.startsWith('https') 
+                        ? `${process.env.REACT_APP_SERVER_ORIGIN}${comment.details.author.avatar}`  
+                        : comment.details.author.avatar
+                      : Avatar.anonymous}
                   />
                 </span>
               </Link>

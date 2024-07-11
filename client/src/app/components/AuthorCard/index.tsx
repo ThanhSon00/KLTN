@@ -19,7 +19,11 @@ export default function AuthorCard(props: Props) {
                     <img
                         className="avatar avatar-70 rounded-circle photo"
                         title={props.author.name}
-                        src={props.author.avatar ? `${process.env.REACT_APP_SERVER_ORIGIN}${props.author.avatar}` : Avatar.anonymous}
+                        src={props.author.avatar 
+                          ? !props.author.avatar.startsWith('https')
+                            ? `${process.env.REACT_APP_SERVER_ORIGIN}${props.author.avatar}` 
+                            : props.author.avatar
+                          : Avatar.anonymous}
                         style={{ maxBlockSize: "64px", minWidth: "64px", minHeight: "64px" }}
                     />
                     </span>
@@ -72,7 +76,7 @@ export default function AuthorCard(props: Props) {
                   </Link>
                 </li>
                 <li className="user-columns-best-answers stats__item">
-                  <a href="/">
+                  <a>
                     <i className="icon-graduation-cap" style={{ width: "14px", "height": "14px" }}/>
                     <span className="stats__count">
                       0
@@ -83,7 +87,7 @@ export default function AuthorCard(props: Props) {
                   </a>
                 </li>
                 <li className="user-columns-points stats__item">
-                  <a href="/">
+                  <a>
                     <i className="icon-bucket" style={{ width: "14px", "height": "14px" }}/>
                     <span className="stats__count">
                       {props.author.points}

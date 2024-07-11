@@ -3,7 +3,7 @@ import { isoToDateTimeString } from "utils/date"
 import parse from 'html-react-parser';
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { getAuth } from "../SignInPanel/slice/selectors";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Question } from "../QuestionDetails/slice/types";
 import { panelActions } from "../SignUpPanel/slice";
 import { panelName } from "../SignUpPanel/slice/types";
@@ -16,6 +16,7 @@ import { PanelSubmitButton } from "../PanelSubmitButton";
 import Comment from "../Comment";
 import { AlertActions } from "../AuthMessage/slice";
 import ReadMore from "../ReadMore";
+import AuthorCard from "../AuthorCard";
 
 
 interface Props {
@@ -114,23 +115,23 @@ export default function Answer(props: Props) {
             <div className="d-flex align-items-center header-of-comment">
             
             <div className="author-image author__avatar author-image-42">
-                <a href="/">
-                <span className="author-image-span">
-                    <img
-                    className="avatar avatar-42 rounded-circle photo"
-                    title={answer.details.author.name}
-                    width={42}
-                    height={42}
-                    style={{ maxBlockSize: 42 }}
-                    src={answer.details.author.avatar ? `${process.env.REACT_APP_SERVER_ORIGIN}` + answer.details.author.avatar : Avatar.anonymous}
-                    />
-                </span>
-                </a>
-                <div className="author-image-pop-2 member-card" data-user={5}>
-                <div className="author-pop-loader">
-                    <div className="loader_2" />
-                </div>
-                </div>
+                <Link to={`/home/user/${answer.details.author.id}`}>
+                    <span className="author-image-span">
+                        <img
+                        className="avatar avatar-42 rounded-circle photo"
+                        title={answer.details.author.name}
+                        width={42}
+                        height={42}
+                        style={{ maxBlockSize: 42 }}
+                        src={answer.details.author.avatar 
+                            ? !answer.details.author.avatar.startsWith('https') 
+                                ? `${process.env.REACT_APP_SERVER_ORIGIN}` + answer.details.author.avatar
+                                : answer.details.author.avatar 
+                            : Avatar.anonymous}
+                        />
+                    </span>                    
+                </Link>
+                <AuthorCard author={props.answer.details.author}/>
             </div>
             <div className="author clearfix">
                 <div className="comment-meta">
@@ -140,18 +141,11 @@ export default function Answer(props: Props) {
                     itemProp="author"
                     itemType="http://schema.org/Person"
                     >
-                    <a
-                        itemProp="url"
-                        href="/"
-                    >
-                        <span itemProp="name">{answer.details.author.name}</span>
-                    </a>
-                    </span>
-                    <span
-                    className="badge-span"
-                    style={{ backgroundColor: "#d9a34a" }}
-                    >
-                    
+                        <Link
+                            to={`/home/profile/${answer.details.author.id}`}
+                        >
+                            <span itemProp="name">{answer.details.author.name}</span>
+                        </Link>
                     </span>
                 </div>
                 <a

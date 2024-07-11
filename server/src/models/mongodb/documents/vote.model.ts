@@ -74,7 +74,7 @@ export const VoteSchema = new mongoose.Schema<IVote, VoteModel>(
   }
 );
 
-VoteSchema.index({ voter: 1, questionId: 1, answerDetailsId: 1, commentId: 1 }, { unique: true, sparse: true });
+VoteSchema.index({ voter: 1, questionId: 1, answerId: 1, commentId: 1 }, { unique: true, sparse: true });
 
 // @ts-expect-error
 VoteSchema.plugin(toJSON);

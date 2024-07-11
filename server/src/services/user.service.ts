@@ -126,11 +126,16 @@ const getUsersCount = async () => {
 
 const getUsers = async (filter: Partial<IUser>, searchOptions: SearchOptions) => {
   const { limit, page } = searchOptions;
-  return await userRepository.getList(filter, {
+  const queryOptions = {
     limit,
     skip: (page - 1) * limit,
-    sort: { [`${searchOptions.sortDesc}`]: -1 },
-  })
+  }
+
+  if (searchOptions.sortDesc) {
+    Object.assign(queryOptions, { sort: { [`${searchOptions.sortDesc}`]: -1 } })
+  }
+
+  return await userRepository.getList(filter, queryOptions)
 }
 
 const searchUsers = async (text: string, searchOptions: SearchOptions) => {

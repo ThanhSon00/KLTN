@@ -12,8 +12,14 @@ export default function TopActive() {
             const users = await getUsers({ page: 1, limit: 3, sortDesc: 'points'}) as User[];
             setUsers(users.map(user => { return {
                 ...user,
-                avatar: user.avatar ? `${process.env.REACT_APP_SERVER_ORIGIN}${user.avatar}` : "",
-                cover: user.cover ? `${process.env.REACT_APP_SERVER_ORIGIN}${user.cover}` : "",
+                avatar: user.avatar 
+                    ? !user.avatar.startsWith('https') 
+                        ? `${process.env.REACT_APP_SERVER_ORIGIN}${user.avatar}` 
+                        : user.avatar
+                    : "",
+                cover: user.cover 
+                    ? `${process.env.REACT_APP_SERVER_ORIGIN}${user.cover}` 
+                    : "",
             }}));
         }
         loadUsers();

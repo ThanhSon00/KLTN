@@ -81,8 +81,6 @@ export default function InitialSection() {
                         <Link to="/home?tab=createdAt">
                             Câu hỏi mới nhất
                         </Link>
-                        {/* <a href="/" onClick={(e) => openSection(e, sortCategory.newest)}>
-                        </a> */}
                     </li>
                     <li className={isActiveTab(SortCategory.answers)}>
                         <Link to="/home?tab=answersCount">

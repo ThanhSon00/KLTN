@@ -19,7 +19,7 @@ export function TextEditor(props: Props): React.ReactElement {
 
   return (
     <>
-      {process.env.NODE_ENV === 'development' && 
+      {process.env.NODE_ENV === 'production' && 
         <Editor
           apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
           init={{

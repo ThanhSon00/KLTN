@@ -76,6 +76,7 @@ export default function AdminSite() {
       if (user) return;
       
       verfiyAdmin().then(admin => {
+        console.log(admin);
         dispatch(AdminActions.setAdmin(admin));
       }).catch(() => {
         navigate("/admin/login");
@@ -152,7 +153,7 @@ export default function AdminSite() {
                     alt=""
                     className="img-circle "
                     style={{ maxBlockSize: "29px", minWidth: "29px" }}
-                    src={ `${process.env.REACT_APP_SERVER_ORIGIN}${user?.avatar}` }
+                    src={ user?.avatar }
                   />
                   <span className="username username-hide-on-mobile"> {user?.name}</span>
                 </a>
@@ -210,7 +211,7 @@ export default function AdminSite() {
                         <img
                           alt="image"
                           style={{ maxBlockSize: "70px", maxWidth: "70px", maxHeight: "70px" }}
-                          src={ `${process.env.REACT_APP_SERVER_ORIGIN}${user?.avatar}` }
+                          src={ user?.avatar }
                         />
                       </div>
                       <div className="sidebar-user-details">
