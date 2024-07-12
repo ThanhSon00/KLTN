@@ -1,8 +1,24 @@
 import { QueryOptions } from 'mongoose';
-import { Question, User } from '../models/mongodb/documents';
-import { IQuestion, QuestionInput, QuestionUpdate } from '../models/mongodb/documents/question.model';
+import { Question, Search, User } from '../models/mongodb/documents';
+import { IQuestion, QuestionDocument, QuestionInput, QuestionUpdate } from '../models/mongodb/documents/question.model';
 import userRepository from './user.repository';
 import { Vote } from '../models/mongodb/documents/vote.model';
+import searchRepository from './search.repository';
+
+const createQuestionSearch = async (question: QuestionDocument) => {
+  const mapOfWordOcurrences = new Map<string, number>();
+  const keywords = await question.getKeywords()
+  const search = await Search.create({ 
+    questionId: question.id, 
+    paragraph: question.toParagraph(), 
+    keywords,
+  });
+  const totalDoc = await Search.estimatedDocumentCount();
+  const updatedKeywords = await search.refreshKeywordRanking(totalDoc, 200, mapOfWordOcurrences);
+  await searchRepository.update({ id: search.id }, {
+    keywords: updatedKeywords
+  })
+}
 
 const create = async (questionBody: QuestionInput) => {
   const user = await User.findById(questionBody.author);
@@ -10,12 +26,8 @@ const create = async (questionBody: QuestionInput) => {
   const question = await Question.create({ ...questionBody, _id: questionBody.id });
   user.questions += 1;
   await user.save();
-  // const keywords = await question.getKeywords()
-  // await Search.create({ 
-  //   questionId: question.id, 
-  //   paragraph: question.toParagraph(), 
-  //   keywords
-  // });
+
+  await createQuestionSearch(question);
   return question;
 };
 
